@@ -35,7 +35,11 @@ class CategoryController extends Controller
 
         return redirect("/admin");
     }
-
+    public function index(){
+       $categories = DB::table('categories')->get();
+       //dd($categories);
+        return view('/category/index', compact('categories'));
+    }
     public function show(){
 
     }

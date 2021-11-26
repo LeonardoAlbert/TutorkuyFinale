@@ -28,4 +28,5 @@ Route::get('/admin', 'UserController@show');
 //CATEGORY
 Route::post('/categories' , 'CategoryController@store');
 Route::get('/categories/create', 'CategoryController@create');
+Route::get('/categories/index', 'CategoryController@index');
 
