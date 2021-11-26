@@ -21,6 +21,26 @@
                             </span>
                         @enderror
                     </div>
+                    <div class="text-dark my-2">Kategori</div>
+                    <div class="line mb-2"></div>
+
+                    <div class="mb-4">
+                        <select name="type" id="type" class="form-control">
+                            @foreach($categorytypes as $cat)
+                                <option value="{{ $cat->name }}">{{ $cat->name }}</option>
+                            @endforeach
+                           
+                        </select>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="type">Tipe Kategori</label>
+                        <select name="type" id="type" class="form-control" id="exampleFormControlSelect1">
+                        <option>Materi Kelas SMP</option>
+                        <option>Materi Kelas SMA</option>
+                        <option>Materi Kuliah</option>
+                        </select>
+                    </div> -->
+                    
                     <div class="form-group">
                         <label for="image">Foto</label>
                         <input type="file" name="image" id="image" class="d-block @error('image') is-invalid @enderror">
@@ -33,9 +53,9 @@
                     </div>
                     
                     <!-- </div> -->
-                    <!-- <input type="submit"> Unggah</input> -->
+                    <input type="submit"> Unggah</input>
 
-                    <button class="btn btn-primary w-100">Unggah</button>
+                    <!-- <button class="btn btn-primary w-100">Unggah</button> -->
                 </form>
             </div>
         </div>

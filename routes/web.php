@@ -22,8 +22,8 @@ Auth::routes();
 Route::get('/admin', 'UserController@show');
 
 
-
-
+Route::get('/posts/create', 'PostController@create');
+Route::post('/posts' , 'PostController@store');
 
 //CATEGORY
 Route::post('/categories' , 'CategoryController@store');

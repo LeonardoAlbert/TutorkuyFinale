@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateCategoryTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-         // $table->string('type');
-            $table->string('image');
-            $table->unsignedBigInteger('category_type_id');
             $table->timestamps();
-
-
-           $table->foreign('category_type_id')->references('id')->on('category_types')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -33,6 +27,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_types');
     }
 }
