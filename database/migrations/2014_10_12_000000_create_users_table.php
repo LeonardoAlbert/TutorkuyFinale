@@ -21,7 +21,18 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role');
             $table->rememberToken();
+
             $table->timestamps();
+
+
+            $table->text('headline')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('city')->nullable();
+            $table->string('image')->nullable();
+            $table->string('country')->nullable();
+            $table->double('rate')->default(0);
+            $table->double('num_work')->default(0);
+
         });
     }
 

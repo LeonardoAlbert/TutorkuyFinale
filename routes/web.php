@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\userOwner;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +29,9 @@ Route::post('/posts' , 'PostController@store');
 Route::post('/categories' , 'CategoryController@store');
 Route::get('/categories/create', 'CategoryController@create');
 Route::get('/categories/index', 'CategoryController@index');
+Route::get('/categories/{category}', 'CategoryController@show');
 
+//USER
+Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
+Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
+Route::get('/users/{user}', 'UserController@show');

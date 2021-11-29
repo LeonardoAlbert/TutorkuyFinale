@@ -68,6 +68,14 @@
                         </select>
                     </div>
 
+                    <!-- <label for="price">Harga Kelas per jam </label> -->
+                    <div class="mb-4">
+                        <label for="schedule">Jadwal Kelas</label>
+                        <input type="datetime-local" name="schedule" id="schedule" class="form-control formInput @error('schedule') is-invalid @enderror" value="{{ old('schedule') }}">
+                    </div>
+                            
+
+
                    
                     
                     <button class="btn btn-primary w-100">Unggah Kelas</button>
