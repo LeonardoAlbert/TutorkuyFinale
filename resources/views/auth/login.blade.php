@@ -14,7 +14,7 @@
                         <i class="fab fa-twitter icon"></i>
                         <i class="fab fa-linkedin-in icon"></i>
                     </div>
-                    <small class="d-block mb-3">atau gunakan alamat email anda</small>
+                    <thead class="d-block mb-3">atau gunakan alamat email anda</thead>
 
                     <form class="mb-3" method="POST" action="{{ route('login') }}">
                         @csrf
