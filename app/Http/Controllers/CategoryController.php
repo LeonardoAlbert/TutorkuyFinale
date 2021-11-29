@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\CategoryType;
+use App\Post;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 
@@ -51,7 +52,13 @@ class CategoryController extends Controller
        //dd($categories);
         return view('/category/index', compact('categorytypes' , 'categories'));
     }
-    public function show(){
+    public function show(Category $category){
+       // $posts = $category->posts();
+       $posts = DB::table('posts')->where('category_id', $category->id)->get();
+       //dd($posts);
+       // $posts = Post::where('category_id','like', '%$category->id%')->get();
+        //dd($category->id);
+        return view('/category/show' , compact('category','posts'));
 
     }
 }

@@ -6,8 +6,9 @@
         <div class="col-md-8 card p-0 mx-auto">
             <div class="card-body">
                 <div class="text-primary heading mb-3">Kelas Baru</div>
-                <form action="/posts" enctype="multipart/form-data" method="POST" id="create-post-form">
+                <form action="/posts/{{ $post->id }}" enctype="multipart/form-data" method="POST" id="edit-post-form">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="title">Judul</label>
                         <input type="text" 
@@ -80,6 +81,7 @@
                     
                     <button class="btn btn-primary w-100">Unggah Kelas</button>
                 </form>
+                
             </div>
         </div>
     </div>
