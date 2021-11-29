@@ -24,10 +24,8 @@ class CreatePostsTable extends Migration
             $table->integer('price');
 
 
-
-          //  $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade'); 
+            //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade'); 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-
             
         });
     }

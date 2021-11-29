@@ -13,6 +13,11 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
+    public function index(){
+
+        return view('/posts/index', compact('posts'));
+    }
+
     public function create(){
         $categories = DB::table('categories')->get();
        
@@ -46,7 +51,7 @@ class PostController extends Controller
         $postRes = Post::create(array_merge(
             $data,
             $categoryArray,
-            $imageArray ?? [],
+            $imageArray ?? [], 
         ));
 
         foreach($schedule as $data) {
@@ -67,6 +72,46 @@ class PostController extends Controller
         // ));
 
         return redirect("/admin");
+    }
+
+    public function details(Post $post){
+        return view("/posts/details", compact('post'));
+    }
+
+    public function edit(Post $post){
+        $categories = DB::table('categories')->get();
+        // $post = DB::table('posts')->where('id', $id)->get();       
+
+        return view("/posts/edit", compact('post', 'categories'));
+    }
+
+    public function update(Post $post){
+        //dd(request());
+        $data = request()->validate([
+            'title' => 'required|max:50',
+            'image' => 'required|image',
+            'description' => 'required|max:150',
+            'categories' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
+        $post->update([
+            'title' => request()->title,
+            'image' => request()->image,
+            'description' => request()->description,
+            'categories' => request()->categories,
+            'price' => request()->price,
+        ]);
+
+        return redirect("/admin");
+    }
+
+    public function destroy(Post $post){
+        $user = $post->user->id;
+
+        $post->delete();
+
+        return redirect("/users/$user");
     }
     
 }
