@@ -39,3 +39,6 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
+
+Route::get('/orders/{post}/create' , 'OrderController@create');
+Route::post('/orders', 'OrderController@store');

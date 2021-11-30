@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="col-3 pt-2">
                     <div class="card" style="width: 9rem;">
-                        <a href="/posts/{{ $cat->id }}" class="-100">
+                        <a href="/categories/{{ $cat->id }}" class="-100">
                             <img src="/storage/{{ $cat->image }}" alt="" class="rounded post">
                         </a>
                     </div>

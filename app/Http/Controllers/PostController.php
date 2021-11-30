@@ -48,10 +48,16 @@ class PostController extends Controller
         $image->save();
         $imageArray = ['image' => $imagePath];
 
-        $postRes = Post::create(array_merge(
+        // $postRes = Post::create(array_merge(
+        //     $data,
+        //     $categoryArray,
+        //     $imageArray ?? [], 
+        // ));
+
+         $postRes = auth()->user()->posts()->create(array_merge(
             $data,
             $categoryArray,
-            $imageArray ?? [], 
+            $imageArray ?? [],
         ));
 
         foreach($schedule as $data) {
@@ -65,11 +71,7 @@ class PostController extends Controller
             $schedule_class->save();
         }
 
-        // $postRes = auth()->user()->posts()->create(array_merge(
-        //     $data,
-        //     $categoryArray,
-        //     $imageArray ?? [],
-        // ));
+       
 
         return redirect("/admin");
     }

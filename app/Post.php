@@ -19,5 +19,9 @@ class Post extends Model
     public function classschedules(){
         return $this->hasMany(ClassSchedule::class);
     }
+
+    public function order(){
+        return $this->hasOne(Order::class);
+    }
     
 }
