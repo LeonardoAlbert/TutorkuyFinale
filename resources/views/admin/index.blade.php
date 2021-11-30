@@ -67,7 +67,9 @@
         </style>
     </head>
     <body>
-        Login As ADMIN
+        @foreach($orders as $order)
+        <div class="text-left pt-3">{{ $order->ordername }}</div>
+        @endforeach
     </body>
 </html>
 @endsection

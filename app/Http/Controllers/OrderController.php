@@ -12,8 +12,8 @@ class OrderController extends Controller
 {
     public function create(Post $post){
       // dd($post);
-       
-        return view('/order/create', compact('post'));
+        
+        return view('/orders/create', compact('post'));
     }
 
     public function store(){
@@ -44,8 +44,10 @@ class OrderController extends Controller
         $order->user_id = auth()->user()->id;
         $order->save();
 
-       
-
         return redirect('/admin');
+    }
+
+    public function details(Order $order){
+        return view('/orders/details', compact('order'));
     }
 }

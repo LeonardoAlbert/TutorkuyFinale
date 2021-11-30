@@ -19,7 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', 'UserController@show');
+Route::get('/home', 'UserController@show'); 
+
+//ADMIN
+Route::get('/admin', 'AdminController@index');
+
 
 //POST
 Route::get('/posts/{post}/details', 'PostController@details');
@@ -40,5 +44,7 @@ Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::c
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
 
-Route::get('/orders/{post}/create' , 'OrderController@create');
+//ORDER
+Route::get('/orders/{post}/create', 'OrderController@create');
+Route::get('/orders/{order}/details', 'OrderController@details');
 Route::post('/orders', 'OrderController@store');

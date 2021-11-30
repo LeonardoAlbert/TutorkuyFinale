@@ -13,11 +13,6 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
-    public function index(){
-
-        return view('/posts/index', compact('posts'));
-    }
-
     public function create(){
         $categories = DB::table('categories')->get();
        
