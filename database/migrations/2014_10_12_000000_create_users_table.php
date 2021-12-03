@@ -24,11 +24,13 @@ class CreateUsersTable extends Migration
 
             $table->timestamps();
 
+            $table->integer('verif')->default(0); //0 Unverified | 1= Waiting for Verification |2 = Verified
+            $table->string('fileverif')->nullable();
 
             $table->text('headline')->nullable();
             $table->text('bio')->nullable();
             $table->string('city')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->default("profile/userprofile.jpg");
             $table->string('country')->nullable();
             $table->double('rate')->default(0);
             $table->double('num_work')->default(0);

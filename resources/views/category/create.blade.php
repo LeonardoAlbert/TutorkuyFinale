@@ -53,9 +53,9 @@
                     </div>
                     
                     <!-- </div> -->
-                    <input type="submit"> Unggah</input>
+                 
 
-                    <!-- <button class="btn btn-primary w-100">Unggah</button> -->
+                   <button class="btn btn-primary w-100">Unggah</button> 
                 </form>
             </div>
         </div>

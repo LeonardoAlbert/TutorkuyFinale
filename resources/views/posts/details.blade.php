@@ -14,15 +14,25 @@
                     <div class="d-flex justify-content-between">
                         <span class="sub-heading">{{ $post->title }}</span>
                         <div class="text-left pt-3">{{ $post->description }}</div>
+
+                    </div>
+                    @foreach($css as $cs)
+                    <div class="d-flex justify-content-between">
+                    @if($cs->post_id == $post->id)
+                    <button id={{$cs->id}} class="sub-heading">{{$cs->schedule}}</span>
+                    @endif
                     </div>
                     
+                    @endforeach
                     </div>
             </div>
             
-            <a href="/orders/{{$post->id}}/create" class="btn btn-primary w-100">Daftar Kelas</button>
+            <a href="/orders/{{$post->id}}/create" class="btn btn-primary w-50">Daftar Kelas</button>
 
             
         </div>
     </div>
 </div>
+
 @endsection
+

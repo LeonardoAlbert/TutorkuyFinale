@@ -17,6 +17,22 @@ class UserController extends Controller
         return view('users/show', compact('user'));
     }
 
+    public function review(User $user){
+
+        return view('users/review', compact('user'));
+    }
+
+    public function reviewsubmit(Request $request){
+     //   dd(request());
+
+        $user = User::where('id' , $request->userId)->first();
+        $user->num_work = $user->num_work + 1;
+        $user->rate = ($user->rate + $request->rating)/$user->num_work;
+        $user->save();
+
+        return redirect("/users/$user->id");
+    }
+
     public function edit(User $user){
         return view('users/edit', compact('user'));
     }

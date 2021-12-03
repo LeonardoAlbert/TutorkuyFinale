@@ -23,7 +23,8 @@ Route::get('/home', 'UserController@show');
 
 //ADMIN
 Route::get('/admin', 'AdminController@index');
-
+Route::get('/admin/managepayment', 'AdminController@managepayment');
+Route::get('/admin/{order}/managepaymentdetails', 'AdminController@details');
 
 //POST
 Route::get('/posts/{post}/details', 'PostController@details');
@@ -43,8 +44,15 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
-
+Route::get('/users/{user}/review', 'UserController@review');
+Route::post('/users/review/submit', 'UserController@reviewsubmit');
 //ORDER
 Route::get('/orders/{post}/create', 'OrderController@create');
+
 Route::get('/orders/{order}/details', 'OrderController@details');
 Route::post('/orders', 'OrderController@store');
+Route::post('/orders/accepted', 'OrderController@accepted');
+Route::post('/orders/ended', 'OrderController@ended');
+Route::get('/orders/history', 'OrderController@history');
+Route::post('/orders/declined', 'OrderController@declined');
+

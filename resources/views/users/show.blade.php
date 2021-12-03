@@ -55,7 +55,34 @@
             </div>
 
             <div class="col-9 pt-3">
-                @yield('contentDetails')
+     <div class="w-100">
+    <div class="heading px-1">CLASSES</div>
+    <div class="line my-2"></div>
+    <div class="row">
+    @foreach($user->posts()->get() as $post)
+           
+                <div class="col-4 p-2">
+                    <div class="shadow-dark review p-3">
+                        <div class="row">
+                            <div class="col-2 p-0">
+                                <img src="/storage/{{ $post->image }} " alt="" class="w-100 rounded-circle">
+                            </div>
+                            <div class="col-10">
+                            <a href="/posts/{{ $post->id }}/details" class="w-100">
+                                <div class="small-text">Project: <span class="text-bold">{{ $post->title }}</span></div>
+                            </a>    
+                            </div>
+                        </div>
+                        <div class="review-desc description mt-2"></div>
+                        <div class="review-footer small-text text-dark">
+                        </div>
+                    </div>
+                </div>
+            
+        @endforeach
+    </div>
+</div>
+
             </div>
         </div>
     </div>

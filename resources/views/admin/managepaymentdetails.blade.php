@@ -1,0 +1,87 @@
+@extends('layouts.app')
+
+@section('content')
+
+<link rel="stylesheet" href="/path/to/dist/css/image-zoom.css" />
+
+<script src="/path/to/cdn/jquery.min.js"></script>
+
+<script src="/path/to/dist/js/image-zoom.min.js"></script>
+<div id="container" class="zone-card2">
+    <div class="card title-card">
+        <h1>Order Details</h1>
+    </div>
+    <div class="card table-card">
+    <div class="table-responsive">
+        <table class="table t3">
+        <tr>
+                <th>
+                    Order Name
+                </th>
+                <td>
+                {{ $order->ordername }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Bank Transfer From
+                </th>
+                <td>
+                {{ Str::upper($order->bankcode) }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    User Account Number
+                </th>
+                <td>
+                {{ $order->banknumber }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Order Status
+                </th>
+                <td>
+                {{ $order->status}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Proof of Payment
+                </th>
+                <td>
+                <input type="checkbox" id="zoomCheck">
+                <label for="zoomCheck">
+                <img  src="/storage/{{ $order->image }}" alt="" class="rounded post"/>
+            </label>
+               
+                </td>
+            </tr>
+    </table >
+            </div>
+           
+        </div>
+        <div class="center">
+            <form action ="/orders/declined"  class="form-inline" method="POST" >
+                @csrf
+                <input type="hidden" id="orderId" name="orderId" value="{{$order->id}}">
+                <input type="submit" value="Decline" class="btn btn-danger" />
+            </form> 
+
+            <form action ="/orders/accepted"  class="form-inline" method="POST" >
+                @csrf
+                <input type="hidden" id="orderId" name="orderId" value="{{$order->id}}">
+                <input type="submit" value="Accept" class="btn btn-primary" />
+            </form> 
+        </div>
+    </div>
+  
+</div>
+
+
+
+
+@endsection
+
+

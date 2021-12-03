@@ -76,7 +76,7 @@
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
-                                            <a href="/jobs/create" class="dropdown-item">New Category</a>
+                                            <a href="/categories/create" class="dropdown-item">New Category</a>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

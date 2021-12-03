@@ -7,7 +7,7 @@
         <div class="col-3 px-2 mb-2">
                 <a href="/posts/{{ $post->id }}" class="w-100">
                     <img src="/storage/{{ $post->image }} " alt="" class="w-100 rounded post">
-                    <div class="text-muted mb-3">By <a href="{{ url("users", $post->user->id) }}" class="text-muted">{{ $post->user->name }}</a></div>
+                    <div class="text-muted mb-3"> <a href="{{ url("users", $post->user->id) }}" class="text-muted">{{ $post->user->name }}</a></div>
                 </a>
                 <div class="mt-2">
                     <div class="d-flex justify-content-between">

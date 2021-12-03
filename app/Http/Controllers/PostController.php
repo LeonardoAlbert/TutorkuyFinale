@@ -72,7 +72,10 @@ class PostController extends Controller
     }
 
     public function details(Post $post){
-        return view("/posts/details", compact('post'));
+     //   dd($post);
+        $css = DB::table('class_schedules')->get();
+      //  dd($classSchedule);
+        return view("/posts/details", compact('post','css'));
     }
 
     public function edit(Post $post){
