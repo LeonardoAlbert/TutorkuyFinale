@@ -16,32 +16,32 @@ class CategorySeeder extends Seeder
             [
                 'category_type_id' => 1,
                 'name'=> 'Fisika',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg',
+                'image' =>'assets/img/logo/Math University.png',
             ],
             [
                 'category_type_id' => 1,
                 'name'=> 'Kimia',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg'
+                'image' =>'assets/img/logo/Chemistry.png'
             ],
             [
                 'category_type_id' => 1,
                 'name'=> 'Matematika',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg'
+                'image' =>'assets/img/logo/Math University.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Finance',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg'
+                'image' =>'assets/img/logo/Math University.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Calculus',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg'
+                'image' =>'assets/img/logo/Math University.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Web Programming',
-                'image' =>'category/3mkk1mQRUveldwXE1SJYF06K5CPK5t41hU1UNgnr.jpg'
+                'image' =>'assets/img/logo/Math University.png'
             ],
         ]);
     }
