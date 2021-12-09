@@ -6,7 +6,7 @@
         <div class="col-md-5">
             <div class="card border-0">
                 <div class="card-body verify-content">
-                    <img src="{{ url('/assets', 'darkGray.png') }}" class="logo-form mx-auto d-block" alt="darkGray">
+                    <img src="" class="logo-form mx-auto d-block" alt="darkGray">
                     <div class="welcome mt-4">Verifikasi sebagai Tutor Verified TutorKuy</div>
                     <div class="mx-auto welcome-border mb-4"></div>
                     <strong class="d-block mb-3">Harap unggah dokumentasi petunjuk kualifikasi Anda.</strong>
@@ -22,7 +22,7 @@
                         Contoh dokumen yang diterima adalah Kualifikasi Pengajar, Tanda Petunjuk bahwa dapat mengajar , dan lain lain.
                     </p>
 
-                    <a href="/users/verif" class="btn btn-primary w-100 mt-5">Lanjut</a>
+                    <a href="/verif/{{$user->id}}" class="btn btn-primary w-100 mt-5">Lanjut</a>
                 </div>
             </div>
         </div>

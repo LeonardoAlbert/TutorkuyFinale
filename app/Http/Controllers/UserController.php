@@ -36,6 +36,7 @@ class UserController extends Controller
     public function edit(User $user){
         return view('users/edit', compact('user'));
     }
+   
     public function update(User $user){
         $data = request()->validate([
             'name' => 'required',
@@ -67,4 +68,22 @@ class UserController extends Controller
 
         return redirect("/admin");
     }
+    public function verifaccepted(Request $request){
+    //    dd($request);
+          $user = User::where('id' , $request->userId)->first();
+          $user->verif = 2;
+          $user->save();
+    
+          return redirect('/admin');
+        }
+
+        public function verifdeclined(Request $request){
+            // dd($request);
+              $user = User::where('id' , $request->userId)->first();
+              $user->verif = 0;
+              $user->save();
+        
+              return redirect('/admin');
+        }
+   
 }

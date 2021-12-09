@@ -9,53 +9,44 @@
 <script src="/path/to/dist/js/image-zoom.min.js"></script>
 <div id="container" class="zone-card2">
     <div class="card title-card">
-        <h1>Order Details</h1>
+        <h1>Tutor Verification</h1>
     </div>
     <div class="card table-card">
     <div class="table-responsive">
         <table class="table t3">
         <tr>
                 <th>
-                    Order Name
+                   Tutor Name
                 </th>
                 <td>
-                {{ $order->ordername }}
+                {{ $user->name }}
+                </td>
+            </tr>
+            @if($user->city )
+            <tr>
+                <th>
+                   Kota Tutor
+                </th>
+                <td>
+                {{$user->city}}
+                </td>
+            </tr>
+            @endif
+            <tr>
+                <th>
+                    Tutor Verification Status
+                </th>
+                <td>
+                     {{$user->verif}}
                 </td>
             </tr>
             <tr>
                 <th>
-                    Bank Transfer From
+                    Bukti Kualifikasi Tutor
                 </th>
                 <td>
-                {{ Str::upper($order->bankcode) }}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    User Account Number
-                </th>
-                <td>
-                {{ $order->banknumber }}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Order Status
-                </th>
-                <td>
-                {{ $order->status}}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Proof of Payment
-                </th>
-                <td>
-                <input type="checkbox" id="zoomCheck">
-                <label for="zoomCheck">
-                <img  src="/storage/{{ $order->image }}" alt="" class="rounded post"/>
-            </label>
-               
+                <a href="{{ route('verif.download', $user->id) }}"><i class="fas fa-download"></i></a>
+
                 </td>
             </tr>
     </table >
@@ -63,16 +54,16 @@
            
         </div>
         <div class="row justify-content-center">
-            <form action ="/orders/declined"  class="form-inline" method="POST" >
+            <form action ="/users/verifdeclined"  class="form-inline" method="POST" >
                 @csrf
-                <input type="hidden" id="orderId" name="orderId" value="{{$order->id}}">
+                <input type="hidden" id="userId" name="userId" value="{{$user->id}}">
                 <input type="submit" value="Decline" class="btn btn-danger" />
             </form> 
 
-            <form action ="/orders/accepted"  class="form-inline" method="POST" >
+            <form action ="/users/verifaccepted"  class="form-inline" method="POST" >
                 @csrf
-                <input type="hidden" id="orderId" name="orderId" value="{{$order->id}}">
-                <input type="submit" value="Accept" class="btn btn-primary ml-5 text-center" />
+                <input type="hidden" id="userId" name="userId" value="{{$user->id}}">
+                <input type="submit" value="Accept" class="btn ml-5 btn-primary" />
             </form> 
         </div>
     </div>

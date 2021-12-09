@@ -92,14 +92,9 @@ i.fab.icon {
     box-shadow: none !important;
 }
 
-.btn-primary {
-    background: #FD9A24 !important;
-    border: none !important;
-}
 
-.btn-primary:hover {
-    background: #FF8B00 !important;
-}
+
+
 
 .btn-success {
     background: #47AF2D !important;
@@ -386,23 +381,9 @@ input[type="radio"] {
     z-index: 1000 !important;
 }
 
-.btn-basic {
-    padding: 0.3rem 1.5rem;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-}
 
-.btn-basic:hover {
-    box-shadow: 0 0 0 0.15rem rgba(253, 154, 26, 0.1);
-}
 
-.btn-basic.active {
-    border: 1px solid #FD9A24;
-    color: #FD9A24;
-}
+
 
 .btn-basic-dark {
     background: #F6F6F6;

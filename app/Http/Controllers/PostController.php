@@ -5,6 +5,7 @@ use App\Category;
 use App\ClassSchedule;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use DB;
@@ -74,8 +75,11 @@ class PostController extends Controller
     public function details(Post $post){
      //   dd($post);
         $css = DB::table('class_schedules')->get();
+        
+    $user = User::where('id' , $post->user_id)->first();
+    //   dd($user);
       //  dd($classSchedule);
-        return view("/posts/details", compact('post','css'));
+        return view("/posts/details", compact('post','css','user'));
     }
 
     public function edit(Post $post){

@@ -1,38 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-9 mx-auto">
-    
-        <div class="p-0 mx-auto row">
-            <h1>t
-            <div class="col-3 px-2 mb-2">
-                <a href="/posts/{{ $post->id }}" class="w-100">
-                    <img src="/storage/{{ $post->image }} " alt="" class="w-100 rounded post">
-                    <div class="text-muted mb-3">By <a href="{{ url("users", $post->user->id) }}" class="text-muted">{{ $post->user->name }}</a></div>
-                </a>
-                <div class="mt-2">
-                    <div class="d-flex justify-content-between">
-                        <span class="sub-heading">{{ $post->title }}</span>
-                        <div class="text-left pt-3">{{ $post->description }}</div>
 
-                    </div>
+<div class="container pb50">
+    <div class="row">
+        <div class="col-md-9 mb40">
+            <article>
+                <img src="/storage/{{ $post->image }}" alt="" class="img-fluid mb30">
+                <div class="post-content">
+                    <h3>{{ $post->title }}</h3>
+                    <ul class="post-meta list-inline">
+                        <li class="list-inline-item">
+                            <i class="fa fa-user-circle-o"></i> <a href="{{ url("users", $post->user->id) }}">{{ $post->user->name }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                        <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
+                            <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>
+                        </li>
+                       
+                    </ul>
+                    <h4 class="font500">Class Description</h4>
+                    <p class="lead">{{ $post->description }} </p>
+                    <hr class="mb40">
+                    <h4 class="mb40 text-uppercase font500">Class Schedule</h4>
+                    <div class="media mb40">
                     @foreach($css as $cs)
                     <div class="d-flex justify-content-between">
                     @if($cs->post_id == $post->id)
-                    <button id={{$cs->id}} class="sub-heading">{{$cs->schedule}}</span>
-                    @endif
+                    <button id={{$cs->id}} class="sub-heading cs">{{$cs->schedule}}</span>
+                    @endif 
                     </div>
                     
                     @endforeach
                     </div>
+                    </div>
+                    <hr class="mb40">
+                    <h4 class="mb40 text-uppercase font500">About the Tutor</h4>
+                    <div class="media mb40">
+                    
+                        <i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i>
+                        <div class="media-body">
+                            <h5 class="mt-0 font700"><a href="{{ url("users", $post->user->id) }}">{{ $post->user->name }}</a></h5>
+                            <span class="rating">
+                            <div class="rating-upper" style="width: {{ ($user->rate/5)*100 }}%">
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                </div>
+                                <div class="rating-lower">
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                    <span><i class="fas fa-star"></i></span>
+                                </div>
+                            </span>
+                            <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
+                            <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>
+                        </div>
+                  
             </div>
+            <br><br><br>
+            <a href="/orders/{{$post->id}}/create" class="daftar-kelas"> <button type="button" class="btn btn-primary w-100">Daftar Kelas</button></a>
             
-            <a href="/orders/{{$post->id}}/create" class="btn btn-primary w-50">Daftar Kelas</button>
-
-            
-        </div>
-    </div>
-</div>
-
+            </div>
+                    
 @endsection
-

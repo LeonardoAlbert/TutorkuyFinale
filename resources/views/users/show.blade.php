@@ -31,13 +31,7 @@
                                     <span><i class="fas fa-star"></i></span>
                                     <span><i class="fas fa-star"></i></span>
                                 </div>
-                                <div class="rating-lower">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
+                               
                             </span>
                             <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
                             <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>

@@ -10,4 +10,8 @@ class Order extends Model
     {
         return $this->hasOne(Post::class);
     }
+    
+    public function classschedule(){
+        return $this->hasOne(Post::class);
+    }
 }

@@ -12,11 +12,14 @@
                 <div class="mt-2">
                     <div class="d-flex justify-content-between">
                         <span class="sub-heading">{{ $post->title }}</span>
-                        <div class="text-left pt-3">{{ $post->description }}</div>
                        
+                        <div class="text-left pt-3">{{ $post->description }}</div>
+                        
                         
                     </div>
                     <div class="text-left pt-3"> Harga ::{{ $post->price }}</div>
+                    <div class="text-left pt-3">{{ $schedule->schedule }}</div>
+                  
                     <div class="text-left pt-3"> Account number ::  32132179312 a.n TutorKuy(BCA) </div>
                     </div>
             </div>
@@ -81,7 +84,7 @@
                     </div>
                     
                     <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
-                   
+                    <input type="hidden" id="scheduleId" name="scheduleId" value="{{$schedule->id}}">
 
                    
                     

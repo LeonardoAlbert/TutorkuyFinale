@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Order;
+use App\User;
 use App\ClassSchedule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
+use App\Mail\TutorKuyMail;
+use App\Mail\StudentOrderAcceptedMail;
+use App\Mail\TutorOrderAcceptedMail;
 
 class OrderController extends Controller
 {
-    public function create(Post $post , ClassSchedule $css){
-      // dd($post);
-        
-        return view('/orders/create', compact('post','css'));
+    public function create(Post $post , ClassSchedule $schedule){
+    // dd($post);
+    //    dd( $schedule);
+        return view('/orders/create', compact('post','schedule'));
     }
 
     public function store(){
@@ -42,8 +46,14 @@ class OrderController extends Controller
         $order->bankcode = request()->bankcode;
         $order->banknumber = request()->banknumber;
         $order->post_id = request()->postId;
-        $order->user_id = auth()->user()->id;
+        $order->orderuser_id = auth()->user()->id;
+        $order->classschedule_id = request()->scheduleId;
         $order->save();
+        $user = User::where('id' , $order->orderuser_id)->first();
+
+        $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.id', $order->id)->first();
+        //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($orders));
+        //\Mail::to('$user->email')->send(new \App\Mail\TutorKuyMail($orders));
 
         return redirect('/admin');
     }
@@ -53,6 +63,13 @@ class OrderController extends Controller
       $order->status = "Menunggu Kelas Dilaksanakan";
       $order->save();
 
+      $Studentorders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'orderuser_id' , '=' , 'users.id')->where('orders.id', $request->orderId)->first();
+      $Tutororders =  DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'user_id' , '=' , 'users.id')->where('orders.id', $request->orderId)->first();
+      //dd($Studentorders);
+      //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
+      //\Mail::to('$Studentorders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
+      //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorOrderAcceptedMail($Tutororders));
+        //\Mail::to('$Tutororders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
       return redirect('/admin');
     }
 
@@ -67,8 +84,9 @@ class OrderController extends Controller
 
     public function details(Order $order){
        
-         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.id', $order->id)->first();
-       // dd($orders);
+         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('class_schedules', 'classschedule_id', '=', 'class_schedules.id')->where('orders.id', $order->id)->first();
+         
+      // dd($orders);
         return view('/orders/details', compact('orders'));
     }
 
@@ -84,9 +102,33 @@ class OrderController extends Controller
      }
 
     public function history(){
-      $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->get();
+      $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id' , auth()->user()->id)->get();
     // dd($orders);
       // ->where('orders.user_id', auth()->user()->id )
       return view('/orders/history', compact('orders'));
     }
+
+    public function createlinkmeeting(Order $order){
+
+      return view('/orders/linkmeeting', compact('order'));
+    }
+
+    public function linkmeeting(Request $request){
+      $data = request()->validate([
+
+        'linkmeeting' => 'required|url',
+
+    ]);
+      //dd(request());
+
+      $order = Order::where('id' , $request->orderId)->first();
+      $order->linkmeeting = $data['linkmeeting'];
+      //dd($order->linkmeeting);
+    // dd($order);
+      $order->save();
+      return redirect('/orders/'.$order->id.'/details');
+    }
+
+
+    
 }
