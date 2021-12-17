@@ -10,7 +10,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="card">
                                 <div class="el-card-item">
-                                    <div class="el-card-avatar el-overlay-1"> <img src="/storage/{{$cat->image}}" alt="user">
+                                    <div class="el-card-avatar el-overlay-1"> <img src="/storage/{{$cat->image}}" alt="img">
                                         <div class="el-overlay">
                                             <ul class="list-style-none el-info">
                                                 <li class="el-item"><a class="btn default btn-outline image-popup-vertical-fit el-link" href="/categories/{{$cat->id}}"><i class="fa fa-search" aria-hidden="true"></i></a></li>

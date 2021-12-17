@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->string('image');
             $table->string('linkmeeting')->nullable();
+            $table->string('material')->nullable();
             $table->string('banknumber')->nullable();
             $table->string('bankcode')->nullable();
             $table->string('ordername')->nullable();

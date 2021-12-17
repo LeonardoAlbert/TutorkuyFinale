@@ -1,28 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 card p-0 mx-auto">
-        <div class="col-3 px-2 mb-2">
-                <a href="/posts/{{ $post->id }}" class="w-100">
-                    <img src="/storage/{{ $post->image }} " alt="" class="w-100 rounded post">
-                    <div class="text-muted mb-3"> <a href="{{ url("users", $post->user->id) }}" class="text-muted">{{ $post->user->name }}</a></div>
-                </a>
-                <div class="mt-2">
-                    <div class="d-flex justify-content-between">
-                        <span class="sub-heading">{{ $post->title }}</span>
-                       
-                        <div class="text-left pt-3">{{ $post->description }}</div>
-                        
-                        
-                    </div>
-                    <div class="text-left pt-3"> Harga ::{{ $post->price }}</div>
-                    <div class="text-left pt-3">{{ $schedule->schedule }}</div>
-                  
-                    <div class="text-left pt-3"> Account number ::  32132179312 a.n TutorKuy(BCA) </div>
-                    </div>
-            </div>
+<div class="container">
+<div class="row">
+    				<!-- BEGIN INVOICE -->
+					<div class="col-xs-12">
+						<div class="grid invoice">
+							<div class="grid-body">
+								<div class="invoice-title">
+									<div class="row">
+										
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-xs-12">
+											<h2>invoice<br>
+											<span class="small">order</span></h2>
+										</div>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-xs-6">
+										<address>
+											<strong>Billed To:</strong><br>
+											Name:{{$user->name}}<br>
+											Email:{{$user->email}}<br>
+											
+										</address>
+									</div>
+								
+								</div>
+                                <div class="row">
+									<div class="col-xs-6">
+										<address>
+											<strong>Payment Method:</strong><br>
+											Account Number<br>
+											<strong>32132179312 a.n TutorKuy(BCA)</strong><br>
+										</address>
+									</div>
+</div>
+								
+								<div class="row">
+									<div class="col-md-12">
+										<h3>ORDER SUMMARY</h3>
+										<table class="table table-striped">
+											<thead>
+												<tr class="line">
+													<td><strong>#</strong></td>
+													<td class="text-center"><strong>CLASS</strong></td>
+													<td class="text-center"><strong>Schedule HRS</strong></td>
+													<td class="text-right"><strong>Harga Kelas</strong></td>
+													<td class="text-right"><strong>SUBTOTAL</strong></td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td><strong>{{ $schedule->schedule }}</strong><br>{{ $post->description }}awfboawfbuobuoawawfbujoawfbujoawfbuoawfbawfawfwfawfawfwfaawfawfawfawfawfawfawawfjowfoabjawfbopawfobj}</td>
+													<td class="text-center">1</td>
+													<td class="text-center">{{ $post->price }}</td>
+													<td class="text-right">{{ $post->price }}</td>
+												</tr>
+											
+												<tr>
+													<td colspan="3"></td>
+													<td class="text-right"><strong>Taxes</strong></td>
+													<td class="text-right"><strong>N/A</strong></td>
+												</tr>
+												<tr>
+													<td colspan="3">
+													</td><td class="text-right"><strong>Total</strong></td>
+													<td class="text-right"><strong>Rp.{{ $post->price }}</strong></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>									
+								</div>
+								<div class="row">
+									<div class="col-md-12 text-right identity">
+										<p>Tutor Identity <br><strong>{{$post->user->name}}</strong></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					<!-- END INVOICE -->
+				
             <div class="card-body">
                 <div class="text-primary heading mb-3">Bukti Pembayaran</div>
                 <form action="/orders" enctype="multipart/form-data" method="POST" id="create-post-form">

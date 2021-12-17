@@ -33,3 +33,7 @@ $('.cs').on('click', function (event) {
         $('a.daftar-kelas').attr('href', newValue);
     }
 });
+
+$('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+});

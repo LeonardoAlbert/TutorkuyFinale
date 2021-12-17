@@ -52,6 +52,7 @@ class CategoryController extends Controller
        //dd($categories);
         return view('/category/index', compact('categorytypes' , 'categories'));
     }
+    
     public function show(Category $category){
        // $posts = $category->posts();
        $posts = DB::table('posts')->where('category_id', $category->id)->get();

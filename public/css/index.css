@@ -37,7 +37,7 @@ a:hover {
 
 .welcome {
     font-size: 30px;
-    color: #FD9A24;
+    color: #0d47a1;
     font-weight: bold;
     text-align: center;
 }
@@ -47,7 +47,7 @@ a:hover {
     margin-top: 15px;
     width: 50px;
     height: 3px;
-    background: #FD9A24;
+    background: #0d47a1;
     border-radius: 50px;
 }
 
@@ -94,28 +94,30 @@ i.fab.icon {
 
 
 
-
+.btn-primary{
+    background: #0d47a1;
+}
 
 .btn-success {
     background: #47AF2D !important;
 }
 
-.btn-success:hover, .btn-success:active, .btn-success:focus {
-    background-color: #2E791B !important;
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #ff2f00 !important;
 }
 
 .btn-outline-primary {
-    border-color: #FD9A24 !important;
-    color: #FD9A24 !important;
+    border-color: #0d47a1 !important;
+    color: #0d47a1 !important;
 }
 
 .btn-outline-primary:hover {
-    background: #FD9A24 !important;
+    background: #0d47a1 !important;
     color: white !important;
 }
 
 .text-primary {
-    color: #FD9A24 !important;
+    color: #0d47a1 !important;
 }
 
 .bg-primary {
@@ -135,11 +137,11 @@ a.text-muted {
 }
 
 a.text-muted:hover, a.text-black:hover {
-    color: #FD9A24 !important;
+    color: #0d47a1 !important;
 }
 
 a.text-primary:hover {
-    color: #FF8B00 !important;
+    color: #0d47a1 !important;
     text-decoration: underline !important;
 }
 
@@ -284,9 +286,9 @@ a.text-primary:hover {
 }
 
 .nav-item.active {
-    color: #FD9A24 !important;
+    color: #0d47a1 !important;
     font-weight: 700;
-    border-bottom: 2px solid #FD9A24 !important;
+    border-bottom: 2px solid #0d47a1 !important;
 }
 
 .nav-link {
@@ -1005,5 +1007,3 @@ body{
     height: 49px
 }
 
-
->>>>>>> Stashed changes

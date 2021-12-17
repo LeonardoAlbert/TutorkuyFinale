@@ -21,18 +21,18 @@ class PostController extends Controller
     }
 
     public function store(){
-        // dd(request());
+       //  dd(request());
         $data = request()->validate([
             'title' => 'required|max:50',
             'image' => 'required|image',
-            'description' => 'required|max:150',
+            'description' => 'required|max:600',
             'categories' => 'required',
             'price' => 'required|numeric',
         ]);
 
         // Carbon::createFromFormat('d-m-Y H:i:s', $date1);
         $schedule = [request('schedule')];
-
+        //dd($schedule);
         $category_id = Category::where('name', $data['categories'])->get()[0]->id;
         $categoryArray = ['category_id'=>$category_id];
         
@@ -55,21 +55,30 @@ class PostController extends Controller
             $categoryArray,
             $imageArray ?? [],
         ));
-
-        foreach($schedule as $data) {
+//dd(request('schedule'));
+        foreach(request('schedule') as $data) {
+           // dd($data);
+           if($data == null){
+               continue;
+           }
             $schedule_class = new ClassSchedule;
             $schedule_class->post_id = $postRes->id;
             // dd($data);
+            
             $time = str_replace('T', ' ', $data);
+            
             // dd($time);
+            //dd($time);
             // dd(Carbon::createFromFormat('Y-m-d H:i', $time));
             $schedule_class->schedule = Carbon::createFromFormat('Y-m-d H:i', $time);
+            $schedule_class->schedule = $time;
+        //   dd($schedule_class);
             $schedule_class->save();
         }
 
        
 
-        return redirect("/admin");
+        return redirect("/home");
     }
 
     public function details(Post $post){

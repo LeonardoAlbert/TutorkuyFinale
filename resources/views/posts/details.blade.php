@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-9 mb40">
             <article>
-                <img src="/storage/{{ $post->image }}" alt="" class="img-fluid mb30">
+                <img src="/storage/{{ $post->image }}" alt="" class="img-fluid width: 100% thumbnail">
                 <div class="post-content">
                     <h3>{{ $post->title }}</h3>
                     <ul class="post-meta list-inline">
@@ -22,12 +22,21 @@
                     <h4 class="font500">Class Description</h4>
                     <p class="lead">{{ $post->description }} </p>
                     <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">Class Schedule</h4>
+
+                    
+                    <h4 class="font500">Class Price</h4>
+                    <p class="lead">Rp.{{ $post->price }} </p>
+                    <div class="line mb-2"></div>
+
+                    <h4 class="mb40 text-uppercase font500">Class Schedule  </h4><p class="text-dark " style="font-size=4px;"> *setiap kelas berdurasi 1 jam </p>
+                   
+
+
                     <div class="media mb40">
                     @foreach($css as $cs)
                     <div class="d-flex justify-content-between">
                     @if($cs->post_id == $post->id)
-                    <button id={{$cs->id}} class="sub-heading cs">{{$cs->schedule}}</span>
+                    <button id={{$cs->id}} class="sub-heading cs btn btn-primary mr-3 pt-2">{{$cs->schedule}}</span>
                     @endif 
                     </div>
                     

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-9 mx-auto">
-    
+        <h1>{{$category->name}}</h1>
         <div class="p-0 mx-auto row">
             @foreach($posts as $post)
                 <div class="col-3 px-2 mb-2">

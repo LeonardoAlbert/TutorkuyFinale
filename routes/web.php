@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'UserController@show'); 
+Route::get('/home', 'UserController@home'); 
 
 //TUTOR VERIFICATION
 Route::get('/verif/{user}', 'TutorVerificationController@verif');
@@ -49,26 +49,31 @@ Route::get('/categories/index', 'CategoryController@index');
 Route::get('/categories/{category}', 'CategoryController@show');
 
 //USER
+Route::get('/users/upcomingclass', 'UserController@upcomingclass')->middleware('auth');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/createverify', 'UserController@createverify');
 Route::get('/users/{user}/review', 'UserController@review');
+
+
 Route::post('/users/review/submit', 'UserController@reviewsubmit');
 Route::post('/users/verifaccepted', 'UserController@verifaccepted');
 Route::post('/users/verifdeclined', 'UserController@verifdeclined');
 
 //ORDER
-Route::get('/orders/{post}/create/{schedule}', 'OrderController@create');
+Route::get('/orders/{post}/create/{schedule}', 'OrderController@create')->middleware('auth');;
 
 Route::get('/orders/{order}/details', 'OrderController@details');
 Route::get('/orders/{order}/createlinkmeeting', 'OrderController@createlinkmeeting');
 Route::post('/orders', 'OrderController@store');
 Route::post('/orders/accepted', 'OrderController@accepted');
 Route::post('/orders/ended', 'OrderController@ended');
-Route::get('/orders/history', 'OrderController@history');
+Route::get('/orders/history', 'OrderController@history')->middleware('auth');
 Route::post('/orders/declined', 'OrderController@declined');
 Route::post('/orders/linkmeeting', 'OrderController@linkmeeting');
+Route::post('/orders/uploadmaterial', 'OrderController@uploadmaterial');
+Route::get('/orders/{order}/materialdownload', 'OrderController@materialdownload')->name('material.download');
 
 //MAILING
 

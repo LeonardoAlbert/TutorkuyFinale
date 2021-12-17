@@ -8,7 +8,9 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
+use App\Post;
+use App\Category;
 class UserController extends Controller
 {
 
@@ -17,6 +19,44 @@ class UserController extends Controller
         return view('users/show', compact('user'));
     }
 
+    public function upcomingclass(){
+        $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('class_schedules', 'classschedule_id', '=', 'class_schedules.id')->where('orders.orderuser_id' , auth()->user()->id)->where('orders.status' , "Menunggu Kelas Dilaksanakan")->get();
+     //  dd($orders);
+     //dd($orders['schedule']);
+     $i  = 1;
+        foreach($orders as $data) {
+            
+        // $schedule_class = new ClassSchedule;
+        // $schedule_class->post_id = $postRes->id;
+        //dd($data->schedule);
+        $dt = Carbon::parse($data->schedule);
+    //   dd($dt->day);
+    //    dd($dt->hour);
+    //    dd($dt->minute);
+    //   dd($dt->englishDayOfWeek);
+        $timestamp = strtotime($data->schedule);
+        
+        
+        $month = date('M', $timestamp);
+       //dd($month);
+        $data->DayofWeek =$dt->englishDayOfWeek;
+            $data->month = $month;
+            $data->day = $dt->day;
+            $data->hour = $dt->hour;
+            $data->minute =  $dt->minute;
+        }
+
+     //   dd($orders);
+
+        return view('users/upcomingclass', compact('orders'));
+    }
+    public function home(){
+        $user = User::inRandomOrder()->where('users.role' , "1")->limit(4)->get();
+        $category =Category::inRandomOrder()->limit(4)->get();
+        $post = Post::inRandomOrder()->limit(4)->get();
+    //    dd($post);
+        return view('users/home', compact('user','category','post'));
+    }
     public function review(User $user){
 
         return view('users/review', compact('user'));

@@ -18,7 +18,9 @@ class OrderController extends Controller
     public function create(Post $post , ClassSchedule $schedule){
     // dd($post);
     //    dd( $schedule);
-        return view('/orders/create', compact('post','schedule'));
+    $user = User::where('id' , auth()->user()->id)->first();
+    //dd($user);
+        return view('/orders/create', compact('user','post','schedule'));
     }
 
     public function store(){
@@ -89,6 +91,38 @@ class OrderController extends Controller
       // dd($orders);
         return view('/orders/details', compact('orders'));
     }
+    public function uploadmaterial(Request $request){
+    //dd(request());
+      $data = request()->validate([
+
+        'material' => 'required',
+
+    ]);
+
+   
+    $order = Order::where('id' , $request->orderId)->first();
+    $order->material = $data['material'];
+
+
+        $filePath= request('material')->store('materialfile', 'public');
+        $order->material = $filePath;
+        
+       
+    //    dd($user);
+    //  dd($order);
+    $order->save();
+    //dd($order);
+    return redirect('/orders/'.$order->id.'/details');
+    }
+
+
+    public function materialdownload(Order $order){
+
+      //  dd($user);
+          $pathToFile = public_path('storage/'.$order->material);
+          return response()->download($pathToFile);
+      //    return view('/admin/manageverifdetails', compact('user'));
+      }
 
     public function ended(Request $request){
       //dd($request);
