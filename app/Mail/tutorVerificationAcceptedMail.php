@@ -7,15 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TutorRequestVerificationMail extends Mailable
+class tutorVerificationAcceptedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public function __construct($data)
     {
         $this->data = $data;
@@ -32,7 +27,7 @@ class TutorRequestVerificationMail extends Mailable
     //  dd($this->data);
     //   dd($this->data);
         return $this->subject('Mail from TutorKuy')
-        ->view('emails.tutorVerificationRequest')
+        ->view('emails.tutorVerificationAccepted')
         ->with(
          [
             'data' => $this->data,

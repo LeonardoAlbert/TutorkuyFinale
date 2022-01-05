@@ -37,3 +37,8 @@ $('.cs').on('click', function (event) {
 $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
 });
+
+$('#filter-btn').on('click', function () {
+    $(this).toggleClass('active');
+    $('.filter-dropdown').toggleClass('d-none');
+});

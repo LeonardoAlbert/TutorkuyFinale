@@ -15,6 +15,7 @@ class CategoryController extends Controller
     {
         $categorytypes = CategoryType::all();
       //  dd($categorytypes);
+       
         return view('category/create',compact('categorytypes'));
     }
 
@@ -45,17 +46,37 @@ class CategoryController extends Controller
 
         return redirect("/admin");
     }
-    public function index(){
-        $categorytypes = CategoryType::all();
+    public function index(Request $request){
+
+        $categories = [];
+        $allcategorytypes = CategoryType::all();
+
+        $categorytypes = CategoryType::whereHas('categories', function($q) use($request) 
+        {
+            $q->where('name', 'like', "%$request->search%");
+        })->get();
         //dd($category_types);
-       $categories = DB::table('categories')->get();
+        $search = $request->search;
+       // dd($search);
+       //$categories = DB::table('categories')->get();
        //dd($categories);
-        return view('/category/index', compact('categorytypes' , 'categories'));
+       $categories = Category::where('name', 'like', "%$request->search%")->orderBy('created_at', 'desc')->get();
+        // dd($categorytypes);
+
+    //    dd($categories);
+        return view('/category/index', compact('categorytypes', 'categories','search','allcategorytypes'));
+      
+    }
+    public function search(Request $request){
+      
     }
     
     public function show(Category $category){
        // $posts = $category->posts();
-       $posts = DB::table('posts')->where('category_id', $category->id)->get();
+       $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate',
+       'posts.price')->get();
+       dd($posts);
+       //dd($posts);
        //dd($posts);
        // $posts = Post::where('category_id','like', '%$category->id%')->get();
         //dd($category->id);

@@ -8,9 +8,14 @@
         <div class="col-md-12 p-0 row mx-auto">
             <div class="col-3 text-center pt-3 pr-0">
                 <div class="left-bar-profile shadow-dark px-4">
-                    <img src="/storage/{{$user->image}}" alt="profile" width="130px" class="mb-2 profile-image-main border-0">
+                    <img src="/storage/{{$user->image}}" alt="profile" width="50px" class="mb-2 profile-image-main border-0">
                     <div class="left-bar-profile-content w-100">
-                        <div class="text-primary heading">{{ $user->name }}</div>
+                        <div class="text-primary heading">{{ $user->name }} 
+                        @if($user->verif == 2)
+                        <i class="fa fa-check mr-1"></i>
+                        @endif
+
+                        </div>
                         
 
                     
@@ -31,8 +36,10 @@
                                     <span><i class="fas fa-star"></i></span>
                                     <span><i class="fas fa-star"></i></span>
                                 </div>
+                                
                                
                             </span>
+                            <br><br>
                             <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
                             <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>
                         </div>
@@ -53,28 +60,19 @@
     <div class="heading px-1">CLASSES</div>
     <div class="line my-2"></div>
     <div class="row">
-    @foreach($user->posts()->get() as $post)
-           
-                <div class="col-4 p-2">
-                    <div class="shadow-dark review p-3">
-                        <div class="row">
-                            <div class="col-2 p-0">
-                                <img src="/storage/{{ $post->image }} " alt="" class="w-100 rounded-circle">
-                            </div>
-                            <div class="col-10">
-                            <a href="/posts/{{ $post->id }}/details" class="w-100">
-                                <div class="small-text">Project: <span class="text-bold">{{ $post->title }}</span></div>
-                            </a>    
-                            </div>
-                        </div>
-                        <div class="review-desc description mt-2"></div>
-                        <div class="review-footer small-text text-dark">
-                        </div>
+    @foreach($user->posts as $post)
+        <div class="col-4 mb-3 px-2">
+            <a href="/posts/{{ $post->id }}/details">
+                <div class="post-item-inner p-0 m-0">
+                    <img src="/storage/{{$post->image}}" alt="" class="w-100 post-item-img post">
+
+                    <div class="post-information p-2 px-3 m-0 w-100">
+                        <div class="text-bold heading">{{ $post->title }}</div>
                     </div>
                 </div>
-            
-        @endforeach
-    </div>
+            </a>
+        </div>
+    @endforeach
 </div>
 
             </div>

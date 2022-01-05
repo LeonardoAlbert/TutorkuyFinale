@@ -683,7 +683,7 @@ img.rounded-circle {
     width: 100% !important;
     height: 100% !important;
     max-height: 40px !important;
-    object-fit: cover;
+    
 }
 
 img.rounded-circle-sm {
@@ -701,9 +701,10 @@ img.rounded-circle-md {
 }
 
 img.rounded-circle-lg {
-    width: 70px !important;
-    height: 70px !important;
+    width: 100px !important;
+    height: 100px !important;
     object-fit: cover;
+    left: -50px;
     border-radius: 50%;
 }
 
@@ -731,7 +732,14 @@ i.fas.fa-pencil-alt:hover, i.fas.fa-trash:hover {
         padding-left: 0px !important;
     }
 }
-
+.profilepic {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
 @media screen and (min-width: 1500px){
     .card.user {
         height: 300px !important;
@@ -741,7 +749,7 @@ i.fas.fa-pencil-alt:hover, i.fas.fa-trash:hover {
         padding-left: 0 !important;
     }
 
-    .job.card .row .col-lg-9 {
+.job.card .row .col-lg-9 {
         padding-left: 0px !important;
     }
 
@@ -755,11 +763,7 @@ input[type=checkbox] {
     display: none;
   }
   
-  .container img {
-    margin: 100px;
-    transition: transform 0.25s ease;
-    cursor: zoom-in;
-  }
+
   
   input[type=checkbox]:checked ~ label > img {
     transform: scale(3);

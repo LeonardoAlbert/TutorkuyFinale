@@ -4,7 +4,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-10 card p-0 mx-auto">
-            <div class="card-header">Edit Profile</div>
+            <div class="card-header">Edit Profile
+            <a href="/createverif/" class="btn btn-primary float-md-right">Mengajukan sebagai Tutor Verified</a>
+            </div>
             <div class="card-body">
                 <form action="/users/{{ $user->id }}" enctype="multipart/form-data" method="POST">
                     @csrf
@@ -12,8 +14,9 @@
 
                     <div class="row mb-4">
                         <div class="col-3">
-                           
+                            <img src="/storage/{{$user->image}}" alt="profile" class="rounded-circle-lg border-gray profilepic ">
                         </div>
+                       
                         <div class="col-9">
                             <div class="form-group">
                                 <label for="name">Nama</label>
