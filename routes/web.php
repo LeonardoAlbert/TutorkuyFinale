@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'UserController@home'); 
+Route::get('/home', 'UserController@home');
 
 //TUTOR VERIFICATION
 Route::get('/verif/{user}', 'TutorVerificationController@verif');
@@ -78,3 +78,6 @@ Route::get('/orders/{order}/materialdownload', 'OrderController@materialdownload
 //MAILING
 
 Route::get('/kirim-email','MailController@index');
+
+// CHAT
+Route::get('/chat', 'ChatController@index');
