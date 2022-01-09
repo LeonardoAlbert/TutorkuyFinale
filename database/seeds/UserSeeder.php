@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'verif' => 0,
             ],
             [
-                'name' => 'user123',
+                'name' => 'User 1',
                 'email' => 'user@gmail.com',
                 'password' => bcrypt('user123'),
                 'role' => 0,

@@ -28,6 +28,13 @@ class MessageSeeder extends Seeder
                 'is_read' => false,
                 'created_at' => Carbon::parse('2022-01-08 15:01:00')
             ],
+            [
+                'room_id' => 1,
+                'sender_id' => 3,
+                'message' => "boleh kak, ada yang bisa dibantu",
+                'is_read' => false,
+                'created_at' => Carbon::parse('2022-01-08 15:35:00')
+            ],
         ]);
     }
 }

@@ -16,10 +16,15 @@
                     </div>
                     <ul class="list-unstyled chat-list mt-2 mb-0">
                     @foreach($chatRooms as $cr)
-                    @if($user->roles == 0)
-                        <li class="clearfix" id="{{$cr->id}}">
+                    <div class ="select-chat-room" id="{{$cr->id}}">
+                    @if($selected == $cr->id)
+                        <li class="clearfix  active list-chat-people" id="{{$cr->id}}">
+                    @else
+                        <li class="clearfix list-chat-people" id="{{$cr->id}}">
+                    @endif
+                    @if($user->role == 0)
                             <img src="/storage/{{$cr->tutor->image}}" alt="avatar">
-                            <div class="about">
+                            <div class="about detail">
                                 <div class="name">{{$cr->tutor->name}}</div>
                                 @if($cr->tutor->verif == 1)
                                 <div class="status"> <i class="fa fa-check"></i> verified tutor</div>
@@ -27,106 +32,77 @@
                                 <div class="status"></i> un-verified tutor </div>
                                 @endif
                             </div>
+                            @else
+                            <img src="/storage/{{$cr->student->image}}" alt="avatar">
+                            <div class="about">
+                                <div class="name">{{$cr->student->name}}</div>
+                                @if($cr->student->verif == 1)
+                                <div class="status"> <i class="fa fa-check"></i> verified student</div>
+                                @else
+                                <div class="status"></i> un-verified student </div>
+                                @endif
+                            @endif
                         </li>
-                    @endif
-
+                        </div>
                     @endforeach
-                        <!-- <li class="clearfix" id="5">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">{{$user->name}}</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> verified </div>
-                            </div>
-                        </li>
-                        <li class="clearfix active" id="7">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Aiden Chavez</div>
-                                <div class="status"> <i class="fa fa-circle online"></i> verified </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Mike Thomas</div>
-                                <div class="status"> <i class="fa fa-circle online"></i> verified </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Christian Kelly</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> verified </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Monica Ward</div>
-                                <div class="status"> <i class="fa fa-circle online"></i> verified </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> verified </div>
-                            </div>
-                        </li> -->
                     </ul>
                 </div>
-                <div class="chat">
+                @if ($selected != 0)
+                <div class="chat box" id="chat-box-container">
                     <div class="chat-header clearfix">
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                    <img src="/storage/{{$selectedUser->image}}" alt="avatar">
                                 </a>
                                 <div class="chat-about">
-                                    <h6 class="m-b-0">Aiden Chavez</h6>
+                                    <h6 class="m-b-0" style="margin: 0">{{$selectedUser->name}}</h6>
+                                    @if($selectedUser->verif == 1)
                                     <small>verified</small>
+                                    @else
+                                    <small>un-verified</small>
+                                    @endif
                                 </div>
-                            </div>
-                            <div class="col-lg-6 hidden-sm text-right">
-                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
-                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="chat-history">
                         <ul class="m-b-0">
+                            @foreach ($messages as $msg)
+                            @if($user->id == $msg->sender_id)
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">{{$msg->created_at->isoFormat('dddd, DD-MM-Y H:mm')}}</span>
+                                </div>
+                                <div class="message my-message">{{$msg->message}}</div>
+                            </li>
+                            @else
                             <li class="clearfix">
                                 <div class="message-data text-right">
-                                    <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                    <span class="message-data-time">{{$msg->created_at->isoFormat('dddd, DD-MM-Y H:mm')}}</span>
+                                    <img src="/storage/{{$selectedUser->image}}" alt="avatar">
                                 </div>
-                                <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                                <div class="message other-message float-right">{{$msg->message}}</div>
                             </li>
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <span class="message-data-time">10:12 AM, Today</span>
-                                </div>
-                                <div class="message my-message">Are we meeting today?</div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <span class="message-data-time">10:15 AM, Today</span>
-                                </div>
-                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
-                            </li>
+                            @endif
+                            @endforeach
                         </ul>
                     </div>
-                    <div class="chat-message clearfix">
-                        <div class="input-group mb-0">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                    <form action="/chat" enctype="multipart/form-data" method="POST">
+                    @csrf
+                        <div class="chat-message clearfix">
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter text here..." name="message">
+                                <input type="hidden" name="roomId" value="{{$selected}}">
+                                <input type="hidden" name="senderId" value="{{$user->id}}">
                             </div>
-                            <input type="text" class="form-control" placeholder="Enter text here...">
                         </div>
-                    </div>
+                    </form>
                 </div>
+                @endif
             </div>
         </div>
     </div>

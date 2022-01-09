@@ -81,3 +81,5 @@ Route::get('/kirim-email','MailController@index');
 
 // CHAT
 Route::get('/chat', 'ChatController@index');
+Route::get('/chat/{room}', 'ChatController@index');
+Route::post('/chat', 'ChatController@store');

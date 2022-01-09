@@ -1101,9 +1101,19 @@ body{
     width: 40px
 }
 
+.list-chat-people {
+    pointer-events: none;
+}
+
+.chat.box {
+    height: 700px;
+    overflow: scroll;
+}
+
 .chat .chat-header .chat-about {
     float: left;
-    padding-left: 10px
+    padding-left: 10px;
+    padding-top: 2px;
 }
 
 .chat .chat-history {

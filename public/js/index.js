@@ -34,6 +34,22 @@ $('.cs').on('click', function (event) {
     }
 });
 
+$('.select-chat-room').on('click', function (event) {
+    let id = event.target.id;
+    let currentLoc = window.location.href;
+    let lastIndex = currentLoc.substring(currentLoc.lastIndexOf('/')+1);
+    if (Number(lastIndex)) {
+        let newLoc = currentLoc.substring(0, currentLoc.lastIndexOf('/')) + "/" + id;
+        window.location = newLoc;
+    } else {
+        window.location = window.location.href + "/" + id;
+    }
+});
+
+$( document ).ready(function() {
+    $('#chat-box-container').scrollTop($('#chat-box-container')[0].scrollHeight);
+});
+
 $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
 });
