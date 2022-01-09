@@ -30,8 +30,13 @@ Route::get('/createverif', 'TutorVerificationController@create');
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/managepayment', 'AdminController@managepayment');
 Route::get('/admin/manageverif', 'AdminController@manageverif');
+Route::get('/admin/managecategory', 'AdminController@managecategory');
+
+Route::get('/admin/{category}/managecategorydetails', 'AdminController@categorydetails');
+
 Route::get('/admin/{user}/manageverifdetails', 'AdminController@verifdetails');
 Route::get('/admin/{user}/verifdownload', 'AdminController@verifdownload')->name('verif.download');
+Route::get('/admin/{order}/categorydownload', 'AdminController@paymentdownload')->name('payment.download');
 Route::get('/admin/{order}/managepaymentdetails', 'AdminController@details');
 
 //POST
@@ -44,17 +49,22 @@ Route::delete('/posts/{post}', 'PostController@destroy');
 
 //CATEGORY
 Route::post('/categories' , 'CategoryController@store');
+Route::post('/categories/request' , 'CategoryController@requeststore');
+Route::post('/categories/accepted' , 'CategoryController@accepted');
+Route::post('/categories/declined' , 'CategoryController@declined');
 Route::get('/categories/create', 'CategoryController@create');
 Route::get('/categories/index', 'CategoryController@index');
 Route::get('/categories/{category}', 'CategoryController@show');
 
 //USER
+Route::get('/users/requestcategory', 'UserController@requestcategory')->middleware('auth');
 Route::get('/users/upcomingclass', 'UserController@upcomingclass')->middleware('auth');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/createverify', 'UserController@createverify');
 Route::get('/users/{user}/review', 'UserController@review');
+
 
 
 Route::post('/users/review/submit', 'UserController@reviewsubmit');

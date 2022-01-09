@@ -51,9 +51,10 @@
                     Proof of Payment
                 </th>
                 <td>
-                <input type="checkbox" id="zoomCheck">
+                <!-- <input type="checkbox" id="zoomCheck">
                 <label for="zoomCheck">
-                <img  src="/storage/{{ $order->image }}" alt="" class="rounded post"/>
+                <img  src="/storage/{{ $order->image }}" alt="" class="rounded post"/> -->
+                <a href="{{ route('payment.download', $order->id) }}"><i class="fas fa-download"></i></a>
             </label>
                
                 </td>

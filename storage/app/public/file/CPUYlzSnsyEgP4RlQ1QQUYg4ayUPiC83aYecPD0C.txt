@@ -1,0 +1,102 @@
+1)
+->copy from local to hdfs and granting access 777
+hadoop fs -put Manufacturers.csv
+hadoop fs -put Regions.csv
+hadoop fs -chmod -R 777 /user/cloudera
+->create external table
+CREATE EXTERNAL TABLE Manufacturers(
+    ManufacturerId INT,
+    ManufacturerName VARCHAR(255)
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES("skip.header.line.count"="1")
+
+CREATE EXTERNAL TABLE Regions(
+RegionId INT,
+RegionName VARCHAR(255),
+Country VARCHAR(255)
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES("skip.header.line.count"="1")
+-> loading data
+LOAD DATA INPATH '/user/cloudera/Manufacturers.csv' INTO TABLE manufacturers
+LOAD DATA INPATH '/user/cloudera/Regions.csv' INTO TABLE regions
+
+2)
+-> entering sql
+mysql -u root -p
+password: cloudera
+-> create database
+create database datasets;
+use datasets;
+show tables;
+-> copy create+insert.sql
+source create+insert.sql;
+-> go back to desktop and import scoop to get sql data to hive
+sudo sqoop import-all-tables --connect jdbc:mysql://quickstart:3306/datasets --username=root -P --hive-import --hive-database=quiz
+
+3)
+A)
+select c.carmodel , sum(td.quantity) as 'Quantity'
+from cars c join transactiondetail td on c.carid = td.carid 
+join transactionheader th on td.transactionid = th.transactionid
+WHERE YEAR(th.transactiondate) = 2018 
+GROUP BY c.carmodel , c.carid
+having sum(td.quantity) >= 30
+B)
+select rg.regionname, count(th.transactionid) from transactionheader th
+ join stores st on th.storeid = st.storeid
+ join regions rg on st.regionid = rg.regionid
+group by rg.regionname
+order by count(th.transactionid) desc
+limit 10
+C)
+select s.storename
+from transactionheader th join transactiondetail td on th.transactionid = td.transactionid
+join cars c on td.carid = c.carid join stores s on th.storeid = s.storeid
+WHERE YEAR(th.transactiondate) = 2019
+GROUP BY s.storename , s.storeid
+ORDER BY sum(td.quantity*c.carprice) DESC
+limit 3
+D)
+select * from (
+SELECT m.manufacturername , avg(td.quantity) avgqty
+FROM cars c JOIN manufacturers m on m.manufacturerid = c.manufacturerid 
+join transactiondetail td on td.carid = c.carid
+WHERE c.caryear > 2010
+GROUP BY m.manufacturername 
+) H
+where avgqty > (select avg(td.quantity) FROM cars c JOIN manufacturers m on m.manufacturerid = c.manufacturerid 
+join transactiondetail td on td.carid = c.carid
+WHERE c.caryear > 2010)
+
+E)
+select storename, Qty,
+case when qty > 200 then '100.000.000'
+ when qty > 99  then '50.000.000'
+ when qty > 29 then '20.000.000'
+ when qty > 19 then '10.000.000'
+ when qty > 19 then '10.000.000'
+ Else '0'
+End Investment
+from (
+select st.storename, sum(td.quantity) Qty, count(td.transactionid) trxqty 
+from transactionheader th
+left join transactiondetail td on th.transactionid = td.transactionid
+left join stores st on th.storeid = st.storeid
+where year(th.transactiondate) between 2018 and 2019
+group by st.storename , st.storeid
+having count(th.transactionid) > 5 
+) X
+order by storename, qtyfrom transactionheader th
+left join transactiondetail td on th.transactionid = td.transactionid
+left join stores st on th.storeid = st.storeid
+where year(th.transactiondate) between 2018 and 2019
+group by st.storename
+having count(th.transactionid) > 5 
+) X
+order by storename, qty

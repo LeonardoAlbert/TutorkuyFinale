@@ -18,7 +18,24 @@ class CategoryController extends Controller
        
         return view('category/create',compact('categorytypes'));
     }
+    public function requeststore(){
+        
+        $data = request()->validate([
+            'name' => 'required|max:30',
+           
+            'type' => 'required',
+        ]);
 
+        $category_type_id = CategoryType::where('name', $data['type'])->get()[0]->id;
+        $category = new Category;
+        $category->name = request()->name;
+        $category->category_type_id = $category_type_id;
+        $category->statuscategories = 0;
+        
+        $category->save();
+       // dd($category);
+        return redirect('/home');
+    }
     public function store()
     {
         //dd(request());
@@ -60,18 +77,47 @@ class CategoryController extends Controller
        // dd($search);
        //$categories = DB::table('categories')->get();
        //dd($categories);
-       $categories = Category::where('name', 'like', "%$request->search%")->orderBy('created_at', 'desc')->get();
+       $categories = Category::where('name', 'like', "%$request->search%")->where('statuscategories',2)->orderBy('created_at', 'desc')->get();
         // dd($categorytypes);
 
     //    dd($categories);
         return view('/category/index', compact('categorytypes', 'categories','search','allcategorytypes'));
       
     }
-    public function search(Request $request){
-      
+    public function accepted(Request $request){
+        $data = request()->validate([
+           
+            'image' => 'required|image',
+          
+        ]);
+
+     //dd($request);
+
+     $imagePath = request('image')->store('category', 'public');
+      //  dd($imagePath);
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 400);
+        
+        $image->save();
+
+      $category = Category::where('id' , $request->categoryId)->first();
+      $category->statuscategories = 2;
+      $category->image = $imagePath;
+      $category->save();
+      //dd($category);
+      return redirect("/admin");
+    }
+
+    public function declined(Request $request){
+        $category = Category::where('id' , $request->categoryId)->first();
+        $category->statuscategories = 1;
+        $category->save();
+        return redirect("/admin");
     }
     
-    public function show(Category $category){
+    
+    public function show(Category $category, Request $request){
+
+        $search = $request->search;
        // $posts = $category->posts();
        $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate',
        'posts.price')->get();
@@ -80,7 +126,7 @@ class CategoryController extends Controller
        //dd($posts);
        // $posts = Post::where('category_id','like', '%$category->id%')->get();
         //dd($category->id);
-        return view('/category/show' , compact('category','posts'));
+        return view('/category/show' , compact('category','posts','search'));
 
     }
 }

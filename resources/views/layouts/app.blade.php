@@ -41,18 +41,33 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
+                        @if(auth()->user())
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
                             </li>
-                            @if(auth()->user())
+                           
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/" class="nav-link p-0">Jadwal Saya</a>
+                                <a href="/home" class="nav-link p-0">Pesan</a>
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/users/upcomingclass" class="nav-link p-0">Kelas Terdahulu</a>
                             </li>
                             @endif
                         </ul>
+                        @if(auth()->user())
+                        <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
+                        <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/categories/create" class="nav-link p-0">Buat Kategori</a>
+                            </li>
+                           
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/admin/managepayment" class="nav-link p-0">Pembayaran</a>
+                            </li>
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/admin/upcomingclass" class="nav-link p-0">Verifikasi Tutor</a>
+                            </li>
+                            </ul>
+                        @endif
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -67,7 +82,42 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item dropdown">
+                            <li class="nav-item dropdown">
+                                    <div id="navbarDropdown" class="w-100 nav-link dropdown-toggle align-center align-middle p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <span class="d-inline-block">Halo!</span>
+                                        <a id="navbarDropdown" class=" text-primary d-inline-block mx-1" href="#">
+                                            {{ Auth::user()->name }}
+                                            
+                                        </a>
+                                        <span class="nav-profile d-inline-block">
+                                            <img src="/storage/{{Auth::user()->image}}" alt="profile" class="rounded-circle">                                    
+                                        </span>
+                                    </div>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="/users/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
+                                        <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profile</a>
+
+                                        @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
+                                            <a href="/users/requestcategory" class="dropdown-item">Request Category</a>
+                                        @else
+                                            <a href="/admin/managecategory" class="dropdown-item">Manage Category</a>
+                                        @endif
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                <!-- <li class="nav-item dropdown">
                                       
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <span class="d-inline-block">Halo,</span>
@@ -80,18 +130,17 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                        
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
-                                </li>
+                                </li> -->
                             @endguest
                         </ul>
                     </div>
@@ -157,7 +206,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <!-- <script src="/js/index.js"></script> -->
 <script src="{{ asset('js/index.js') }}" defer></script>
-
+<script src="{{ asset('js/app.js') }}"></script>
 </html>
 
 

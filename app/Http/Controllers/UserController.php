@@ -11,8 +11,17 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Post;
 use App\Category;
+use App\CategoryType;
 class UserController extends Controller
 {
+
+    public function requestcategory(){
+        $categorytypes = CategoryType::all();
+        //  dd($categorytypes);
+         
+       
+        return view('users/requestcategory',compact('categorytypes'));
+    }
 
     public function show(User $user){
 
@@ -114,7 +123,7 @@ class UserController extends Controller
           $user->verif = 2;
           $user->save();
     
-          return redirect('/admin');
+          return redirect('/admin/manageverif');
         }
 
         public function verifdeclined(Request $request){
@@ -123,7 +132,9 @@ class UserController extends Controller
               $user->verif = 0;
               $user->save();
         
-              return redirect('/admin');
+              return redirect('/admin/manageverif');
         }
+
+   
    
 }

@@ -209,7 +209,7 @@ a.text-primary:hover {
     margin-right: auto;
     left: 0;
     right: 0;
-    top: -70px;
+    top: -35px;
     text-align: center;
     width: 125px !important;
     height: 125px !important;
@@ -654,7 +654,7 @@ label {
 }
 
 .rating-upper {
-color: #FFC400;
+color: #0015ff;
 padding: 0;
 position: absolute;
 z-index: 1;

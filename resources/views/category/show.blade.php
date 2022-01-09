@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="mt-4 row">
+    <div class="col-9 mx-auto">
+        <form action="">
+            <div class="row px-2">
+                <div class="col-10 p-0 pr-4">
+                    <div class="form-group form-group-search">
+                        <input name="search" id="search" type="text" class="form-control form-search" value="{{ $search }}">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="col-2 px-0">
+                 <div class="input-group" >
+</div>
+</div>
+</div>
+</div>
 <div class="col-9 mx-auto">
         <h1 style="font-size: 200%;">{{$category->name}}</h1>
         <div class="p-0 mx-auto row">

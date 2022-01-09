@@ -17,7 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
          // $table->string('type');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->integer('statuscategories')->default(2); // 0 -> requested || 1-> Declined || 2-> Accepted;
             $table->unsignedBigInteger('category_type_id');
             $table->timestamps();
 

@@ -8,6 +8,7 @@
         <div class="col-md-12 p-0 row mx-auto">
             <div class="col-3 text-center pt-3 pr-0">
                 <div class="left-bar-profile shadow-dark px-4">
+                
                     <img src="/storage/{{$user->image}}" alt="profile" width="50px" class="mb-2 profile-image-main border-0">
                     <div class="left-bar-profile-content w-100">
                         <div class="text-primary heading">{{ $user->name }} 
