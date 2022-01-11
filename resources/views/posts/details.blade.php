@@ -68,6 +68,13 @@
                             </span>
                             <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
                             <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>
+                            <div class="row">
+                            <form action ="/chat/newRoom"  class="form-inline" method="POST" >
+                            @csrf
+                            <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
+                             <input type="submit" value="Contact Me" class="btn ml-5 btn-primary" />
+                            </form> 
+                            </div>
                         </div>
                   
             </div>

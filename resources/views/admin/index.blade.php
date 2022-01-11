@@ -1,75 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container mt-4">
+    <div class="position-sticky"><h3 class="font-weight-bold text-primary">Admin Dashboard</h3></div>
+    <div class="row">
+        <div class="card shadow-dark p-4">
+            <div class="row">
+                <div class="col-11">
+                <h6 class="text-primary">Manage Category Request</h6>
+                </div>
+                <div class="col-1">
+                <a href="/admin/managecategory" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <title>Laravel</title>
+    <div class="row">
+        <div class="card shadow-dark p-4">
+            <div class="row">
+                <div class="col-11">
+                <h6 class="text-primary">Manage Proof of Payment </h6>
+                </div>
+                <div class="col-1">
+                <a href="/admin/managepayment" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <div class="row">
+        <div class="card shadow-dark p-4">
+            <div class="row">
+                <div class="col-11">
+                <h6 class="text-primary">Manage Tutor Verification</h6>
+                </div>
+                <div class="col-1">
+                <a href="/admin/manageverif" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        @foreach($orders as $order)
-        <div class="text-left pt-3">{{ $order->ordername }}</div>
-        @endforeach
-    </body>
-</html>
+</div>
 @endsection

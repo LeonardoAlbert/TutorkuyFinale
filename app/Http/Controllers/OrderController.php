@@ -127,12 +127,16 @@ class OrderController extends Controller
     public function ended(Request $request){
       //dd($request);
        $order = Order::where('id' , $request->orderId)->first();
-      // dd($order);
+      //dd($order);
+    
+      $post = Post::where('id',$order->post_id)->first();
+      //dd($post);
+
        $order->status = "Selesai";
        //dd($order);
        $order->save();
       //dd($order);
-       return redirect('/admin');
+       return redirect('/users/'.$post->user_id.'/review');
      }
 
     public function history(){

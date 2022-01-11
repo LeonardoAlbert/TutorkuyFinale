@@ -35,7 +35,7 @@
                                             <h6 class="mb-0"> {{$order->title}} </h6>
                                         </div>
                                     
-                                        <div class="col-auto my-auto"> <small>Golden Rim </small></div>
+                                       
                                         <div class="col my-auto"> <small>Size : M</small></div>
                                         <div class="col my-auto"> <small>Qty : 1</small></div>
                                         <div class="col my-auto">

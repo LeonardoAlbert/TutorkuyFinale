@@ -35,7 +35,10 @@ class ChatController extends Controller
         if ($user->role == 0) {
             // student
             $chatRooms = Room::with(['student', 'tutor'])->where('student_id', $user->id)->get();
-
+            //dd($chatRooms);
+            if($chatRooms->isEmpty()){
+                return redirect("/home");
+            }
             // check selected
             if ($selected != 0) {
                 $selectedUser = User::where('id', $room->tutor_id)->first();
@@ -75,6 +78,30 @@ class ChatController extends Controller
         $message->save();
 
         $redirect = 'chat/' . $request->roomId;
+        return redirect($redirect);
+    }
+
+    public function newRoom(Request $request) {
+        // check if exist
+        //dd($request);
+        $room = Room::where('tutor_id', $request->tutorId)->where('student_id', auth()->user()->id)->first();
+        
+        //dd($room);
+        if ($room) {
+            
+            $redirect = 'chat/' . $room->roomId;
+        } else {
+              // tutor id
+            $room = new Room;
+            $room->tutor_id = $request->tutorId ;
+            $room->student_id= auth()->user()->id;
+            // $room->created_at = Carbon::now();
+            $room->save();
+        }
+
+      
+
+        $redirect = 'chat/' . $room->roomId;
         return redirect($redirect);
     }
 }

@@ -3,59 +3,71 @@
 @section('content')
 
 <div class="container mt-4">
+    <div class="position-sticky"><h4 class="font-weight-bold text-primary">Rincian Pesanan</h4></div>
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="card shadow-dark p-4">
+        <div><span class="text-dark">Status Kelas</span><br><span> {{$orders->status}}</span></div>
+        <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card shadow-dark p-4">
+            <div><h6 class="text-primary">Informasi Kelas</h6></div>
+            <div class="row"></div>
             <div class="card shadow-dark p-4">
-                <div class="row">
-                    <div class="col-1 p-0">
-                        <img src="/storage/{{ $orders->image }}" alt=""> 
-                    </div>
-                    <div class="col-11">
-                        <a href="/posts/{{$orders->post_id}}/details" class="text-black">{{ $orders->title }}</a>
-                        <div class="text-dark my-1">
-                            
-                            
-                            
+                <a href="/posts/{{$orders->post_id}}/details" class="text-black">
+                    <div class="row">
+                        <div class="col-1 p-0">
+                            <img src="/storage/{{ $orders->image }}" width="50px" height="50px" alt=""> 
                         </div>
+                        <div class="col-11">
+                            <a href="/posts/{{$orders->post_id}}/details" class="text-black">{{ $orders->title }}</a><br>
+                            <span class="text-info"> Rp.{{$orders->price}},00</span>
+                            <div class="text-dark my-1"></div>
+                        </div>
+                </a>
                     </div>
-                </div>
-                
-                <div class="mt-3">
-                    <span class="text-bold">Class Description </span><span>{{$orders->description}}</span>
-                </div>
-            <div><span class="text-bold">Class Price: </span><span> {{$orders->price}}</span></div>
-            <div><span class="text-bold">Class Status: </span><span> {{$orders->status}}</span></div>
-            <div><span class="text-bold">Class Schedules: </span><span> {{$orders->schedule}}</span></div>
+            </div>
+            <div class="row"><span class="text-dark">Deskripsi Kelas </span> </div><div class="row mb-3"> <span>{{$orders->description}}</span></div>
             @if($orders->linkmeeting)
-            <div><span class="text-bold">Class link meeting: </span><span> <a href="{{$orders->linkmeeting}}"> {{$orders->linkmeeting}}</a></span></div>
+            <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div><div class="row mb-3"> <span>{{$orders->linkmeeting}}</span></div>
             @endif
-            <div><span class="text-bold">Class Material </span><span>  <a href="{{ route('material.download', $orders->id) }}"><i class="fas fa-download"></i></a></span></div>
-            <div class="row">
-               
-                
-               
-                <div class="col-2">
-                    <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary">Buat Link Video Conference</a>
+            <div class="row"><span class="text-dark">Material Kelas</span> </div><div class="row mb-3"> <span> <a href="{{ route('material.download', $orders->id) }}"><i class="fas fa-download" font-size="20em"></i></a></span></div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card shadow-dark p-4">
+        <div><h6 class="text-primary">Jadwal Kelas</h6></div>
+        <span> {{$orders->schedule}}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+                    <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
                 </div>
                
                 
-                <div class="col-2">
+                <div class="col-4">
                     <form action ="/orders/ended"  class="form-inline" method="POST" >
                     @csrf
                     <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
-                    <input type="submit" value="Selesai" class="btn btn-primary" />
+                    <input type="submit" value="Selesai" class="btn btn-primary" style="width:250px" />
                     </form> 
                 </div>
               
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                <div class="col-4">
+                <button type="button" class="btn btn-primary " style="width:250px" data-toggle="modal" data-target="#exampleModalCenter">
                 Upload Meeting Material
                 </button>
-
-      
-            </div>
-        </div>
+                </div>
     </div>
+</div>
+
+   
    
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

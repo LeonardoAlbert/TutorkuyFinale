@@ -3,9 +3,12 @@
 @section('content')
 
 <div id="container" class="zone-card2">
-    <div class="card title-card">
-        <h1>Manage Payment</h1>
-    </div>
+<br>
+  <div class="row">
+        <br>
+        <h3 class="text-primary">Manage Payment Order</h3>
+    
+  </div>
     <table class="table table-striped">
   <thead>
     <tr>

@@ -3,9 +3,12 @@
 @section('content')
 
 <div id="container" class="zone-card2">
-    <div class="card title-card">
-        <h1>Manage User Verification</h1>
-    </div>
+<br>
+  <div class="row">
+        <br>
+        <h3 class="text-primary">Manage User Verification</h3>
+    
+  </div>
     <table class="table table-striped">
   <thead>
     <tr>
@@ -36,6 +39,7 @@
     @endforeach
   </tbody>
 </table>
+</div>
 
 
 @endsection

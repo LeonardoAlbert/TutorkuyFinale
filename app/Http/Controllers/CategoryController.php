@@ -116,13 +116,14 @@ class CategoryController extends Controller
     
     
     public function show(Category $category, Request $request){
-
+        $posts = [];
         $search = $request->search;
        // $posts = $category->posts();
-       $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate',
+       $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->where('title','like', "%$request->search%")->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate',
        'posts.price')->get();
        //dd($posts);
        //dd($posts);
+       //$categories = Category::where('name', 'like', "%$request->search%")->where('statuscategories',2)->orderBy('created_at', 'desc')->get();
        //dd($posts);
        // $posts = Post::where('category_id','like', '%$category->id%')->get();
         //dd($category->id);

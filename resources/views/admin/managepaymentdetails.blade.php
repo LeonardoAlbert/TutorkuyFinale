@@ -8,9 +8,13 @@
 
 <script src="/path/to/dist/js/image-zoom.min.js"></script>
 <div id="container" class="zone-card2">
-    <div class="card title-card">
-        <h1>Order Details</h1>
-    </div>
+
+<br>
+  <div class="row">
+        <br>
+        <h3 class="text-primary">Order Details</h3>
+    
+  </div>
     <div class="card table-card">
     <div class="table-responsive">
         <table class="table t3">

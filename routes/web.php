@@ -14,6 +14,7 @@ use App\Http\Middleware\userOwner;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -90,6 +91,8 @@ Route::get('/orders/{order}/materialdownload', 'OrderController@materialdownload
 Route::get('/kirim-email','MailController@index');
 
 // CHAT
-Route::get('/chat', 'ChatController@index');
-Route::get('/chat/{room}', 'ChatController@index');
+
+Route::get('/chat', 'ChatController@index')->middleware('auth');
+Route::get('/chat/{room}', 'ChatController@index')->middleware('auth');
 Route::post('/chat', 'ChatController@store');
+Route::post('/chat/newRoom', 'ChatController@newRoom')->middleware('auth');

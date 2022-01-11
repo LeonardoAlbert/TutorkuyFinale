@@ -39,9 +39,18 @@
                         <span class="navbar-toggler-icon"></span>
                     </button> 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        @guest
+                        <ul class="navbar-nav w-100  justify-content-center p-0">
+                       
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
+                            </li>
+
+                        @else
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
-                        @if(auth()->user())
+                        @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
+                        
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
                             </li>
@@ -54,7 +63,7 @@
                             </li>
                             @endif
                         </ul>
-                        @if(auth()->user())
+                        @if(auth()->user()->role == 2)
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
                         <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/create" class="nav-link p-0">Buat Kategori</a>
@@ -64,15 +73,16 @@
                                 <a href="/admin/managepayment" class="nav-link p-0">Pembayaran</a>
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/admin/upcomingclass" class="nav-link p-0">Verifikasi Tutor</a>
+                                <a href="/admin/manageverif" class="nav-link p-0">Verifikasi Tutor</a>
                             </li>
                             </ul>
                         @endif
-
+                        @endguest
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
+                           
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -100,6 +110,10 @@
 
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
                                             <a href="/users/requestcategory" class="dropdown-item">Request Category</a>
+                                            <a href="/orders/history" class="dropdown-item">Order History</a>
+                                       
+                                        @elseif( auth()->user()->role == 1)
+                                            <a href="/posts/create" class="dropdown-item">Create Class</a>
                                         @else
                                             <a href="/admin/managecategory" class="dropdown-item">Manage Category</a>
                                         @endif
