@@ -75,7 +75,7 @@ class CategoryController extends Controller
        // $posts = $category->posts();
        $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate',
        'posts.price')->get();
-       //($posts);
+       //dd($posts);
        //dd($posts);
        //dd($posts);
        // $posts = Post::where('category_id','like', '%$category->id%')->get();
