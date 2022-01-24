@@ -36,8 +36,7 @@
                                         </div>
                                     
                                        
-                                        <div class="col my-auto"> <small>Size : M</small></div>
-                                        <div class="col my-auto"> <small>Qty : 1</small></div>
+                                   
                                         <div class="col my-auto">
                                             <h6 class="mb-0">Price Rp. {{$order->price}}</h6>
                                         </div>

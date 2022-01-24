@@ -22,7 +22,7 @@
 <div class="container">
 @foreach($categorytypes as $type)   
     <h1 style="font-size: 200%;" class="d-block" >{{$type->name}}</h1>
-    <div class="card shadow-sm p-4" style="background-color: lightgray;">
+    <div class="card shadow-dark p-4" style="">
         <div class="row el-element-overlay">
             @foreach($categories as $cat)
                 @if($cat->category_type_id == $type->id) 
@@ -35,7 +35,7 @@
                                         </a>
                                     </div>
                                     <div class="el-card-content">
-                                        <p class="mt-2 ml-3">{{$cat->name}}</p>
+                                        <p class="mt-2 ml-3 text-center">{{$cat->name}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -56,7 +56,7 @@
                             </li>
                            
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/home" class="nav-link p-0">Pesan</a>
+                                <a href="/chat" class="nav-link p-0">Pesan</a>
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/users/upcomingclass" class="nav-link p-0">Kelas Terdahulu</a>
@@ -111,6 +111,7 @@
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
                                             <a href="/users/requestcategory" class="dropdown-item">Request Category</a>
                                             <a href="/orders/history" class="dropdown-item">Order History</a>
+                                            
                                        
                                         @elseif( auth()->user()->role == 1)
                                             <a href="/posts/create" class="dropdown-item">Create Class</a>

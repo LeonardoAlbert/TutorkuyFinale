@@ -57,7 +57,7 @@ class OrderController extends Controller
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($orders));
         //\Mail::to('$user->email')->send(new \App\Mail\TutorKuyMail($orders));
 
-        return redirect('/admin');
+        return redirect('/home');
     }
     public function accepted(Request $request){
     // dd($request);

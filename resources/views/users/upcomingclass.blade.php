@@ -4,11 +4,11 @@
 
 
 	<div class="container">
-    <h3 class="display-3">Kelas Terdahulu</h1>
+    <h3 class="display-4 text-center">Kelas Terdahulu</h1>
 	
     @foreach($orders as $order)
-		<div class="row row-striped">
-            
+		<div class="row row-striped card shadow-dark">
+            <div class="row">
 			<div class="col-2 text-right">
 				<h1 class="display-4"><span class="badge badge-primary">{{$order->day}}</span></h1>
 				<h2>{{$order->month}}</h2>
@@ -25,6 +25,7 @@
 				</ul>
 				
 			</div>
+</div>
 		</div>
         @endforeach
 	

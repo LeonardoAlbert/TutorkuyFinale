@@ -46,7 +46,7 @@
     </div>
 
     <div class="row">
-        <div class="col-4">
+                <div class="col-4">
                     <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
                 </div>
                

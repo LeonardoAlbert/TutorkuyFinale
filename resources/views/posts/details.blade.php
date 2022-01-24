@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-9 mb40">
             <article>
-                <img src="/storage/{{ $post->image }}" alt="" class="img-fluid width: 100% thumbnail">
+                <img src="/storage/{{ $post->image }}" alt="" class="img width: 100% thumbnail" width="800px" height="400px">
                 <div class="post-content">
                     <h3>{{ $post->title }}</h3>
                     <ul class="post-meta list-inline">

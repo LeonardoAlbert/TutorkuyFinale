@@ -60,11 +60,11 @@ class UserController extends Controller
         return view('users/upcomingclass', compact('orders'));
     }
     public function home(){
-        $user = User::inRandomOrder()->where('users.role' , "1")->limit(4)->get();
-        $category =Category::inRandomOrder()->limit(4)->get();
-        $post = Post::inRandomOrder()->limit(4)->get();
+        $users = User::inRandomOrder()->where('users.role' , "1")->limit(4)->get();
+        $categories =Category::inRandomOrder()->limit(4)->get();
+        $posts = Post::inRandomOrder()->limit(4)->get();
     //    dd($post);
-        return view('users/home', compact('user','category','post'));
+        return view('users/home', compact('users','categories','posts'));
     }
     public function review(User $user){
 
@@ -115,7 +115,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect("/admin");
+        return redirect("/home");
     }
     public function verifaccepted(Request $request){
     //    dd($request);

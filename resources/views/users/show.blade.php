@@ -27,7 +27,7 @@
                                 {{ $user->city }}@if($user->city and $user->country), @endif {{$user->country}}
                             </div>
                         @endif
-
+                        <div class="text-center pt-3">{{ $user->headline }}</div>
                         <div class="w-100">
                             <span class="rating">
                                 <div class="rating-upper" style="width: {{ ($user->rate/5)*100 }}%">
@@ -41,8 +41,7 @@
                                
                             </span>
                             <br><br>
-                            <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span>
-                            <span class="text-black small-text">({{ $user->num_work }} Reviews)</span>
+                            messa
                         </div>
 
         
