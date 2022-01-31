@@ -12,12 +12,13 @@
                     <img src="/storage/{{$user->image}}" alt="profile" width="50px" class="mb-2 profile-image-main border-0">
                     <div class="left-bar-profile-content w-100">
                         <div class="text-primary heading">{{ $user->name }} 
+                       
                         @if($user->verif == 2)
                         <i class="fa fa-check mr-1"></i>
                         @endif
 
                         </div>
-                        
+                        <button class="btn btn-primary" style="width:80% height:35px"><i class="fas fa-star"></i>{{$user->rate}} ( {{$user->num_work}} Reviews )</button>
 
                     
 
@@ -26,7 +27,7 @@
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 {{ $user->city }}@if($user->city and $user->country), @endif {{$user->country}}
                             </div>
-                        @endif
+                    @endif
                         <div class="text-center pt-3">{{ $user->headline }}</div>
                         <div class="w-100">
                             <span class="rating">
@@ -36,12 +37,14 @@
                                     <span><i class="fas fa-star"></i></span>
                                     <span><i class="fas fa-star"></i></span>
                                     <span><i class="fas fa-star"></i></span>
+                                 
                                 </div>
-                                
+                               
                                
                             </span>
+                           
                             <br><br>
-                            messa
+                            
                         </div>
 
         
@@ -57,10 +60,28 @@
 
             <div class="col-9 pt-3">
      <div class="w-100">
-    <div class="heading px-1">CLASSES</div>
+    <div class="heading px-1">Kelas Saya</div>
     <div class="line my-2"></div>
     <div class="row">
     @foreach($user->posts as $post)
+                <div class="card col-xs-12 mx-2 " style="width: 15rem">
+                    <a href="/posts/{{$post->id}}/details"><img class="card-img-top" src="/storage/{{ $post->image }}" alt="Post Image"></a>
+                    <div class="card-body">
+                        <h5 class="card-title text-center ">Kelas {{$post->title}}</h5>
+                        <div class="row">
+                        
+                        <div class="row"><br></div>
+                        <div class="row">
+
+                        <div class="col-12">
+                        
+               
+                        </div>
+                        </div>
+                    </div>      
+                </div>
+            @endforeach
+    <!-- @foreach($user->posts as $post)
         <div class="col-4 mb-3 px-2">
             <a href="/posts/{{ $post->id }}/details">
                 <div class="post-item-inner p-0 m-0">
@@ -72,7 +93,7 @@
                 </div>
             </a>
         </div>
-    @endforeach
+    @endforeach -->
 </div>
 
             </div>

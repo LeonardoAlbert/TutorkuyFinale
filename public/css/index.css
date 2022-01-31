@@ -680,7 +680,7 @@ z-index: 0;
 }
 
 img.rounded-circle {
-    width: 100% !important;
+    /* width: 100% !important; */
     height: 100% !important;
     max-height: 40px !important;
 

@@ -37,8 +37,9 @@
                         </div>
                         <div class="row"><br></div>
                         <div class="row">
-
+                       
                         <div class="col-12">
+
                         <a href="/orders/" class="btn btn-primary" style="width:100%"><i class="fas fa-star"></i>{{$post->rate}} | Terjual {{$post->num_work}}x</a>
                
                         </div>

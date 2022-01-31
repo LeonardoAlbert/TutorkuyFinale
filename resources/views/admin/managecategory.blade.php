@@ -5,9 +5,18 @@
 <div id="container" class="zone-card2">
 <br>
   <div class="row">
+    <div class="col-9">
         <br>
         <h3 class="text-primary">Manage Category Request</h3>
-    
+  </div>
+  <div class="col-3">
+  <form>
+  <select class="select4 btn btn-primary mt-3 " value="asd" name="country" id="country">
+  <option value="req">Request Category</option>
+  <option value="exist">Manage Existing Category</option>
+  </form>
+  </select>
+  </div>
   </div>
     <table class="table table-striped">
   <thead>

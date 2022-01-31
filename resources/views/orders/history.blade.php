@@ -46,7 +46,7 @@
                             </div>
                             <hr class="my-3 ">
                             <div class="row">
-                                <div class="col-md-3 mb-3"> <small>  Order Status <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </div>
+                                <div class="col-md-3 "> <small>  Order Status <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </div>
                                 <div class="col mt-auto">
                                     
                                     <div class="media row justify-content-between ">

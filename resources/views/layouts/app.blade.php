@@ -109,14 +109,14 @@
                                         <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profile</a>
 
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
-                                            <a href="/users/requestcategory" class="dropdown-item">Request Category</a>
+                                            <a href="/users/requestcategory" class="dropdown-item">Request Kategori</a>
                                             <a href="/orders/history" class="dropdown-item">Order History</a>
                                             
                                        
                                         @elseif( auth()->user()->role == 1)
-                                            <a href="/posts/create" class="dropdown-item">Create Class</a>
+                                            <a href="/posts/create" class="dropdown-item">Buat Kelas </a>
                                         @else
-                                            <a href="/admin/managecategory" class="dropdown-item">Manage Category</a>
+                                            <a href="/admin/managecategory" class="dropdown-item">Manage Kategori</a>
                                         @endif
 
                                         <div class="dropdown-divider"></div>
