@@ -16,32 +16,32 @@ class CategorySeeder extends Seeder
             [
                 'category_type_id' => 1,
                 'name'=> 'Fisika',
-                'image' =>'assets/img/logo/Math University.png',
+                'image' =>'physics.png',
             ],
             [
                 'category_type_id' => 1,
                 'name'=> 'Kimia',
-                'image' =>'assets/img/logo/Chemistry.png'
+                'image' =>'chemistry.png'
             ],
             [
                 'category_type_id' => 1,
                 'name'=> 'Matematika',
-                'image' =>'assets/img/logo/Math University.png'
+                'image' =>'math.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Finance',
-                'image' =>'assets/img/logo/Math University.png'
+                'image' =>'finance.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Calculus',
-                'image' =>'assets/img/logo/Math University.png'
+                'image' =>'calculus.png'
             ],
             [
                 'category_type_id' => 2,
                 'name'=> 'Web Programming',
-                'image' =>'assets/img/logo/Math University.png'
+                'image' =>'programming.png'
             ],
         ]);
     }
