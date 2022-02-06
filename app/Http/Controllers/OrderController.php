@@ -72,14 +72,18 @@ class OrderController extends Controller
     }
     public function accepted(Request $request)
     {
-        // dd($request);
         $order = Order::where('id', $request->orderId)->first();
         $order->status = "Menunggu Kelas Dilaksanakan";
         $order->save();
 
-        $Studentorders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'orderuser_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
-        $Tutororders =  DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'user_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
-        //dd($Studentorders);
+        $post = Post::where('id', $order->post_id)->first();
+        $post->count_participant = $post->count_participant + 1;
+        $post->status = 'Memulai';
+        $post->save();
+
+        // $Studentorders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'orderuser_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
+        // $Tutororders =  DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'user_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
+
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
         //\Mail::to('$Studentorders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorOrderAcceptedMail($Tutororders));
@@ -100,7 +104,7 @@ class OrderController extends Controller
     public function details(Order $order)
     {
         $orders = Order::with('post')->where('id', $order->id)->first();
-    
+
         $schedules = ClassSchedule::where('post_id', $orders->post->id)->get();
         return view('/orders/details', compact('orders', 'schedules'));
     }
@@ -176,7 +180,7 @@ class OrderController extends Controller
 
         ]);
         //dd(request());
-        
+
         $order = Order::where('id', $request->orderId)->first();
         $order->linkmeeting = $data['linkmeeting'];
         //dd($order->linkmeeting);

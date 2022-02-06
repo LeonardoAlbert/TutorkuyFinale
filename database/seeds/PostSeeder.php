@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
                 'class_duration' => 2,
                 'occurrence' => 4,
                 'participants' => 5,
+                'count_participant' => 1,
             ],
             [
                 'title' => 'Data Structure 2',
@@ -34,6 +35,7 @@ class PostSeeder extends Seeder
                 'class_duration' => 2,
                 'occurrence' => 2,
                 'participants' => 5,
+                'count_participant' => 0,
             ],
         ]);
     }
