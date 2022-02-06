@@ -69,9 +69,75 @@ class PostController extends Controller
 
     public function details(Post $post)
     {
+        $sched = [];
+        
+        // $pastClass = [];
+        // $orders = DB::table('orders')
+        //     ->join('posts', 'post_id', '=', 'posts.id')
+        //     ->where('orders.orderuser_id', auth()->user()->id)
+        //     ->where(function ($query) {
+        //         $query->where('orders.status', '=', 'Menunggu Kelas Dilaksanakan')
+        //               ->orWhere('orders.status', '=', 'Selesai');
+        //     })
+        //     ->get();
+
+        // foreach ($orders as $order) {
+
+        //     // get schedule for each order
+        //     $schedules = ClassSchedule::where('post_id', $order->post_id)
+        //         ->where('status', 'Selesai')
+        //         ->get();
+
+        //     foreach ($schedules as $schedule) {
+        //         $datum = new \stdClass;
+
+        //         $dt = Carbon::parse($schedule->start_date);
+        //         $timestamp = strtotime($schedule->start_date);
+        //         $month = date('M', $timestamp);
+
+        //         $datum->DayofWeek = $dt->englishDayOfWeek;
+        //         $datum->month = $month;
+        //         $datum->day = $dt->day;
+        //         $datum->hour = $dt->hour;
+        //         if ($dt->minute < 10) {
+        //             $datum->minute = '0' . $dt->minute;
+        //         } else {
+        //             $datum->minute =  $dt->minute;
+        //         }
+        //         $datum->end_hour = $dt->hour + $order->class_duration;
+
+        //         $datum->id = $order->id;
+        //         $datum->title = $order->title;
+        //         $datum->linkmeeting = $order->linkmeeting;
+        //         array_push($pastClass, $datum);
+
+            // }
         $css = DB::table('class_schedules')->where('post_id', $post->id)->get();
+        foreach($css as $schedule){
+            $datum = new \stdClass;
+
+                $dt = Carbon::parse($schedule->start_date);
+                $timestamp = strtotime($schedule->start_date);
+                $month = date('M', $timestamp);
+
+                $datum->DayofWeek = $dt->englishDayOfWeek;
+                $datum->year = $dt->year;
+                $datum->month = $month;
+                $datum->day = $dt->day;
+                $datum->hour = $dt->hour;
+                if ($dt->minute < 10) {
+                    $datum->minute = '0' . $dt->minute;
+                } else {
+                    $datum->minute =  $dt->minute;
+                }
+                $datum->end_hour = $dt->hour + $post->class_duration;
+                array_push($sched, $datum);
+            }
+            //dd($css);
+            //dd($post);
+       // dd($sched);
         $user = User::where('id', $post->user_id)->first();
-        return view("/posts/details", compact('post', 'css', 'user'));
+        return view("/posts/details", compact('post', 'css', 'user','sched'));
     }
 
     public function edit(Post $post)

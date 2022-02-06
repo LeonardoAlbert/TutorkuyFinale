@@ -100,6 +100,7 @@ class OrderController extends Controller
     public function details(Order $order)
     {
         $orders = Order::with('post')->where('id', $order->id)->first();
+    
         $schedules = ClassSchedule::where('post_id', $orders->post->id)->get();
         return view('/orders/details', compact('orders', 'schedules'));
     }
@@ -175,7 +176,7 @@ class OrderController extends Controller
 
         ]);
         //dd(request());
-
+        
         $order = Order::where('id', $request->orderId)->first();
         $order->linkmeeting = $data['linkmeeting'];
         //dd($order->linkmeeting);

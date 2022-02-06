@@ -23,7 +23,7 @@
                 <a href="/posts/{{$orders->post_id}}/details" class="text-black">
                     <div class="row">
                         <div class="col-1 p-0">
-                            <img src="/storage/{{ $orders->image }}" width="50px" height="50px" alt="">
+                            <img src="/storage/{{ $orders->post->image }}" width="50px" height="50px" alt="">
                         </div>
                         <div class="col-11">
                             <a href="/posts/{{$orders->post_id}}/details" class="text-black">{{ $orders->post->title }}</a><br>

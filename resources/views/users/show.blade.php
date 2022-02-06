@@ -63,37 +63,36 @@
     <div class="heading px-1">Kelas Saya</div>
     <div class="line my-2"></div>
     <div class="row">
-    @foreach($user->posts as $post)
-                <div class="card col-xs-12 mx-2 " style="width: 15rem">
-                    <a href="/posts/{{$post->id}}/details"><img class="card-img-top" src="/storage/{{ $post->image }}" alt="Post Image"></a>
+    <!-- @foreach($user->posts as $post)
+                <div class="col-4 mb-3 " style="width: 15rem">
+                    <a href="/posts/{{$post->id}}/details"><img class="card-img-top w-100 post-item-img post" src="/storage/{{ $post->image }}" alt="Post Image"></a>
                     <div class="card-body">
                         <h5 class="card-title text-center ">Kelas {{$post->title}}</h5>
                         <div class="row">
                         
-                        <div class="row"><br></div>
-                        <div class="row">
+                       
 
-                        <div class="col-12">
+                       
                         
                
                         </div>
                         </div>
                     </div>      
                 </div>
-            @endforeach
-    <!-- @foreach($user->posts as $post)
+            @endforeach -->
+    @foreach($user->posts as $post)
         <div class="col-4 mb-3 px-2">
             <a href="/posts/{{ $post->id }}/details">
                 <div class="post-item-inner p-0 m-0">
                     <img src="/storage/{{$post->image}}" alt="" class="w-100 post-item-img post">
 
-                    <div class="post-information p-2 px-3 m-0 w-100">
+                    <div class=" text-center p-2 px-3 m-0 w-100">
                         <div class="text-bold heading">{{ $post->title }}</div>
                     </div>
                 </div>
             </a>
         </div>
-    @endforeach -->
+    @endforeach
 </div>
 
             </div>
