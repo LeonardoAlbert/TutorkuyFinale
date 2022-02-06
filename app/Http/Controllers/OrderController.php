@@ -12,14 +12,39 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\TutorKuyMail;
 use App\Mail\StudentOrderAcceptedMail;
 use App\Mail\TutorOrderAcceptedMail;
-
+use Carbon\Carbon;
 class OrderController extends Controller
 {
     public function create(Post $post, ClassSchedule $schedule)
     {
         // dd($post);
         //    dd( $schedule);
+        $sched = [];
+        
+       
+        foreach($schedules as $schedule){
+            $datum = new \stdClass;
+
+                $dt = Carbon::parse($schedule->start_date);
+                $timestamp = strtotime($schedule->start_date);
+                $month = date('M', $timestamp);
+
+                $datum->DayofWeek = $dt->englishDayOfWeek;
+                $datum->year = $dt->year;
+                $datum->month = $month;
+                $datum->day = $dt->day;
+                $datum->hour = $dt->hour;
+                if ($dt->minute < 10) {
+                    $datum->minute = '0' . $dt->minute;
+                } else {
+                    $datum->minute =  $dt->minute;
+                }
+                $datum->end_hour = $dt->hour + $post->class_duration;
+                array_push($sched, $datum);
+            }
+            dd($sched);
         $user = User::where('id', auth()->user()->id)->first();
+        // dd($user);
         //dd($user);
         return view('/orders/create', compact('user', 'post', 'schedule'));
     }
@@ -28,8 +53,31 @@ class OrderController extends Controller
     {
         $user = User::where('id', auth()->user()->id)->first();
         $schedules = ClassSchedule::where('post_id', $post->id)->get();
+        $sched = [];
+        foreach($schedules as $schedule){
+            $datum = new \stdClass;
+
+                $dt = Carbon::parse($schedule->start_date);
+                $timestamp = strtotime($schedule->start_date);
+                $month = date('M', $timestamp);
+
+                $datum->DayofWeek = $dt->englishDayOfWeek;
+                $datum->year = $dt->year;
+                $datum->month = $month;
+                $datum->day = $dt->day;
+                $datum->hour = $dt->hour;
+                if ($dt->minute < 10) {
+                    $datum->minute = '0' . $dt->minute;
+                } else {
+                    $datum->minute =  $dt->minute;
+                }
+                $datum->end_hour = $dt->hour + $post->class_duration;
+                array_push($sched, $datum);
+            }
+           // dd($sched);
+
         $totalPrice = $post->occurrence * $post->price;
-        return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice'));
+        return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice','sched'));
     }
 
     public function store()
@@ -100,9 +148,32 @@ class OrderController extends Controller
     public function details(Order $order)
     {
         $orders = Order::with('post')->where('id', $order->id)->first();
-    
+        //dd($orders);
+        
         $schedules = ClassSchedule::where('post_id', $orders->post->id)->get();
-        return view('/orders/details', compact('orders', 'schedules'));
+        $sched = [];
+        foreach($schedules as $schedule){
+            $datum = new \stdClass;
+
+                $dt = Carbon::parse($schedule->start_date);
+                $timestamp = strtotime($schedule->start_date);
+                $month = date('M', $timestamp);
+
+                $datum->DayofWeek = $dt->englishDayOfWeek;
+                $datum->year = $dt->year;
+                $datum->month = $month;
+                $datum->day = $dt->day;
+                $datum->hour = $dt->hour;
+                if ($dt->minute < 10) {
+                    $datum->minute = '0' . $dt->minute;
+                } else {
+                    $datum->minute =  $dt->minute;
+                }
+                $datum->end_hour = $dt->hour + $orders->post->class_duration;
+                array_push($sched, $datum);
+            }
+           // dd($sched);
+        return view('/orders/details', compact('orders', 'sched'));
     }
 
     public function uploadmaterial(Request $request)

@@ -49,17 +49,18 @@
         <div>
             <h6 class="text-primary">Jadwal Kelas</h6>
         </div>
-        @foreach($schedules as $schedule)
-        <span> {{$schedule->start_date}} - {{$schedule->end_date}}</span>
+        @foreach($sched as $sche)
+        <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} at {{$sche->hour}}:{{$sche->minute}} -  {{$sche->end_hour}}:{{$sche->minute}}</span><br>
         @endforeach
     </div>
 </div>
 
 <div class="row">
+    @if(auth()->user()->role == 1 )
     <div class="col-4">
         <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
     </div>
-
+    @endif
 
     <div class="col-4">
         <form action="/orders/ended" class="form-inline" method="POST">
@@ -68,12 +69,13 @@
             <input type="submit" value="Selesai" class="btn btn-primary" style="width:250px" />
         </form>
     </div>
-
+    
     <div class="col-4">
         <button type="button" class="btn btn-primary " style="width:250px" data-toggle="modal" data-target="#exampleModalCenter">
             Upload Meeting Material
         </button>
     </div>
+   
 </div>
 </div>
 

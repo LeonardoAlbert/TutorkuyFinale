@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card border-0">
                 <div class="card-body verify-content">
-                    <img src="" class="logo-form mx-auto d-block" alt="darkGray">
+                    <img src="/storage/logotutorkuy.png" class="logo-form mx-auto d-block" alt="darkGray">
                     <div class="welcome mt-4">Verifikasi sebagai Tutor Verified TutorKuy</div>
                     <div class="mx-auto welcome-border mb-4"></div>
                     <strong class="d-block mb-3">Harap unggah dokumentasi petunjuk kualifikasi Anda.</strong>

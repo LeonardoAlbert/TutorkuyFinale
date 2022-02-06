@@ -8,7 +8,7 @@
                 <div class="col my-auto">
                     <h4 class="mb-0">Order History</h4>
                 </div>
-                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="https://i.imgur.com/7q7gIzR.png" width="115" height="115">
+                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="/storage/logotutorkuy.png" width="115" height="115">
 
                 </div>
             </div>

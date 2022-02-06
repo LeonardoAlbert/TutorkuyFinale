@@ -69,8 +69,7 @@ class PostController extends Controller
 
     public function details(Post $post)
     {
-        $sched = [];
-        
+       
         // $pastClass = [];
         // $orders = DB::table('orders')
         //     ->join('posts', 'post_id', '=', 'posts.id')
@@ -112,6 +111,8 @@ class PostController extends Controller
         //         array_push($pastClass, $datum);
 
             // }
+            $sched = [];
+        
         $css = DB::table('class_schedules')->where('post_id', $post->id)->get();
         foreach($css as $schedule){
             $datum = new \stdClass;
