@@ -47,6 +47,11 @@ Route::put('/posts/{post}', 'PostController@update');
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts' , 'PostController@store');
 Route::delete('/posts/{post}', 'PostController@destroy');
+Route::get('/posts/{post}/createlinkmeeting', 'PostController@createlinkmeeting');
+Route::post('/posts/linkmeeting', 'PostController@linkmeeting');
+Route::post('/posts/uploadmaterial', 'PostController@uploadmaterial');
+Route::get('/posts/{order}/materialdownload', 'PostController@materialdownload')->name('material.download');
+
 
 //CATEGORY
 Route::post('/categories' , 'CategoryController@store');
@@ -61,6 +66,8 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/users/requestcategory', 'UserController@requestcategory')->middleware('auth');
 Route::get('/users/upcomingclass', 'UserController@upcomingClass')->middleware('auth');
 Route::get('/users/pastclass', 'UserController@pastClass')->middleware('auth');
+Route::get('/users/tutorclass', 'UserController@tutorClass')->middleware('auth');
+Route::get('/users/tutorupcomingclass', 'UserController@upcomingClassTutor')->middleware('auth');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
@@ -78,15 +85,14 @@ Route::get('/orders/{post}/create/{schedule}', 'OrderController@create')->middle
 Route::get('/orders/{post}/create', 'OrderController@createNew')->middleware('auth');
 
 Route::get('/orders/{order}/details', 'OrderController@details');
-Route::get('/orders/{order}/createlinkmeeting', 'OrderController@createlinkmeeting');
+Route::get('/orders/{post}/tutor/details', 'OrderController@tutorDetails');
 Route::post('/orders', 'OrderController@store');
 Route::post('/orders/accepted', 'OrderController@accepted');
 Route::post('/orders/ended', 'OrderController@ended');
 Route::get('/orders/history', 'OrderController@history')->middleware('auth');
 Route::post('/orders/declined', 'OrderController@declined');
-Route::post('/orders/linkmeeting', 'OrderController@linkmeeting');
 Route::post('/orders/uploadmaterial', 'OrderController@uploadmaterial');
-Route::get('/orders/{order}/materialdownload', 'OrderController@materialdownload')->name('material.download');
+// Route::get('/orders/{order}/materialdownload', 'OrderController@materialdownload')->name('material.download');
 
 //MAILING
 
@@ -95,6 +101,7 @@ Route::get('/kirim-email','MailController@index');
 // CHAT
 
 Route::get('/chat', 'ChatController@index')->middleware('auth');
+Route::get('/chat/user/{user}', 'ChatController@selectedUser')->middleware('auth');
 Route::get('/chat/{room}', 'ChatController@index')->middleware('auth');
 Route::post('/chat', 'ChatController@store');
 Route::post('/chat/newRoom', 'ChatController@newRoom')->middleware('auth');
