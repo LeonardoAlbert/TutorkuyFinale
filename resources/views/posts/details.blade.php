@@ -91,7 +91,7 @@
     </div>
     @endif
 
-    @if(auth()->user()->role == 1)
+    @if(auth()->user()->role == 1 && $post->status == 'Menunggu Peserta')
     <div class="row mt-3">
         <a href="/posts/{{$post->id}}/edit" class="daftar-kelas"> <button type="button" style="width:1100px" class="btn btn-primary ">Edit Kelas</button></a>
     </div>
