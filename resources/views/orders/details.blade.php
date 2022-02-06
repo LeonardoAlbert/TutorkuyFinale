@@ -35,9 +35,9 @@
         </div>
         <div class="row"><span class="text-dark">Deskripsi Kelas </span> </div>
         <div class="row mb-3"> <span>{{$orders->post->description}}</span></div>
-        @if($orders->linkmeeting)
+        @if($orders->post->link_meeting)
         <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div>
-        <div class="row mb-3"> <span>{{$orders->linkmeeting}}</span></div>
+        <div class="row mb-3"> <span>{{$orders->post->link_meeting}}</span></div>
         @endif
         <div class="row"><span class="text-dark">Material Kelas</span> </div>
         <div class="row mb-3"> <span> <a href="{{ route('material.download', $orders->id) }}"><i class="fas fa-download" font-size="20em"></i></a></span></div>
@@ -50,18 +50,12 @@
             <h6 class="text-primary">Jadwal Kelas</h6>
         </div>
         @foreach($sched as $sche)
-        <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} at {{$sche->hour}}:{{$sche->minute}} -  {{$sche->end_hour}}:{{$sche->minute}}</span><br>
+        <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} at {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}}</span><br>
         @endforeach
     </div>
 </div>
 
 <div class="row">
-    @if(auth()->user()->role == 1 )
-    <div class="col-4">
-        <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
-    </div>
-    @endif
-
     <div class="col-4">
         <form action="/orders/ended" class="form-inline" method="POST">
             @csrf
@@ -69,48 +63,6 @@
             <input type="submit" value="Selesai" class="btn btn-primary" style="width:250px" />
         </form>
     </div>
-    
-    <div class="col-4">
-        <button type="button" class="btn btn-primary " style="width:250px" data-toggle="modal" data-target="#exampleModalCenter">
-            Upload Meeting Material
-        </button>
-    </div>
-   
 </div>
-</div>
-
-
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Unggah Material Meeting</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <form action="/orders/uploadmaterial" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-
-                    <div class="form-group">
-                        <label for="image">Bahan Material Meeting</label><br><br />
-                        <input type="file" name="material" id="material">
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" value="Unggah" class="btn btn-primary w-50">
-                    </div>
-            </div>
-        </div>
-        </form>
-    </div>
-
 </div>
 @endsection

@@ -25,6 +25,7 @@ class PostSeeder extends Seeder
                 'participants' => 5,
                 'count_participant' => 1,
                 'status' => 'Memulai',
+                'link_meeting' => "https://zoom.com",
             ],
             [
                 'title' => 'Data Structure 2',
@@ -38,6 +39,7 @@ class PostSeeder extends Seeder
                 'participants' => 5,
                 'count_participant' => 0,
                 'status' => 'Menunggu Peserta',
+                'link_meeting' => "",
             ],
             [
                 'title' => 'Basic Data Structure',
@@ -51,6 +53,7 @@ class PostSeeder extends Seeder
                 'participants' => 5,
                 'count_participant' => 5,
                 'status' => 'Selesai',
+                'link_meeting' => "https://zoom.com",
             ],
             [
                 'title' => 'Data Structure Advance',
@@ -64,6 +67,7 @@ class PostSeeder extends Seeder
                 'participants' => 10,
                 'count_participant' => 0,
                 'status' => 'Batal',
+                'link_meeting' => "",
             ],
         ]);
     }
