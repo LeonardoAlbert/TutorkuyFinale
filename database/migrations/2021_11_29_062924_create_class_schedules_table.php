@@ -17,7 +17,8 @@ class CreateClassSchedulesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('post_id');
-            $table->datetime('schedule');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
 
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
         });

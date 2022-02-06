@@ -10,7 +10,7 @@ class CreatePostsTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */ 
+     */
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -21,12 +21,16 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
-            $table->integer('price');
+            $table->integer('price'); // price per class
 
+            // participant
+            $table->integer('class_duration'); // in hours
+            $table->integer('occurrence'); // rn only in week
+            $table->integer('participants'); // max number of participant
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade'); 
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            
+
         });
     }
 

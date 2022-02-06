@@ -16,7 +16,7 @@ class PostController extends Controller
 {
     public function create(){
         $categories = DB::table('categories')->get();
-       
+
         return view('/posts/create', compact('categories'));
     }
 
@@ -35,19 +35,19 @@ class PostController extends Controller
         //dd($schedule);
         $category_id = Category::where('name', $data['categories'])->get()[0]->id;
         $categoryArray = ['category_id'=>$category_id];
-        
+
 
         $imagePath = request('image')->store('post', 'public');
     //  dd($imagePath);
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 400);
-        
+
         $image->save();
         $imageArray = ['image' => $imagePath];
 
         // $postRes = Post::create(array_merge(
         //     $data,
         //     $categoryArray,
-        //     $imageArray ?? [], 
+        //     $imageArray ?? [],
         // ));
 
          $postRes = auth()->user()->posts()->create(array_merge(
@@ -64,9 +64,9 @@ class PostController extends Controller
             $schedule_class = new ClassSchedule;
             $schedule_class->post_id = $postRes->id;
             // dd($data);
-            
+
             $time = str_replace('T', ' ', $data);
-            
+
             // dd($time);
             //dd($time);
             // dd(Carbon::createFromFormat('Y-m-d H:i', $time));
@@ -76,24 +76,20 @@ class PostController extends Controller
             $schedule_class->save();
         }
 
-       
+
 
         return redirect("/home");
     }
 
     public function details(Post $post){
-     //   dd($post);
-        $css = DB::table('class_schedules')->get();
-        
-    $user = User::where('id' , $post->user_id)->first();
-    //   dd($user);
-      //  dd($classSchedule);
+        $css = DB::table('class_schedules')->where('post_id', $post->id)->get();
+        $user = User::where('id' , $post->user_id)->first();
         return view("/posts/details", compact('post','css','user'));
     }
 
     public function edit(Post $post){
         $categories = DB::table('categories')->get();
-        // $post = DB::table('posts')->where('id', $id)->get();       
+        // $post = DB::table('posts')->where('id', $id)->get();
 
         return view("/posts/edit", compact('post', 'categories'));
     }
@@ -126,5 +122,5 @@ class PostController extends Controller
 
         return redirect("/users/$user");
     }
-    
+
 }
