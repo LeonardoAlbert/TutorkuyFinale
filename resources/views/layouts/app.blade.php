@@ -49,7 +49,7 @@
                         @else
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
-                            @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
+                            @if(auth()->user()->role == 0 )
 
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
@@ -63,6 +63,16 @@
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/users/pastclass" class="nav-link p-0">Kelas Yang Telah Selesai</a>
+                            </li>
+                            @elseif(auth()->user()->role == 1)
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/chat" class="nav-link p-0">Pesan</a>
+                            </li>
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/users/tutorclass" class="nav-link p-0">Kelas Anda</a>
+                            </li>
+                            <li class="nav-item mx-4 py-4 px-2">
+                                <a href="/users/tutorupcomingclass" class="nav-link p-0">Jadwal Kelas Anda</a>
                             </li>
                             @endif
                         </ul>

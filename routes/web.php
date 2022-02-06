@@ -61,6 +61,8 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/users/requestcategory', 'UserController@requestcategory')->middleware('auth');
 Route::get('/users/upcomingclass', 'UserController@upcomingClass')->middleware('auth');
 Route::get('/users/pastclass', 'UserController@pastClass')->middleware('auth');
+Route::get('/users/tutorclass', 'UserController@tutorClass')->middleware('auth');
+Route::get('/users/tutorupcomingclass', 'UserController@upcomingClassTutor')->middleware('auth');
 Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::class);;
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
