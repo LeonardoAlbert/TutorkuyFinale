@@ -53,7 +53,10 @@
                 <h1>Kelas {{ $post->title }}</h1>
             </div>
             <div class="row mt-3">
-                <h4> Jadwal Kelas <button class="btn btn-dark rounded-pill " style="width:30% height:30%">@ Rp. {{ $post->price }} </button>
+                <h5>Terisi {{ $post->count_participant }} / {{$post->participants}}! Daftar Segera!</h5>
+            </div>
+            <div class="row mt-3">
+                <h4> Jadwal Kelas <button class="btn btn-dark rounded-pill " style="width:30% height:30%">@ Rp. {{ $post->price }} </button> </h4>
             </div>
             <!-- TODO Rapihin ini -->
             <div class="row">
@@ -62,7 +65,7 @@
                     <label class="sub-heading cs">{{$cs->start_date}} - {{$cs->end_date}}</label>
                 </div>
                 @endforeach
-                @if($user->roles == 2)
+                @if($user->roles == 0)
                 <div class="row mt-3">
                     <a href="/orders/{{$post->id}}/create" class="daftar-kelas"> <button type="button" style="width:800px" class="btn btn-primary ">Daftar Kelas</button></a>
                 </div>

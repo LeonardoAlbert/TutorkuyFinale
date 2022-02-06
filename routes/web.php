@@ -73,7 +73,8 @@ Route::post('/users/verifaccepted', 'UserController@verifaccepted');
 Route::post('/users/verifdeclined', 'UserController@verifdeclined');
 
 //ORDER
-Route::get('/orders/{post}/create/{schedule}', 'OrderController@create')->middleware('auth');;
+Route::get('/orders/{post}/create/{schedule}', 'OrderController@create')->middleware('auth');
+Route::get('/orders/{post}/create', 'OrderController@createNew')->middleware('auth');
 
 Route::get('/orders/{order}/details', 'OrderController@details');
 Route::get('/orders/{order}/createlinkmeeting', 'OrderController@createlinkmeeting');

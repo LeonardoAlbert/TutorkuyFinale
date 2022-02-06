@@ -23,7 +23,17 @@ class OrderController extends Controller
         return view('/orders/create', compact('user','post','schedule'));
     }
 
+    public function createNew(Post $post){
+        // dd($post);
+        //    dd( $schedule);
+        $user = User::where('id' , auth()->user()->id)->first();
+        $schedule = ClassSchedule::where('post_id', $post->id)->first();
+        //dd($user);
+        return view('/orders/create', compact('user','post', 'schedule'));
+    }
+
     public function store(){
+        dd("ASdas");
     // dd(request());
       $data = request()->validate([
 
@@ -37,7 +47,7 @@ class OrderController extends Controller
       $imagePath = request('image')->store('proofofpayment', 'public');
     //  dd($imagePath);
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 400);
-        
+
         $image->save();
         $imageArray = ['image' => $imagePath];
 
@@ -80,14 +90,14 @@ class OrderController extends Controller
        $order = Order::where('id' , $request->orderId)->first();
        $order->status = "Ditolak";
        $order->save();
- 
+
        return redirect('/admin');
      }
 
     public function details(Order $order){
-       
+
          $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('class_schedules', 'classschedule_id', '=', 'class_schedules.id')->where('orders.id', $order->id)->first();
-         
+
       // dd($orders);
         return view('/orders/details', compact('orders'));
     }
@@ -99,15 +109,15 @@ class OrderController extends Controller
 
     ]);
 
-   
+
     $order = Order::where('id' , $request->orderId)->first();
     $order->material = $data['material'];
 
 
         $filePath= request('material')->store('materialfile', 'public');
         $order->material = $filePath;
-        
-       
+
+
     //    dd($user);
     //  dd($order);
     $order->save();
@@ -128,7 +138,7 @@ class OrderController extends Controller
       //dd($request);
        $order = Order::where('id' , $request->orderId)->first();
       //dd($order);
-    
+
       $post = Post::where('id',$order->post_id)->first();
       //dd($post);
 
@@ -168,5 +178,5 @@ class OrderController extends Controller
     }
 
 
-    
+
 }

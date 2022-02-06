@@ -27,14 +27,10 @@ class CreateOrdersTable extends Migration
 
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('orderuser_id');
-            $table->unsignedBigInteger('classschedule_id');
+            // $table->unsignedBigInteger('classschedule_id');
 
-
-           
-
-
-            $table->foreign('classschedule_id')->references('id')->on('class_schedules')->onUpdate('cascade')->onDelete('cascade'); 
-            $table->foreign('orderuser_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade'); 
+            // $table->foreign('classschedule_id')->references('id')->on('class_schedules')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('orderuser_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
         });
     }
