@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
     <script src="{{ asset('js/index.js') }}" defer></script>
-    
+
 
 </head>
 <body>
@@ -30,18 +30,18 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0 row">
             <div class="col-9 mx-auto">
                 <div class="d-flex justify-content-between w-100 px-2">
-                    
-                    <a class="navbar-brand my-auto" href="{{ url('/categories/index') }}">
+
+                    <a class="navbar-brand my-auto" href="{{ url('/home') }}">
                         <img src="/storage/assets/img/logo/NavbarLogo.png" width="70" alt="" >
                         <span>TutorKuy</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
-                    </button> 
+                    </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         @guest
                         <ul class="navbar-nav w-100  justify-content-center p-0">
-                       
+
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
                             </li>
@@ -50,11 +50,11 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
-                        
+
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
                             </li>
-                           
+
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/chat" class="nav-link p-0">Pesan</a>
                             </li>
@@ -68,7 +68,7 @@
                         <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/categories/create" class="nav-link p-0">Buat Kategori</a>
                             </li>
-                           
+
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/admin/managepayment" class="nav-link p-0">Pembayaran</a>
                             </li>
@@ -82,7 +82,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                           
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -97,10 +97,10 @@
                                         <span class="d-inline-block">Halo!</span>
                                         <a id="navbarDropdown" class=" text-primary d-inline-block mx-1" href="#">
                                             {{ Auth::user()->name }}
-                                            
+
                                         </a>
                                         <span class="nav-profile d-inline-block">
-                                            <img src="/storage/{{Auth::user()->image}}" alt="profile" class="rounded-circle">                                    
+                                            <img src="/storage/{{Auth::user()->image}}" alt="profile" class="rounded-circle">
                                         </span>
                                     </div>
 
@@ -111,8 +111,8 @@
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
                                             <a href="/users/requestcategory" class="dropdown-item">Request Kategori</a>
                                             <a href="/orders/history" class="dropdown-item">Order History</a>
-                                            
-                                       
+
+
                                         @elseif( auth()->user()->role == 1)
                                             <a href="/posts/create" class="dropdown-item">Buat Kelas </a>
                                         @else
@@ -126,14 +126,14 @@
                                                         document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-                                        
+
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </div>
                                 </li>
                                 <!-- <li class="nav-item dropdown">
-                                      
+
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <span class="d-inline-block">Halo,</span>
                                         {{ Auth::user()->name }}
@@ -205,11 +205,11 @@
                 <div class="pt-3 d-flex justify-content-between">
                     <div>
                         <span>&copy; TutorKuy 2021</span>
-                        <span class="ml-4">Terms and Conditions</span>                        
+                        <span class="ml-4">Terms and Conditions</span>
                     </div>
                     <div>
                         <i class="fab fa-instagram mr-2"></i>
-                       
+
                         <i class="fab fa-facebook-f"></i>
                     </div>
                 </div>

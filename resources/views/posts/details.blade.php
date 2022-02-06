@@ -6,99 +6,87 @@
     <div class="row">
         <div class="col-3">
 
-                <img src="/storage/{{$post->image}}" alt="img" class="w-100 rounded post img-thumbnail">
-                <div class="line mt-2"></div>
+            <img src="/storage/{{$post->image}}" alt="img" class="w-100 rounded post img-thumbnail">
+            <div class="line mt-2"></div>
 
             <div class="row">
-            <div class="col-3 mt-3"><img src="/storage/{{ $post->user->image }}" alt="User Image" class="rounded-circle w-200"></div>
+                <div class="col-3 mt-3"><img src="/storage/{{ $post->user->image }}" alt="User Image" class="rounded-circle w-200"></div>
 
-            <div class="col-9">
-                 <div class="row"> <h5 class="mt-0 font700 text-center mt-2"><a href="{{ url("users", $post->user->id) }}">{{ $post->user->name }} </i> </a></h5></div>
-                <div class="row">
-                    <button  class="btn btn-primary" style="width:30% height:30%"><i class="fas fa-star"></i>{{$user->rate}}</button>
-                    @if($user->verif == 2) <button class="btn btn-primary ml-1" style="width:30% height:30%"><i class="fa fa-check mr-1"></i>Verified</button>@endif
+                <div class="col-9">
+                    <div class="row">
+                        <h5 class="mt-0 font700 text-center mt-2"><a href="{{ url("users", $post->user->id) }}">{{ $post->user->name }} </i> </a></h5>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-primary" style="width:30% height:30%"><i class="fas fa-star"></i>{{$user->rate}}</button>
+                        @if($user->verif == 2) <button class="btn btn-primary ml-1" style="width:30% height:30%"><i class="fa fa-check mr-1"></i>Verified</button>@endif
+                    </div>
                 </div>
-             </div>
             </div>
 
             <div class="row mt-2">
-                <form action ="/chat/newRoom"  class="form-inline" method="POST" >
-                            @csrf
-                            <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
-                             <input type="submit"  style="width:250px " value="Kontak Saya" class="btn btn-primary rounded-pill "  />
-                            </form>
-                </div>
-                <div class="row mt-2">
+                <form action="/chat/newRoom" class="form-inline" method="POST">
+                    @csrf
+                    <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
+                    <input type="submit" style="width:250px " value="Kontak Saya" class="btn btn-primary rounded-pill " />
+                </form>
+            </div>
+            <div class="row mt-2">
                 <div class="col-6">
-                <form action ="/chat/newRoom"  class="form-inline" method="POST" >
-                            @csrf
-                            <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
-                             <input type="submit"  style="width:125px " value="Hapus Kelas" class="btn btn-danger rounded-pill "  />
-                            </form>
-                    </div>
-                    <div class="col-6">
-                <form action ="/chat/newRoom"  class="form-inline" method="POST" >
-                            @csrf
-                            <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
-                             <input type="submit"  style="width:125px " value="Edit Kelas" class="btn btn-info rounded-pill "  />
-                            </form>
-                    </div>
+                    <form action="/chat/newRoom" class="form-inline" method="POST">
+                        @csrf
+                        <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
+                        <input type="submit" style="width:125px " value="Hapus Kelas" class="btn btn-danger rounded-pill " />
+                    </form>
                 </div>
+                <div class="col-6">
+                    <form action="/chat/newRoom" class="form-inline" method="POST">
+                        @csrf
+                        <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
+                        <input type="submit" style="width:125px " value="Edit Kelas" class="btn btn-info rounded-pill " />
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="col-9">
             <div class="row">
-            <h1>Kelas {{ $post->title }}</h1>
-            </div>
-            <div class="row">
-            <h4> Kelas Trial   <button class="btn btn-dark rounded-pill" style="width:30% height:30%">@ Rp. {{ $post->price }} </button>
-            </div>
-            <div class="row">
-            <!-- @foreach($css as $cs) -->
-                <!-- <div class="col-4">
-                    <button  style="height:75px" class="sub-heading cs btn btn-primary" id={{$cs->id}} ></button>
-                </div> -->
-             <!-- @endforeach -->
-
+                <h1>Kelas {{ $post->title }}</h1>
             </div>
             <div class="row mt-3">
-            <h4> Kelas Subscription  <button class="btn btn-dark rounded-pill " style="width:30% height:30%">@ Rp. {{ $post->price }} </button>
-            <div class="row"><p class="text-dark">setiap minggu di hari</p ></div>
+                <h4> Jadwal Kelas <button class="btn btn-dark rounded-pill " style="width:30% height:30%">@ Rp. {{ $post->price }} </button>
             </div>
+            <!-- TODO Rapihin ini -->
             <div class="row">
-            <!-- @foreach($css as $cs)
-                <div class="col-4"> -->
-
-
-                    <!-- @if($cs->post_id == $post->id)
-                    <button  style="height:75px" class="sub-heading cs btn btn-primary" id={{$cs->id}} ></button>
-                    @endif -->
-                    <!-- </div>
-             @endforeach -->
-
-            <div class="row mt-3">
-            <a href="/orders/{{$post->id}}/create" class="daftar-kelas"> <button type="button" style="width:800px" class="btn btn-primary ">Daftar Kelas</button></a>
+                @foreach($css as $cs)
+                <div class="col-12">
+                    <label class="sub-heading cs">{{$cs->start_date}} - {{$cs->end_date}}</label>
+                </div>
+                @endforeach
+                @if($user->roles == 2)
+                <div class="row mt-3">
+                    <a href="/orders/{{$post->id}}/create" class="daftar-kelas"> <button type="button" style="width:800px" class="btn btn-primary ">Daftar Kelas</button></a>
+                </div>
+                @endif
             </div>
+
+            <div class="line mt-2"></div>
         </div>
-
-        <div class="line mt-2"></div>
-</div>
 
 
         <!-- </div>
     </div> -->
 
-</div>
-        <div class="row mt-3">
-            <h3 class="text-center">Deskripsi Kelas </h3><br/>
+    </div>
+    <div class="row mt-3">
+        <h3 class="text-center">Deskripsi Kelas </h3><br />
 
-        </div>
-        <div class="row mt-3">
+    </div>
+    <div class="row mt-3">
 
-            <p class="lead">{{ $post->description }} </p>
-        </div>
+        <p class="lead">{{ $post->description }} </p>
+    </div>
 
-<!-- <div class="container pb50">
+    <!-- <div class="container pb50">
     <div class="row">
         <div class="col-md-9 mb40">
             <article>
@@ -179,4 +167,4 @@
 
             </div>
                      -->
-@endsection
+    @endsection
