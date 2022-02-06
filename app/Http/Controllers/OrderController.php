@@ -109,39 +109,11 @@ class OrderController extends Controller
         return view('/orders/details', compact('orders', 'schedules'));
     }
 
-    public function uploadmaterial(Request $request)
+    public function tutorDetails(Post $post)
     {
-        //dd(request());
-        $data = request()->validate([
-
-            'material' => 'required',
-
-        ]);
-
-
-        $order = Order::where('id', $request->orderId)->first();
-        $order->material = $data['material'];
-
-
-        $filePath = request('material')->store('materialfile', 'public');
-        $order->material = $filePath;
-
-
-        //    dd($user);
-        //  dd($order);
-        $order->save();
-        //dd($order);
-        return redirect('/orders/' . $order->id . '/details');
-    }
-
-
-    public function materialdownload(Order $order)
-    {
-
-        //  dd($user);
-        $pathToFile = public_path('storage/' . $order->material);
-        return response()->download($pathToFile);
-        //    return view('/admin/manageverifdetails', compact('user'));
+        $orders = Order::with('user')->where('post_id', $post->id)->get();
+        $schedules = ClassSchedule::where('post_id', $post->id)->get();
+        return view('/orders/tutor_details', compact('post', 'orders', 'schedules'));
     }
 
     public function ended(Request $request)
@@ -164,28 +136,5 @@ class OrderController extends Controller
     {
         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id', auth()->user()->id)->get();
         return view('/orders/history', compact('orders'));
-    }
-
-    public function createlinkmeeting(Order $order)
-    {
-
-        return view('/orders/linkmeeting', compact('order'));
-    }
-
-    public function linkmeeting(Request $request)
-    {
-        $data = request()->validate([
-
-            'linkmeeting' => 'required|url',
-
-        ]);
-        //dd(request());
-
-        $order = Order::where('id', $request->orderId)->first();
-        $order->linkmeeting = $data['linkmeeting'];
-        //dd($order->linkmeeting);
-        // dd($order);
-        $order->save();
-        return redirect('/orders/' . $order->id . '/details');
     }
 }

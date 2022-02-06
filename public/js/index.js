@@ -37,12 +37,15 @@ $('.cs').on('click', function (event) {
 $('.select-chat-room').on('click', function (event) {
     let id = event.target.id;
     let currentLoc = window.location.href;
+    if (currentLoc.includes("user/")) {
+        currentLoc = currentLoc.replace("user/", "")
+    }
     let lastIndex = currentLoc.substring(currentLoc.lastIndexOf('/') + 1);
     if (Number(lastIndex)) {
         let newLoc = currentLoc.substring(0, currentLoc.lastIndexOf('/')) + "/" + id;
         window.location = newLoc;
     } else {
-        window.location = window.location.href + "/" + id;
+        window.location = currentLoc + "/" + id;
     }
 });
 

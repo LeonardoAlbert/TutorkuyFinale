@@ -68,6 +68,57 @@ class ChatController extends Controller
         return view("chat/index", compact('user', 'selected', 'selectedUser', 'chatRooms', 'messages'));
     }
 
+    public function selectedUser(User $user) {
+        // get Room First
+        $room = Room::where('student_id', $user->id)->first();
+
+        if (!$room) {
+            $room = new Room;
+            $room->student_id = $user->id;
+            $room->tutor_id = auth()->user()->id;
+            $room->save();
+        }
+        $selected = 0;
+        if ($room) {
+            $selected = $room->id;
+        }
+        $user = auth()->user();
+        if ($user->role == 0) {
+            // student
+            $chatRooms = Room::with(['student', 'tutor'])->where('student_id', $user->id)->get();
+            //dd($chatRooms);
+            if($chatRooms->isEmpty()){
+                return redirect("/home");
+            }
+            // check selected
+            if ($selected != 0) {
+                $selectedUser = User::where('id', $room->tutor_id)->first();
+                $messages = Message::where('room_id', $room->id)->get();
+                // dd($messages);
+            } else {
+                $selectedUser = User::where('id', $chatRooms[0]->tutor_id)->first();
+                $messages = Message::where('room_id', $chatRooms[0]->id)->get();
+                $selected = $chatRooms[0]->id;
+            }
+        } else if ($user->role == 1) {
+            // teacher
+            $chatRooms = Room::with(['student', 'tutor'])->where('tutor_id', $user->id)->get();
+            // check selected
+            if ($selected != 0) {
+                $selectedUser = User::where('id', $room->student_id)->first();
+                $messages = Message::where('room_id', $room->id)->get();
+            } else {
+                $selectedUser = User::where('id', $chatRooms[0]->student_id)->first();
+                $messages = Message::where('room_id', $chatRooms[0]->id)->get();
+                $selected = $chatRooms[0]->id;
+            }
+        } else {
+            return view("home");
+        }
+
+        return view("chat/index", compact('user', 'selected', 'selectedUser', 'chatRooms', 'messages'));
+    }
+
     public function store(Request $request){
         $message = new Message;
         $message->room_id = $request->roomId;
@@ -85,10 +136,10 @@ class ChatController extends Controller
         // check if exist
         //dd($request);
         $room = Room::where('tutor_id', $request->tutorId)->where('student_id', auth()->user()->id)->first();
-        
+
         //dd($room);
         if ($room) {
-            
+
             $redirect = 'chat/' . $room->roomId;
         } else {
               // tutor id
@@ -99,7 +150,7 @@ class ChatController extends Controller
             $room->save();
         }
 
-      
+
 
         $redirect = 'chat/' . $room->roomId;
         return redirect($redirect);

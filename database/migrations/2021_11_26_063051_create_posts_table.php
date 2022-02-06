@@ -30,7 +30,8 @@ class CreatePostsTable extends Migration
             $table->integer('count_participant')->default(0); // max number of participant
 
             $table->string('status')->default('Menunggu Peserta'); // Status: Menunggu Peserta, Memulai, Selesai, Batal
-            $table->string('link_meeting');
+            $table->string('link_meeting')->default("");
+            $table->string('material')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

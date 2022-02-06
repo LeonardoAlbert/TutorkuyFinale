@@ -8,9 +8,12 @@
     </div>
     <div class="row">
         <div class="card shadow-dark p-4">
-            <div><span class="text-dark">Status Kelas</span><br><span> {{$orders->status}}</span></div>
-            <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
+            <div><span class="text-dark">Status Kelas</span><br><span> {{$post->status}}</span></div>
+            <br>
+            <div><span class="text-dark">Total Participant: </span><br><span> {{$post->count_participant}} / {{$post->participants}}</span></div>
+
         </div>
+
     </div>
 
     <div class="row">
@@ -20,27 +23,37 @@
             </div>
             <div class="row"></div>
             <div class="card shadow-dark p-4">
-                <a href="/posts/{{$orders->post_id}}/details" class="text-black">
+                <a href="/posts/{{$post->id}}/details" class="text-black">
                     <div class="row">
                         <div class="col-1 p-0">
-                            <img src="/storage/{{ $orders->post->image }}" width="50px" height="50px" alt="">
+                            <img src="/storage/{{ $post->image }}" width="50px" height="50px" alt="">
                         </div>
                         <div class="col-11">
-                            <a href="/posts/{{$orders->post_id}}/details" class="text-black">{{ $orders->post->title }}</a><br>
-                            <span class="text-info"> Rp.{{$orders->total}},00</span>
+                            <a href="/posts/{{$post->id}}/details" class="text-black">{{ $post->title }}</a><br>
                             <div class="text-dark my-1"></div>
                         </div>
                 </a>
             </div>
         </div>
         <div class="row"><span class="text-dark">Deskripsi Kelas </span> </div>
-        <div class="row mb-3"> <span>{{$orders->post->description}}</span></div>
-        @if($orders->linkmeeting)
+        <div class="row mb-3"> <span>{{$post->description}}</span></div>
+        @if($post->link_meeting)
         <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div>
-        <div class="row mb-3"> <span>{{$orders->linkmeeting}}</span></div>
+        <div class="row mb-3"> <span>{{$post->link_meeting}}</span></div>
         @endif
         <div class="row"><span class="text-dark">Material Kelas</span> </div>
-        <div class="row mb-3"> <span> <a href="{{ route('material.download', $orders->id) }}"><i class="fas fa-download" font-size="20em"></i></a></span></div>
+        <div class="row mb-3"> <span> <a href="{{ route('material.download', $post->id) }}"><i class="fas fa-download" font-size="20em"></i></a></span></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card shadow-dark p-4">
+        <div>
+            <h6 class="text-primary">Daftar Peserta</h6>
+        </div>
+        @foreach($orders as $order)
+        <span>{{$order->user->name}} <a href="/chat/user/{{$order->user->id}}">chat</a></span>
+        @endforeach
     </div>
 </div>
 
@@ -57,16 +70,7 @@
 
 <div class="row">
     <div class="col-4">
-        <a href="/orders/{{$orders->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
-    </div>
-
-
-    <div class="col-4">
-        <form action="/orders/ended" class="form-inline" method="POST">
-            @csrf
-            <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
-            <input type="submit" value="Selesai" class="btn btn-primary" style="width:250px" />
-        </form>
+        <a href="/posts/{{$post->id}}/createlinkmeeting" class="btn btn-primary" style="width:250px">Buat Link Video Conference</a>
     </div>
 
     <div class="col-4">
@@ -90,25 +94,21 @@
             </div>
             <div class="modal-body">
 
-                <form action="/orders/uploadmaterial" method="POST" enctype="multipart/form-data">
+                <form action="/posts/uploadmaterial" method="POST" enctype="multipart/form-data">
                     @csrf
-
-
                     <div class="form-group">
                         <label for="image">Bahan Material Meeting</label><br><br />
                         <input type="file" name="material" id="material">
                     </div>
-
-
                     <div class="modal-footer">
-                        <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
+                        <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input type="submit" value="Unggah" class="btn btn-primary w-50">
                     </div>
+                </form>
             </div>
-        </div>
-        </form>
-    </div>
 
+        </div>
+    </div>
 </div>
 @endsection

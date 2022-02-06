@@ -70,7 +70,7 @@ class PostController extends Controller
     public function details(Post $post)
     {
         $sched = [];
-        
+
         // $pastClass = [];
         // $orders = DB::table('orders')
         //     ->join('posts', 'post_id', '=', 'posts.id')
@@ -177,5 +177,47 @@ class PostController extends Controller
         $post->delete();
 
         return redirect("/users/$user");
+    }
+
+    public function createlinkmeeting(Post $post)
+    {
+
+        return view('/posts/linkmeeting', compact('post'));
+    }
+
+    public function linkmeeting(Request $request)
+    {
+        $data = request()->validate([
+            'linkmeeting' => 'required|url',
+        ]);
+
+        $post = Post::where('id', $request->postId)->first();
+        $post->link_meeting = $data['linkmeeting'];
+        $post->save();
+        return redirect('/orders/' . $post->id . '/tutor/details');
+    }
+
+    public function uploadmaterial(Request $request)
+    {
+        //dd(request());
+        $data = request()->validate([
+            'material' => 'required',
+        ]);
+
+
+        $post = Post::where('id', $request->postId)->first();
+        $post->material = $data['material'];
+        $filePath = request('material')->store('materialfile', 'public');
+        $post->material = $filePath;
+        $post->save();
+        return redirect('/orders/' . $post->id . '/tutor/details');
+    }
+
+
+    public function materialdownload(Post $post)
+    {
+        $pathToFile = public_path('storage/' . $post->material);
+        return response()->download($pathToFile);
+        //    return view('/admin/manageverifdetails', compact('user'));
     }
 }
