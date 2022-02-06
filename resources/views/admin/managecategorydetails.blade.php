@@ -17,7 +17,7 @@
         <tr>
                 <th>
                    Category Name
-                   {{ $category->id }}
+                  
                 </th>
                 <td>
                 {{ $category->categoryname }}

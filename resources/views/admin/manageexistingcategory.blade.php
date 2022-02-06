@@ -7,10 +7,12 @@
   <div class="row">
     <div class="col-9">
         <br>
-        <h3 class="text-primary">Manage Category Request</h3>
+        <h3 class="text-primary">Manage Existing Category</h3>
   </div>
   <div class="col-3">
- 
+  <form>
+  
+  </form>
   </select>
   </div>
   </div>
@@ -27,7 +29,9 @@
       @foreach($categories as $category)
       
     <tr>
-
+     
+      
+      
     <td>{{$loop->iteration}}</td>
       <td>{{$category->categoryname}}</td>
       <td>{{$category->categorytypename}}</td>

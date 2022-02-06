@@ -8,9 +8,9 @@
     </div>
     <div class="row">
         <div class="card shadow-dark p-4">
-            <div><span class="text-dark">Status Kelas</span><br><span> {{$post->status}}</span></div>
+            <div><span class="text-dark text-bold">Status Kelas</span><br><span class="text-bold"> {{$post->status}}</span></div>
             <br>
-            <div><span class="text-dark">Total Participant: </span><br><span> {{$post->count_participant}} / {{$post->participants}}</span></div>
+            <div><span class="text-dark text-bold">Total Participant: </span><br><span class="text-bold"> {{$post->count_participant}} / {{$post->participants}}</span></div>
 
         </div>
 
@@ -29,7 +29,7 @@
                             <img src="/storage/{{ $post->image }}" width="50px" height="50px" alt="">
                         </div>
                         <div class="col-11">
-                            <a href="/posts/{{$post->id}}/details" class="text-black">{{ $post->title }}</a><br>
+                            <a href="/posts/{{$post->id}}/details" class="text-black text-bold text-center">{{ $post->title }}</a><br>
                             <div class="text-dark my-1"></div>
                         </div>
                 </a>
@@ -52,7 +52,14 @@
             <h6 class="text-primary">Daftar Peserta</h6>
         </div>
         @foreach($orders as $order)
-        <span>{{$order->user->name}} <a href="/chat/user/{{$order->user->id}}">chat</a></span>
+        <div class="card shadow-dark p-4">
+            <div class="row">
+            <div class="col-2"> <img src="/storage/{{ $order->user->image }}" alt="User Image" class="rounded-circle w-200 "> <span class="ml-2 ">  {{$order->user->name}}  </div>
+       <div class="col-10"> <a class="btn btn-primary" href="/chat/user/{{$order->user->id}}">chat </a></span></div>
+</div>
+        </div>
+        <!-- {{$order->user->image}} -->
+        
         @endforeach
     </div>
 </div>
@@ -62,8 +69,8 @@
         <div>
             <h6 class="text-primary">Jadwal Kelas</h6>
         </div>
-        @foreach($schedules as $schedule)
-        <span> {{$schedule->start_date}} - {{$schedule->end_date}}</span>
+        @foreach($sched as $sche)
+        <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} at {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}}</span>
         @endforeach
     </div>
 </div>

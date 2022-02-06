@@ -175,7 +175,7 @@ class UserController extends Controller
     {
         $users = User::inRandomOrder()->where('users.role', "1")->limit(4)->get();
         $categories = Category::inRandomOrder()->limit(4)->get();
-        $posts = Post::inRandomOrder()->limit(4)->get();
+        $posts = Post::inRandomOrder()->where('posts.status' , "Menunggu Peserta")->orWhere('posts.status' , "Memulai")->limit(4)->get();
         //    dd($post);
         return view('users/home', compact('users', 'categories', 'posts'));
     }

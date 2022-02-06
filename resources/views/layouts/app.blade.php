@@ -69,7 +69,7 @@
                                 <a href="/chat" class="nav-link p-0">Pesan</a>
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/users/tutorclass" class="nav-link p-0">Kelas Anda</a>
+                                <a href="/users/tutorclass" class="nav-link p-0">Order</a>
                             </li>
                             <li class="nav-item mx-4 py-4 px-2">
                                 <a href="/users/tutorupcomingclass" class="nav-link p-0">Jadwal Kelas Anda</a>
@@ -124,12 +124,15 @@
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
                                             <a href="/users/requestcategory" class="dropdown-item">Request Kategori</a>
                                             <a href="/orders/history" class="dropdown-item">Order History</a>
+                                        @endif
 
-
-                                        @elseif( auth()->user()->role == 1)
+                                        @if( auth()->user()->role == 1)
                                             <a href="/posts/create" class="dropdown-item">Buat Kelas </a>
-                                        @else
-                                            <a href="/admin/managecategory" class="dropdown-item">Manage Kategori</a>
+                                        @endif
+
+                                        @if(auth()->user()->role == 2)
+                                            <a href="/admin" class="dropdown-item">Admin Dashboard</a>
+                                            <a href="/categories/create" class="dropdown-item">Buat Kategori</a>
                                         @endif
 
                                         <div class="dropdown-divider"></div>

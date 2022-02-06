@@ -24,7 +24,7 @@
       @if($user->verif== 1) 
     <tr>
 
-      <th scope="row"></th>
+   <td> {{$loop->iteration}}</td>
       
       <td>{{$user->id}}</td>
       <td>{{$user->name}}</td>

@@ -183,9 +183,36 @@ class OrderController extends Controller
 
     public function tutorDetails(Post $post)
     {
+
         $orders = Order::with('user')->where('post_id', $post->id)->get();
         $schedules = ClassSchedule::where('post_id', $post->id)->get();
-        return view('/orders/tutor_details', compact('post', 'orders', 'schedules'));
+       
+       
+       
+$sched = [];
+        foreach($schedules as $schedule){
+            $datum = new \stdClass;
+
+                $dt = Carbon::parse($schedule->start_date);
+                $timestamp = strtotime($schedule->start_date);
+                $month = date('M', $timestamp);
+
+                $datum->DayofWeek = $dt->englishDayOfWeek;
+                $datum->year = $dt->year;
+                $datum->month = $month;
+                $datum->day = $dt->day;
+                $datum->hour = $dt->hour;
+                if ($dt->minute < 10) {
+                    $datum->minute = '0' . $dt->minute;
+                } else {
+                    $datum->minute =  $dt->minute;
+                }
+                $datum->end_hour = $dt->hour + $post->class_duration;
+                array_push($sched, $datum);
+                
+            }
+           
+        return view('/orders/tutor_details', compact('post', 'orders', 'schedules', 'sched'));
     }
 
     public function ended(Request $request)

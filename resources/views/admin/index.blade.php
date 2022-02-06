@@ -7,7 +7,7 @@
         <div class="card shadow-dark p-4">
             <div class="row">
                 <div class="col-11">
-                <h6 class="text-primary">Manage Sub Category Request</h6>
+                <h6 class="text-primary">Manage Category Request</h6>
                 </div>
                 <div class="col-1">
                 <a href="/admin/managecategory" class="btn btn-primary" style="width:100px height:30px">Check</a>
@@ -47,10 +47,10 @@
         <div class="card shadow-dark p-4">
             <div class="row">
                 <div class="col-11">
-                <h6 class="text-primary">Manage Category Request</h6>
+                <h6 class="text-primary">Manage Existing Category</h6>
                 </div>
                 <div class="col-1">
-                <a href="/admin/managecategory" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                <a href="/admin/manageexistingcategory" class="btn btn-primary" style="width:100px height:30px">Check</a>
                 </div>
             </div>
         </div>

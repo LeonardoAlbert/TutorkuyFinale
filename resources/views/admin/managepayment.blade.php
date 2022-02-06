@@ -23,7 +23,7 @@
       
     <tr>
 
-      <th scope="row"></th>
+    <td>{{$loop->iteration}}</td>
       <td>OD{{$order->id}}</td>
       <td>{{$order->status}}</td>
       <div>

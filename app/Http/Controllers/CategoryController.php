@@ -120,7 +120,7 @@ class CategoryController extends Controller
         $posts = [];
         $search = $request->search;
        // $posts = $category->posts();
-       $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->where('title','like', "%$request->search%")->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate','users.num_work',
+       $posts = DB::table('posts')->join('users', 'user_id', '=', 'users.id')->where('category_id', $category->id)->where('title','like', "%$request->search%")->select('posts.id','users.id as userid','users.image as userimage', 'posts.image as postimage', 'users.name','posts.title','users.verif','users.rate','users.num_work','posts.count_participant','posts.participants',
        'posts.price')->get();
        //dd($posts);
        //dd($posts);

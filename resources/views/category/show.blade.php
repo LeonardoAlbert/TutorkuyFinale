@@ -29,6 +29,8 @@
                     <a href="/posts/{{$post->id}}/details"><img class="card-img-top" src="/storage/{{ $post->postimage }}" alt="Post Image"></a>
                     <div class="card-body">
                         <h5 class="card-title text-center ">{{$post->title}}</h5>
+                        <div class="row text-center"> <span class=" ml-4 text-center text-danger"> Terisi {{ $post->count_participant }} / {{$post->participants}} Peserta </span></div>
+                       
                         <div class="row">
                         <a href="/users/{{$post->userid}}" class="card-text row">
                             <div class="col-4"><img src="/storage/{{ $post->userimage }}" alt="User Image" class="rounded-circle"></div>
@@ -40,7 +42,7 @@
                        
                         <div class="col-12">
 
-                        <a href="/orders/" class="btn btn-primary" style="width:100%"><i class="fas fa-star"></i>{{$post->rate}} | Terjual {{$post->num_work}}x</a>
+                        <a href="/posts/{{$post->id}}/details" class="btn btn-primary" style="width:100%"><i class="fas fa-star"></i>{{$post->rate}} | Terjual {{$post->num_work}}x</a>
                
                         </div>
                         </div>

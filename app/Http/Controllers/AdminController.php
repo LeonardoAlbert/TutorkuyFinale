@@ -27,7 +27,11 @@ class AdminController extends Controller
     }
 
     public function manageverif(){
-        $users = DB::table('users')->get();
+        // $users= User::where('')
+        // ->where('orders.orderuser_id', auth()->user()->id)
+        $users = User::where('users.verif',1)->get();
+        //dd($users);
+        //$users = DB::table('users')->where(user.verif, '1')->get();
 
         return view("/admin/manageverif", compact('users'));
     }
@@ -41,10 +45,18 @@ class AdminController extends Controller
 
     }
     public function managecategory(){
-        $categories = Category::where('statuscategories',2)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
+        $categories = Category::where('statuscategories',0)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
       //dd($categories);
 
         return view("/admin/managecategory", compact('categories'));
+        
+    }
+
+    public function manageexistingcategory(){
+        $categories = Category::where('statuscategories',2)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
+      //dd($categories);
+
+        return view("/admin/manageexistingcategory", compact('categories'));
         
     }
 
