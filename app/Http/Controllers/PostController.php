@@ -69,7 +69,7 @@ class PostController extends Controller
 
     public function details(Post $post)
     {
-       
+
         $sched = [];
 
         // $pastClass = [];
@@ -114,7 +114,7 @@ class PostController extends Controller
 
             // }
             $sched = [];
-        
+
         $css = DB::table('class_schedules')->where('post_id', $post->id)->get();
         foreach($css as $schedule){
             $datum = new \stdClass;
@@ -146,31 +146,22 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = DB::table('categories')->get();
-        // $post = DB::table('posts')->where('id', $id)->get();
-
         return view("/posts/edit", compact('post', 'categories'));
     }
 
-    public function update(Post $post)
+    public function update()
     {
-        //dd(request());
-        $data = request()->validate([
-            'title' => 'required|max:50',
-            'image' => 'required|image',
-            'description' => 'required|max:150',
-            'categories' => 'required',
-            'price' => 'required|numeric',
-        ]);
-
+        $post = Post::where('id', request()->postId)->first();
         $post->update([
             'title' => request()->title,
-            'image' => request()->image,
             'description' => request()->description,
-            'categories' => request()->categories,
             'price' => request()->price,
+            'class_duration' => request()->class_duration,
+            'participants' => request()->participants,
+            'occurrence' => request()->occurrence,
         ]);
 
-        return redirect("/admin");
+        return redirect("/posts/" . $post->id . "/details");
     }
 
     public function destroy(Post $post)

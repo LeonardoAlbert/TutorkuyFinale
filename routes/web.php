@@ -43,7 +43,7 @@ Route::get('/admin/{order}/managepaymentdetails', 'AdminController@details');
 //POST
 Route::get('/posts/{post}/details', 'PostController@details');
 Route::get('/posts/{post}/edit', 'PostController@edit');
-Route::put('/posts/{post}', 'PostController@update');
+Route::put('/posts', 'PostController@update');
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts' , 'PostController@store');
 Route::delete('/posts/{post}', 'PostController@destroy');
