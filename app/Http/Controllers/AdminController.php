@@ -41,7 +41,7 @@ class AdminController extends Controller
 
     }
     public function managecategory(){
-        $categories = Category::where('statuscategories',0)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
+        $categories = Category::where('statuscategories',2)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
       //dd($categories);
 
         return view("/admin/managecategory", compact('categories'));

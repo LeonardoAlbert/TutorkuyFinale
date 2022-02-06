@@ -38,7 +38,7 @@ class CategoryController extends Controller
     }
     public function store()
     {
-        //dd(request());
+       // dd(request());
         $data = request()->validate([
             'name' => 'required|max:30',
             'image' => 'required|image',
@@ -59,8 +59,9 @@ class CategoryController extends Controller
         $category->name = request()->name;
         $category->image = $imagePath;
         $category->category_type_id = $category_type_id;
+        $category->statuscategories = 2;
         $category->save();
-
+      // dd($category);
         return redirect("/admin");
     }
     public function index(Request $request){

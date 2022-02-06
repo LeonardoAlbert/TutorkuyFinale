@@ -27,7 +27,7 @@
                 @foreach($categories as $category)
                 <div class="col-3">
                 <div class="card rounded shadow-sm border-0">
-                <div class="card-body p-4"><img src="/storage/{{$category->image }}" alt="" class="img-fluid d-block mx-auto mb-3"></div>
+                <div class="card-body p-4"><img src="/storage/{{$category->image }}" alt="" class=" w-100 rounded post img-fluid d-block mx-auto mb-3"></div>
                 <h5 class=" text-center"> <a href="/categories/{{ $category->id }}" class=" ">{{$category->name}}</a></h5>
                 </div>
                 </div>
@@ -92,7 +92,7 @@
                 <div class="col-3">
                 <div class="card rounded shadow-sm border-0">
                   
-                <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class="img-fluid d-block mx-auto mb-3"> </a></div>
+                <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class=" w-100 rounded post img-fluid d-block mx-auto mb-3"> </a></div>
                 <h5 class=" text-center"> <a href="/posts/{{ $post->id }}/details" class=" ">{{$post->title}}</a></h5>
                 </div>
                 </div>

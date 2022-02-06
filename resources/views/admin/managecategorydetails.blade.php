@@ -38,17 +38,25 @@
             </div>
            
         </div>
-        <div class="row justify-content-center">
+        @if($category->statuscategories == 0)
+        <div class="row justify-content-center mr-3">
             <form action ="/categories/declined"  class="form-inline" method="POST" >
                 @csrf
                 <input type="hidden" id="categoryId" name="categoryId" value="{{$category->id}}">
                 <input type="submit" value="Decline" class="btn btn-danger" />
             </form> 
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
                Accept Category
             </button>
         </div>
+        @elseif($category->statuscategories == 2)
+        <div class="row justify-content-center mr-3">
+          <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModalCenter">
+              Edit Category
+            </button>
+        </div>
+        @endif
     </div>
   
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -13,17 +13,29 @@ class CategoryTypeSeeder extends Seeder
     {
         DB::table('category_types')->insert([
             [
-                'name' => 'Materi Kelas SD',
+                'name' => 'Fisika',
             ],
             [
-                'name' => 'Materi Kelas SMP',
+                'name' => 'Finance',
             ],
             [
-                'name' => 'Materi Kelas SMA',
+                'name' => 'Computer Science',
             ],
             [
-                'name' => 'Materi Kuliah',
+                'name' => 'Accounting',
             ],
+            [
+                'name' => 'Matematika',
+            ],
+            [
+                'name' => 'Kimia',
+            ],
+            [
+                'name' => 'Business',
+            ],
+         
+
+            
         ]);
     }
 }
