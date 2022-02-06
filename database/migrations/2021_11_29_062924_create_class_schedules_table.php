@@ -19,6 +19,7 @@ class CreateClassSchedulesTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->datetime('start_date');
             $table->datetime('end_date');
+            $table->string('status')->default('Menunggu'); // Status: Menunggu, Selesai
 
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
         });

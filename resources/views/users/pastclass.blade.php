@@ -4,9 +4,9 @@
 
 
 <div class="container">
-    <h3 class="display-4 text-center mb-2">Kelas Yang Akan Datang</h1>
+    <h3 class="display-4 text-center mb-2">Kelas Terdahulu</h1>
 
-        @foreach($upCommingClass as $order)
+        @foreach($pastClass as $order)
         <div class="row row-striped card shadow-dark mt-2">
             <div class="row mt-4">
                 <div class="col-2 text-right">

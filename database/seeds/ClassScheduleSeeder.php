@@ -25,33 +25,39 @@ class ClassScheduleSeeder extends Seeder
         DB::table('class_schedules')->insert([
             [
                 'post_id' => 1,
-                'start_date' => Carbon::parse('2022-02-28 15:00:00'),
-                'end_date' => Carbon::parse('2022-02-28 17:00:00'),
+                'start_date' => Carbon::parse('2022-02-05 15:00:00'),
+                'end_date' => Carbon::parse('2022-02-05 17:00:00'),
+                'status' => 'Selesai',
             ],
             [
                 'post_id' => 1,
-                'start_date' => Carbon::parse('2022-03-05 15:00:00'),
-                'end_date' => Carbon::parse('2022-03-05 17:00:00'),
+                'start_date' => Carbon::parse('2022-02-12 15:30:00'),
+                'end_date' => Carbon::parse('2022-02-12 17:00:00'),
+                'status' => 'Menunggu',
             ],
             [
                 'post_id' => 1,
-                'start_date' => Carbon::parse('2022-03-12 15:00:00'),
-                'end_date' => Carbon::parse('2022-03-12 17:00:00'),
+                'start_date' => Carbon::parse('2022-02-19 15:00:00'),
+                'end_date' => Carbon::parse('2022-02-19 17:00:00'),
+                'status' => 'Menunggu',
             ],
             [
                 'post_id' => 1,
-                'start_date' => Carbon::parse('2022-03-19 15:00:00'),
-                'end_date' => Carbon::parse('2022-03-19 17:00:00'),
+                'start_date' => Carbon::parse('2022-02-26 15:00:00'),
+                'end_date' => Carbon::parse('2022-02-26 17:00:00'),
+                'status' => 'Menunggu',
             ],
             [
                 'post_id' => 2,
                 'start_date' => Carbon::parse('2022-03-01 15:00:00'),
                 'end_date' => Carbon::parse('2022-03-01 17:00:00'),
+                'status' => 'Menunggu',
             ],
             [
                 'post_id' => 2,
                 'start_date' => Carbon::parse('2022-03-08 15:00:00'),
                 'end_date' => Carbon::parse('2022-03-08 17:00:00'),
+                'status' => 'Menunggu',
             ],
         ]);
     }

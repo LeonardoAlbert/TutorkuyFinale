@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('banknumber')->nullable();
             $table->string('bankcode')->nullable();
             $table->string('ordername')->nullable();
+            $table->integer('total');
 
             $table->timestamps();
 

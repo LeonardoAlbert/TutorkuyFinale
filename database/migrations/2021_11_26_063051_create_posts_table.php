@@ -29,6 +29,8 @@ class CreatePostsTable extends Migration
             $table->integer('participants'); // max number of participant
             $table->integer('count_participant')->default(0); // max number of participant
 
+            $table->string('status')->default('Menunggu Peserta'); // Status: Menunggu Peserta, Memulai, Selesai, Cancel
+
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
 

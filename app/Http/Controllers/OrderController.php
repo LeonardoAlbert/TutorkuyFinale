@@ -15,37 +15,36 @@ use App\Mail\TutorOrderAcceptedMail;
 
 class OrderController extends Controller
 {
-    public function create(Post $post , ClassSchedule $schedule){
-    // dd($post);
-    //    dd( $schedule);
-    $user = User::where('id' , auth()->user()->id)->first();
-    //dd($user);
-        return view('/orders/create', compact('user','post','schedule'));
-    }
-
-    public function createNew(Post $post){
+    public function create(Post $post, ClassSchedule $schedule)
+    {
         // dd($post);
         //    dd( $schedule);
-        $user = User::where('id' , auth()->user()->id)->first();
-        $schedule = ClassSchedule::where('post_id', $post->id)->first();
+        $user = User::where('id', auth()->user()->id)->first();
         //dd($user);
-        return view('/orders/create', compact('user','post', 'schedule'));
+        return view('/orders/create', compact('user', 'post', 'schedule'));
     }
 
-    public function store(){
-        dd("ASdas");
-    // dd(request());
-      $data = request()->validate([
+    public function createNew(Post $post)
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+        $schedules = ClassSchedule::where('post_id', $post->id)->get();
+        $totalPrice = $post->occurrence * $post->price;
+        return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice'));
+    }
 
-        'banknumber' => 'required|max:50',
-        'bankcode' => 'required',
-        'ordername' => 'required|max:150',
-        'image' => 'required|image',
+    public function store()
+    {
+        // dd(request());
+        $data = request()->validate([
+            'banknumber' => 'required|max:50',
+            'bankcode' => 'required',
+            'ordername' => 'required|max:150',
+            'image' => 'required|image',
+        ]);
+        $post = Post::where('id', request()->postId)->first();
+        $totalPrice = $post->occurrence * $post->price;
 
-    ]);
-
-      $imagePath = request('image')->store('proofofpayment', 'public');
-    //  dd($imagePath);
+        $imagePath = request('image')->store('proofofpayment', 'public');
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 400);
 
         $image->save();
@@ -59,9 +58,11 @@ class OrderController extends Controller
         $order->banknumber = request()->banknumber;
         $order->post_id = request()->postId;
         $order->orderuser_id = auth()->user()->id;
-        $order->classschedule_id = request()->scheduleId;
+        $order->total = $totalPrice;
+        // $order->classschedule_id = request()->scheduleId;
         $order->save();
-        $user = User::where('id' , $order->orderuser_id)->first();
+
+        $user = User::where('id', $order->orderuser_id)->first();
 
         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.id', $order->id)->first();
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($orders));
@@ -69,114 +70,117 @@ class OrderController extends Controller
 
         return redirect('/home');
     }
-    public function accepted(Request $request){
-    // dd($request);
-      $order = Order::where('id' , $request->orderId)->first();
-      $order->status = "Menunggu Kelas Dilaksanakan";
-      $order->save();
+    public function accepted(Request $request)
+    {
+        // dd($request);
+        $order = Order::where('id', $request->orderId)->first();
+        $order->status = "Menunggu Kelas Dilaksanakan";
+        $order->save();
 
-      $Studentorders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'orderuser_id' , '=' , 'users.id')->where('orders.id', $request->orderId)->first();
-      $Tutororders =  DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'user_id' , '=' , 'users.id')->where('orders.id', $request->orderId)->first();
-      //dd($Studentorders);
-      //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
-      //\Mail::to('$Studentorders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
-      //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorOrderAcceptedMail($Tutororders));
+        $Studentorders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'orderuser_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
+        $Tutororders =  DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('users', 'user_id', '=', 'users.id')->where('orders.id', $request->orderId)->first();
+        //dd($Studentorders);
+        //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
+        //\Mail::to('$Studentorders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
+        //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorOrderAcceptedMail($Tutororders));
         //\Mail::to('$Tutororders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
-      return redirect('/admin');
+        return redirect('/admin');
     }
 
-    public function declined(Request $request){
-      //dd($request);
-       $order = Order::where('id' , $request->orderId)->first();
-       $order->status = "Ditolak";
-       $order->save();
+    public function declined(Request $request)
+    {
+        //dd($request);
+        $order = Order::where('id', $request->orderId)->first();
+        $order->status = "Ditolak";
+        $order->save();
 
-       return redirect('/admin');
-     }
-
-    public function details(Order $order){
-
-         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->join('class_schedules', 'classschedule_id', '=', 'class_schedules.id')->where('orders.id', $order->id)->first();
-
-      // dd($orders);
-        return view('/orders/details', compact('orders'));
+        return redirect('/admin');
     }
-    public function uploadmaterial(Request $request){
-    //dd(request());
-      $data = request()->validate([
 
-        'material' => 'required',
+    public function details(Order $order)
+    {
+        $orders = Order::with('post')->where('id', $order->id)->first();
+        $schedules = ClassSchedule::where('post_id', $orders->post->id)->get();
+        return view('/orders/details', compact('orders', 'schedules'));
+    }
 
-    ]);
+    public function uploadmaterial(Request $request)
+    {
+        //dd(request());
+        $data = request()->validate([
+
+            'material' => 'required',
+
+        ]);
 
 
-    $order = Order::where('id' , $request->orderId)->first();
-    $order->material = $data['material'];
+        $order = Order::where('id', $request->orderId)->first();
+        $order->material = $data['material'];
 
 
-        $filePath= request('material')->store('materialfile', 'public');
+        $filePath = request('material')->store('materialfile', 'public');
         $order->material = $filePath;
 
 
-    //    dd($user);
-    //  dd($order);
-    $order->save();
-    //dd($order);
-    return redirect('/orders/'.$order->id.'/details');
+        //    dd($user);
+        //  dd($order);
+        $order->save();
+        //dd($order);
+        return redirect('/orders/' . $order->id . '/details');
     }
 
 
-    public function materialdownload(Order $order){
+    public function materialdownload(Order $order)
+    {
 
-      //  dd($user);
-          $pathToFile = public_path('storage/'.$order->material);
-          return response()->download($pathToFile);
-      //    return view('/admin/manageverifdetails', compact('user'));
-      }
-
-    public function ended(Request $request){
-      //dd($request);
-       $order = Order::where('id' , $request->orderId)->first();
-      //dd($order);
-
-      $post = Post::where('id',$order->post_id)->first();
-      //dd($post);
-
-       $order->status = "Selesai";
-       //dd($order);
-       $order->save();
-      //dd($order);
-       return redirect('/users/'.$post->user_id.'/review');
-     }
-
-    public function history(){
-      $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id' , auth()->user()->id)->get();
-    // dd($orders);
-      // ->where('orders.user_id', auth()->user()->id )
-      return view('/orders/history', compact('orders'));
+        //  dd($user);
+        $pathToFile = public_path('storage/' . $order->material);
+        return response()->download($pathToFile);
+        //    return view('/admin/manageverifdetails', compact('user'));
     }
 
-    public function createlinkmeeting(Order $order){
+    public function ended(Request $request)
+    {
+        //dd($request);
+        $order = Order::where('id', $request->orderId)->first();
+        //dd($order);
 
-      return view('/orders/linkmeeting', compact('order'));
+        $post = Post::where('id', $order->post_id)->first();
+        //dd($post);
+
+        $order->status = "Selesai";
+        //dd($order);
+        $order->save();
+        //dd($order);
+        return redirect('/users/' . $post->user_id . '/review');
     }
 
-    public function linkmeeting(Request $request){
-      $data = request()->validate([
-
-        'linkmeeting' => 'required|url',
-
-    ]);
-      //dd(request());
-
-      $order = Order::where('id' , $request->orderId)->first();
-      $order->linkmeeting = $data['linkmeeting'];
-      //dd($order->linkmeeting);
-    // dd($order);
-      $order->save();
-      return redirect('/orders/'.$order->id.'/details');
+    public function history()
+    {
+        $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id', auth()->user()->id)->get();
+        return view('/orders/history', compact('orders'));
     }
 
+    public function createlinkmeeting(Order $order)
+    {
 
+        return view('/orders/linkmeeting', compact('order'));
+    }
 
+    public function linkmeeting(Request $request)
+    {
+        $data = request()->validate([
+
+            'linkmeeting' => 'required|url',
+
+        ]);
+        //dd(request());
+
+        $order = Order::where('id', $request->orderId)->first();
+        $order->linkmeeting = $data['linkmeeting'];
+        //dd($order->linkmeeting);
+        // dd($order);
+        $order->save();
+        return redirect('/orders/' . $order->id . '/details');
+    }
 }
