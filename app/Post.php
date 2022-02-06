@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'image', 'description', 'category_id','price'];
+    protected $fillable = ['title', 'image', 'description', 'category_id','price', 'class_duration', 'occurrence', 'participants'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -23,5 +23,5 @@ class Post extends Model
     public function order(){
         return $this->hasMany(Order::class);
     }
-    
+
 }

@@ -1,6 +1,9 @@
 <?php
+
 use Illuminate\Support\Facades\DB;
+
 namespace App\Http\Controllers;
+
 use App\Category;
 use App\ClassSchedule;
 
@@ -14,87 +17,73 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         $categories = DB::table('categories')->get();
-
         return view('/posts/create', compact('categories'));
     }
 
-    public function store(){
-       //  dd(request());
+    public function store()
+    {
         $data = request()->validate([
             'title' => 'required|max:50',
             'image' => 'required|image',
             'description' => 'required|max:600',
             'categories' => 'required',
             'price' => 'required|numeric',
+            'class_duration' => 'required|numeric',
+            'participants' => 'required|numeric',
+            'occurrence' => 'required|numeric',
+            'schedule' => 'required',
         ]);
-
-        // Carbon::createFromFormat('d-m-Y H:i:s', $date1);
-        $schedule = [request('schedule')];
-        //dd($schedule);
         $category_id = Category::where('name', $data['categories'])->get()[0]->id;
-        $categoryArray = ['category_id'=>$category_id];
-
-
+        $categoryArray = ['category_id' => $category_id];
         $imagePath = request('image')->store('post', 'public');
-    //  dd($imagePath);
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 400);
-
         $image->save();
+
         $imageArray = ['image' => $imagePath];
 
-        // $postRes = Post::create(array_merge(
-        //     $data,
-        //     $categoryArray,
-        //     $imageArray ?? [],
-        // ));
-
-         $postRes = auth()->user()->posts()->create(array_merge(
+        $postRes = auth()->user()->posts()->create(array_merge(
             $data,
             $categoryArray,
             $imageArray ?? [],
         ));
-//dd(request('schedule'));
-        foreach(request('schedule') as $data) {
-           // dd($data);
-           if($data == null){
-               continue;
-           }
+
+        // add schedule
+        $counter = 0;
+        while ($counter < request('occurrence')) {
             $schedule_class = new ClassSchedule;
             $schedule_class->post_id = $postRes->id;
-            // dd($data);
-
-            $time = str_replace('T', ' ', $data);
-
-            // dd($time);
-            //dd($time);
-            // dd(Carbon::createFromFormat('Y-m-d H:i', $time));
-            $schedule_class->schedule = Carbon::createFromFormat('Y-m-d H:i', $time);
-            $schedule_class->schedule = $time;
-        //   dd($schedule_class);
+            $time = str_replace('T', ' ', request('schedule')[0]);
+            $start_date = Carbon::createFromFormat('Y-m-d H:i', $time)->addWeek($counter);
+            $end_date = Carbon::createFromFormat('Y-m-d H:i', $time)->addWeek($counter)->addHours(request('class_duration'));
+            $schedule_class->start_date = $start_date;
+            $schedule_class->end_date = $end_date;
             $schedule_class->save();
+            $counter++;
         }
-
-
 
         return redirect("/home");
     }
 
-    public function details(Post $post){
+    public function details(Post $post)
+    {
         $css = DB::table('class_schedules')->where('post_id', $post->id)->get();
-        $user = User::where('id' , $post->user_id)->first();
-        return view("/posts/details", compact('post','css','user'));
+        $user = User::where('id', $post->user_id)->first();
+        return view("/posts/details", compact('post', 'css', 'user'));
     }
 
-    public function edit(Post $post){
+    public function edit(Post $post)
+    {
         $categories = DB::table('categories')->get();
         // $post = DB::table('posts')->where('id', $id)->get();
 
         return view("/posts/edit", compact('post', 'categories'));
     }
 
-    public function update(Post $post){
+    public function update(Post $post)
+    {
         //dd(request());
         $data = request()->validate([
             'title' => 'required|max:50',
@@ -115,12 +104,12 @@ class PostController extends Controller
         return redirect("/admin");
     }
 
-    public function destroy(Post $post){
+    public function destroy(Post $post)
+    {
         $user = $post->user->id;
 
         $post->delete();
 
         return redirect("/users/$user");
     }
-
 }
