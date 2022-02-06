@@ -31,6 +31,8 @@
 
 
         <br><br>
+        @empty($pastClass)
         <h4><span class="text-dark">Belum ada jadwal kelas terdaftar</span></h4>
+        @endempty
 
         @endsection
