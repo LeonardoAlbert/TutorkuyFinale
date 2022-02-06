@@ -50,7 +50,7 @@ Route::delete('/posts/{post}', 'PostController@destroy');
 Route::get('/posts/{post}/createlinkmeeting', 'PostController@createlinkmeeting');
 Route::post('/posts/linkmeeting', 'PostController@linkmeeting');
 Route::post('/posts/uploadmaterial', 'PostController@uploadmaterial');
-Route::get('/posts/{order}/materialdownload', 'PostController@materialdownload')->name('material.download');
+Route::get('/posts/{post}/materialdownload', 'PostController@materialdownload')->name('material.download');
 
 
 //CATEGORY

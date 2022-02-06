@@ -221,6 +221,5 @@ class PostController extends Controller
     {
         $pathToFile = public_path('storage/' . $post->material);
         return response()->download($pathToFile);
-        //    return view('/admin/manageverifdetails', compact('user'));
     }
 }
