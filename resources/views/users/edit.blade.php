@@ -5,7 +5,10 @@
     <div class="row">
         <div class="col-md-10 card p-0 mx-auto">
             <div class="card-header">Edit Profile
+            @if(auth()->user()->role == 1)
             <a href="/createverif/" class="btn btn-primary float-md-right">Mengajukan sebagai Tutor Verified</a>
+            @else
+            @endif
             </div>
             <div class="card-body">
                 <form action="/users/{{ $user->id }}" enctype="multipart/form-data" method="POST">

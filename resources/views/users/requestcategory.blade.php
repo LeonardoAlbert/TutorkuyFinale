@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-8 card p-0 mx-auto">
             <div class="card-body">
-                <div class="text-primary heading mb-3">Request Category Baru</div>
+                <div class="text-primary heading mb-3">Ajukan Kategori Baru</div>
                 <form action="/categories/request" enctype="multipart/form-data" method="POST" id="create-post-form">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Nama Category Baru</label>
+                        <label for="name">Nama Kategori Baru</label>
                         <input type="text" 
                             name="name" 
                             class="form-control formInput @error('name') is-invalid @enderror formInput"

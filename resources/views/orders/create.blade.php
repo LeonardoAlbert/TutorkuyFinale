@@ -13,8 +13,8 @@
                         <br>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h2>invoice<br>
-                                    <span class="small">order</span>
+                                <h2>Pesanan Anda<br>
+                                    {{-- <span class="small">Pesanan Anda</span> --}}
                                 </h2>
                             </div>
                         </div>
@@ -23,33 +23,32 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <strong>Billed To:</strong><br>
-                                Name:{{$user->name}}<br>
-                                Email:{{$user->email}}<br>
+                                <div class="text-primary"><strong>Tertagih kepada:</strong></div>
+                                Nama    : {{$user->name}}<br>
+                                Email   : {{$user->email}}<br>
                             </address>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <strong>Payment Method:</strong><br>
-                                Account Number<br>
-                                <strong>32132179312 a.n TutorKuy(BCA)</strong><br>
+                                <div class="text-primary"><strong>Mohon untuk melakukan transfer bank kepada:</strong></div>
+                                32132179312 a.n TutorKuy(BCA)<br>
                             </address>
                         </div>
                     </div>
                     <div class="row">
-                        <!-- <div class="col-md-12"> -->
-                        <h3>ORDER SUMMARY</h3>
+                        {{-- <div class="col-md-12"> --}}
+                        <h3>Rincian Pesanan Anda</h3>
                     </div>
-                    <br>
+                    {{-- <br> --}}
                     <div class="row">
                         <h5>Kelas: {{$post->title}}</h5>
                         <table class="table table-striped">
                             <thead>
                                 <tr class="line">
-                                    <td><strong>#</strong></td>
-                                    <td class="text-center"><strong>Schedule HRS</strong></td>
+                                    <td><strong>No.</strong></td>
+                                    <td class="text-center"><strong>Jadwal</strong></td>
                                     <td class="text-right"><strong>Harga Per Sesi</strong></td>
                                     <td class="text-right"><strong>Subtotal</strong></td>
                                 </tr>
@@ -65,7 +64,7 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td class="text-right"><strong>Taxes</strong></td>
+                                    <td class="text-right"><strong>PPN</strong></td>
                                     <td class="text-right"><strong>N/A</strong></td>
                                 </tr>
                                 <tr>
@@ -80,7 +79,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-right identity">
-                            <p>Tutor Identity <br><strong>{{$post->user->name}}</strong></p>
+                            <p>Nama Tutor: <strong>{{$post->user->name}}</strong><br></p>
                         </div>
                     </div>
                 </div>
@@ -90,6 +89,7 @@
 
             <div class="card-body">
                 <div class="text-primary heading mb-3">Bukti Pembayaran</div>
+                <div class="text-primary">Harap masukkan bukti pembayaran anda</div>
                 <form action="/orders" enctype="multipart/form-data" method="POST" id="create-post-form">
                     @csrf
 
@@ -105,9 +105,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="banknumber">Nomor Account </label>
+                        <label for="banknumber">Nomor Rekening Anda</label>
                         <input type="text" name="banknumber" class="form-control formInput @error('banknumbe') is-invalid @enderror formInput" value="{{ old('banknumber') }}">
-
                         @error('banknumber')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -116,7 +115,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="bankcode">Bank Pengirim </label>
+                        <label for="bankcode">Bank Pengirim</label>
                         <input type="text" name="bankcode" class="form-control formInput @error('bankcode') is-invalid @enderror formInput" value="{{ old('bankcode') }}">
 
                         @error('bankcode')
@@ -144,7 +143,7 @@
 
 
 
-                    <button class="btn btn-primary w-100">Proceed</button>
+                    <button class="btn btn-primary w-100">Proses Pesanan</button>
                 </form>
             </div>
         </div>
