@@ -68,21 +68,39 @@ class CategoryController extends Controller
 
         $categories = [];
         $allcategorytypes = CategoryType::all();
+        $categorytypes = [];
+        
+        $type_id = $request->type_id;
+        //dd($type_id);
 
-        $categorytypes = CategoryType::whereHas('categories', function($q) use($request) 
-        {
-            $q->where('name', 'like', "%$request->search%");
-        })->get();
+        if($type_id == -1){
+            $categorytypes = CategoryType::whereHas('categories', function($q) use($request)
+            {
+                $q->where('name', 'like', "%$request->search%");
+            })->get();
+        }
+        else{
+            $categorytypes = CategoryType::whereHas('categories', function($q) use($request)
+            {
+                $q->where('name', 'like', "%$request->search%");
+            })->where('id', $type_id)->get();            
+        }
+        
+
         //dd($category_types);
         $search = $request->search;
-       // dd($search);
+        
+        //dd($search);
        //$categories = DB::table('categories')->get();
        //dd($categories);
-       $categories = Category::where('name', 'like', "%$request->search%")->where('statuscategories',2)->orderBy('created_at', 'desc')->get();
+
+        $categories = Category::where('name', 'like', "%$request->search%")->where('statuscategories',2)->orderBy('created_at', 'desc')->get();
+        
+            
         // dd($categorytypes);
 
-    //    dd($categories);
-        return view('/category/index', compact('categorytypes', 'categories','search','allcategorytypes'));
+        //dd($categories);
+        return view('/category/index', compact('categorytypes', 'categories', 'search', 'allcategorytypes', 'type_id'));
       
     }
     public function accepted(Request $request){

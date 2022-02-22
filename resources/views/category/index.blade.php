@@ -11,12 +11,26 @@
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
-                </form>
-                <div class="col-2 px-0">
-                
-                </div>
+            </div>
+        </form>
+    <div class="col-2 px-0">
+</div>
 
-
+<div class="mt-1 row px-2">
+    <form action="">
+        <div class="form-group">
+            <select name="type_id" id="type_id" class="form-control" value="{{ $type_id }}">
+                <option value="-1">All Category Types</option>
+                @foreach($allcategorytypes as $type)
+                    <option value="{{ $type->id }}">
+                        {{ $type->name }}
+                    </option>   
+                @endforeach
+            </select>
+        </div>
+        <input type="submit" class="btn btn-danger btn-sm" value="Filter">
+    </form>
+</div>
             
 
 <div class="container">
