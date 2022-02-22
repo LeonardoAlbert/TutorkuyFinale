@@ -6,17 +6,16 @@
   <!-- For Demo Purpose-->
   <header class="text-center mb-5">
     <h1 class="display-4 font-weight-bold text-primary">TutorKuy</h1>
-    <p class="font-italic text-muted mb-0">Cari Tutor yang pas sesuai cara belajar anda!</p>
+    <p class="font-italic text-muted mb-0">Cari Tutor yang pas, sesuai cara belajar anda!</p>
 
   </header>
 
   <div class="container mt-4">
-   
     <div class="row">
         <div class="card shadow-dark p-4">
             <div class="row">
                 <div class="col-11">
-                <h6 class="text-primary">Featured Categories</h6>
+                <h6 class="text-primary">Kategori Kami</h6>
                 </div>
                 <div class="col-1">
                 <a href="/categories/index" class="btn btn-primary" style="width:100px height:30px">Lainnya</a>
@@ -41,7 +40,7 @@
     <div class="card shadow-dark p-4">
             <div class="row">
                 <div class="col-11">
-                <h6 class="text-primary">Featured Tutor</h6>
+                <h6 class="text-primary">Tutor Kami</h6>
                 </div>
                 <div class="col-1">
                 <a href="/categories/index" class="btn btn-primary" style="width:100px height:30px">Lainnya</a>
@@ -80,7 +79,7 @@
     <div class="card shadow-dark p-4">
             <div class="row">
                 <div class="col-11">
-                <h6 class="text-primary">Featured Class</h6>
+                <h6 class="text-primary">Kelas Kami</h6>
                 </div>
                 <div class="col-1">
                 <a href="/categories/index" class="btn btn-primary mr-3 mb-3" style="width:100px height:30px ">Lainnya</a>

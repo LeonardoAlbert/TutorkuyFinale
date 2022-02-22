@@ -6,8 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <title>{{ config('app.name', 'TutorKuy') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -210,9 +211,9 @@
                                 <div class="mb-1">Pricing</div>
                             </div>
                             <div class="col-3">
-                                <strong class="d-block mb-2 footer-title">Company</strong>
-                                <div class="mb-1">About Us</div>
-                                <div class="mb-1">Contact Us</div>
+                                <strong class="d-block mb-2 footer-title">TutorKuy</strong>
+                                <div class="mb-1">Tentang Kami</div>
+                                <div class="mb-1">Hubungi Kami</div>
                             </div>
                         </div>
                     </div>
@@ -221,7 +222,7 @@
                 <div class="pt-3 d-flex justify-content-between">
                     <div>
                         <span>&copy; TutorKuy 2021</span>
-                        <span class="ml-4">Terms and Conditions</span>
+                        <span class="ml-4">Syarat dan Ketentuan</span>
                     </div>
                     <div>
                         <i class="fab fa-instagram mr-2"></i>
