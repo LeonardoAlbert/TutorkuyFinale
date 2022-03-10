@@ -13,6 +13,7 @@ use App\Mail\TutorKuyMail;
 use App\Mail\StudentOrderAcceptedMail;
 use App\Mail\TutorOrderAcceptedMail;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 class OrderController extends Controller
 {
     public function create(Post $post, ClassSchedule $schedule)
@@ -46,7 +47,10 @@ class OrderController extends Controller
         $user = User::where('id', auth()->user()->id)->first();
         // dd($user);
         //dd($user);
+        // 
+        
         return view('/orders/create', compact('user', 'post', 'schedule'));
+        // Alert::success('Pesanan anda sukses dibuat');
     }
 
     public function createNew(Post $post)
@@ -77,6 +81,8 @@ class OrderController extends Controller
            // dd($sched);
 
         $totalPrice = $post->occurrence * $post->price;
+        // Alert::success('Success Title', 'Success Message');
+        
         return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice','sched'));
     }
 
@@ -115,7 +121,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.id', $order->id)->first();
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($orders));
         //\Mail::to('$user->email')->send(new \App\Mail\TutorKuyMail($orders));
-
+        Alert::success('Pesanan anda sukses dibuat');
         return redirect('/home');
     }
     public function accepted(Request $request)
@@ -227,7 +233,8 @@ $sched = [];
         $order->status = "Selesai";
         //dd($order);
         $order->save();
-        //dd($order);
+        //dd($order);      
+        alert('Title','Lorem Lorem Lorem', 'success');
         return redirect('/users/' . $post->user_id . '/review');
     }
 

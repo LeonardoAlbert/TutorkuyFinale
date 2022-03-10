@@ -13,13 +13,13 @@ use App\Http\Middleware\userOwner;
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return view('welcome');
-});
+//     return view('welcome');
+// });
 
 Auth::routes();
-
+Route::get('/', 'UserController@home');
 Route::get('/home', 'UserController@home');
 
 //TUTOR VERIFICATION

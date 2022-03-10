@@ -63,7 +63,7 @@ class PostController extends Controller
             $schedule_class->save();
             $counter++;
         }
-
+        alert()->warning('Title','Lorem Lorem Lorem');
         return redirect("/home");
     }
 

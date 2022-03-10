@@ -13,6 +13,7 @@ use App\Post;
 use App\Category;
 use App\CategoryType;
 use App\ClassSchedule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -182,7 +183,7 @@ class UserController extends Controller
 
     public function review(User $user)
     {
-
+        alert()->warning('Anda yakin telah selesai?','Lorem Lorem Lorem');  
         return view('users/review', compact('user'));
     }
 
@@ -218,7 +219,6 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (request('image')) {
-
             $imagePath = request('image')->store('profile', 'public');
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1920, 1080);
             $image->save();
@@ -232,7 +232,8 @@ class UserController extends Controller
         ));
 
         $user->save();
-
+        // Alert::success('Perubahan Berhasil');
+        toast('Perubahan Profil Berhasil','success');
         return redirect("/home");
     }
     public function verifaccepted(Request $request)
