@@ -5,7 +5,7 @@
 <div class="container py-5">
   <!-- For Demo Purpose-->
   <header class="text-center mb-5">
-    <h1 class="display-4 font-weight-bold text-primary">TutorKuy</h1>
+    <h1 class="display-4 font-weight-bold text-primary heading">TutorKuy</h1>
     <p class="font-italic text-muted mb-0">Cari Tutor yang pas, sesuai cara belajar anda!</p>
 
   </header>

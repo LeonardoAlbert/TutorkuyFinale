@@ -6,9 +6,10 @@
         <div class="card-header bg-white">
             <div class="media flex-sm-row flex-column-reverse justify-content-between ">
                 <div class="col my-auto">
-                    <h4 class="mb-0">Order History</h4>
+                    <h4 class="mb-0">Pesanan Anda</h4>
                 </div>
-                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="/storage/logotutorkuy.png" width="115" height="115">
+                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> 
+                    {{-- <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="/storage/logotutorkuy.png" width="115" height="115"> --}}
 
                 </div>
             </div>
@@ -42,12 +43,23 @@
                             </div>
                             <hr class="my-3 ">
                             <div class="row">
-                                <div class="col-md-3 "> <small> Order Status <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small> </div>
-                                <div class="col mt-auto">
-                                    <div class="media row justify-content-between ">
-                                        <div class="flex-col"> <span> <small class="text-right mr-sm-2">{{$order->status}}</small><i class="fa fa-circle active"></i></span></div>
-                                    </div>
+                                <div class="col mt-auto "> 
+                                    <small>
+                                        @if ($order->status=="Menunggu Peserta")
+                                            <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
+                                        @else
+                                            <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
+                                        @endif
+                                         
+                                        {{$order->status}} <span></small> 
                                 </div>
+                                <div class="col mt-auto "> <small> Jadwal Kelas:  </small> </div>
+                                <div class="text-right "> <small> Dipesan Pada:  </small> </div>
+                                {{-- <div class="col mt-auto"> --}}
+                                    {{-- <div class="media row justify-content-between "> --}}
+                                        {{-- <div class="flex-col"> <span> <small class="text-right mr-sm-2"></small><i class="fa fa-circle active"></i></span></div> --}}
+                                    {{-- </div> --}}
+                                {{-- </div> --}}
                             </div>
                         </div>
                     </div>

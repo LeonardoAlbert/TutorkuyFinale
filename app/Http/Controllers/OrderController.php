@@ -236,6 +236,7 @@ $sched = [];
         //dd($order);      
         alert('Title','Lorem Lorem Lorem', 'success');
         return redirect('/users/' . $post->user_id . '/review');
+        
     }
 
     public function history()

@@ -108,23 +108,23 @@
                             @else
                             <li class="nav-item dropdown">
                                     <div id="navbarDropdown" class="w-100 nav-link dropdown-toggle align-center align-middle p-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <span class="d-inline-block">Halo!</span>
-                                        <a id="navbarDropdown" class=" text-primary d-inline-block mx-1" href="#">
-                                            {{ Auth::user()->name }}
-
-                                        </a>
+                                        <span class="d-inline-block">Halo,</span>
+                                        <a id="navbarDropdown" class=" d-inline-block mx-1" href="#">{{ Auth::user()->name }}</a>!
                                         <span class="nav-profile d-inline-block">
                                             <img src="/storage/{{Auth::user()->image}}" alt="profile" class="rounded-circle">
                                         </span>
                                     </div>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a href="/users/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
-                                        <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profile</a>
+                                        <a href="/users/{{Auth::user()->id}}" class="dropdown-item">Profil Saya</a>
+                                        <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profil</a>
 
                                         @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
                                             <a href="/users/requestcategory" class="dropdown-item">Request Kategori</a>
-                                            <a href="/orders/history" class="dropdown-item">Order History</a>
+                                        @endif
+
+                                        @if(auth()->user()->role == 0)
+                                            <a href="/orders/history" class="dropdown-item">Pesanan Anda</a>
                                         @endif
 
                                         @if( auth()->user()->role == 1)
@@ -221,7 +221,7 @@
 
                 <div class="pt-3 d-flex justify-content-between">
                     <div>
-                        <span>&copy; TutorKuy 2021</span>
+                        <span>&copy; TutorKuy 2022</span>
                         <span class="ml-4">Syarat dan Ketentuan</span>
                     </div>
                     <div>
@@ -241,6 +241,23 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script>
+    $('.finish-class').on('click', function (event) {
+       event.preventDefault();
+       const url = $(this).attr('href');
+       swal({
+           title: 'Are you sure?',
+           text: 'This record and it`s details will be permanantly deleted!',
+           icon: 'warning',
+           buttons: ["Cancel", "Yes!"],
+           }).then(function(value) {
+           if (value) {
+           window.location.href = url;
+         }
+       });
+      });
+ </script>
 </html>
 
 

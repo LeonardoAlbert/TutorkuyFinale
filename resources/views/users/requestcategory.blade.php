@@ -21,15 +21,12 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="text-dark my-2">Kategori</div>
-                 
-
+                    <div class="text my-2">Kategori</div>
                     <div class="mb-4">
                         <select name="type" id="type" class="form-control">
                             @foreach($categorytypes as $cat)
                                 <option value="{{ $cat->name }}">{{ $cat->name }}</option>
                             @endforeach
-                           
                         </select>
                     </div>
                     <!-- <div class="form-group">

@@ -60,7 +60,7 @@
         <form action="/orders/ended" class="form-inline" method="POST">
             @csrf
             <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
-            <input type="submit" value="Selesai" class="btn btn-primary" style="width:250px" />
+            <input type="submit" value="Selesai" class="btn btn-primary finish-class" data-toggle="tooltip"  style="width:250px" />
         </form>
     </div>
 </div>

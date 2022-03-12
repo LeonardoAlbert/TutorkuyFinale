@@ -4,9 +4,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-10 card p-0 mx-auto">
-            <div class="card-header">Edit Profile
+            <div class="card-header text-primary">Edit Profile
             @if(auth()->user()->role == 1)
-            <a href="/createverif/" class="btn btn-primary float-md-right">Mengajukan sebagai Tutor Verified</a>
+            <a href="/createverif/" class="btn btn-primary float-md-right">Mengajukan sebagai <i>Verified Tutor</i></a>
             @else
             @endif
             </div>

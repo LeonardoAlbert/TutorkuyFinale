@@ -3,21 +3,18 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card border-0">
+        <div class="col-md-5 mt-5">
+            <div class="card">
                 <div class="card-body verify-content">
                     <img src="{{ url('/assets', 'darkGray.png') }}" class="logo-form mx-auto d-block" alt="darkGray">
-                    <div class="welcome mt-4">Pembuatan Link Meeting Order</div>
+                    <div class="welcome mt-4">Link Meeting</div>
                     <div class="mx-auto welcome-border mb-4"></div>
-
-
-                    <p>Harap unggah link meeting untuk Kelas Ini</p>
 
                     <form action="/posts/linkmeeting" method="POST" enctype="multipart/form-data">
 					@csrf
 
                     <div class="form-group">
-                        <label for="linkmeeting">Link Meeting</label>
+                        <label for="linkmeeting">Harap unggah link meeting untuk kelas ini:</label>
                         <input type="linkmeeting"
                             name="linkmeeting"
                             class="form-control formInput @error('linkmeeting') is-invalid @enderror formInput"

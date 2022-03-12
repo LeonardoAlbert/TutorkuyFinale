@@ -142,11 +142,11 @@
                     <input type="hidden" id="scheduleId" name="scheduleId" value="{{$schedule->id}}">
 
                     <button class="btn btn-primary w-100">Proses Pesanan</button>
-                    <script>
-                        swal("Selamat, Order Telah Dibuat.", "{!!Session::get('record_added')!!}","success", {
+                    {{-- <script>
+                        swal("Selamat, pesanan anda telah dibuat.", "{!!Session::get('record_added')!!}","success", {
                             button:"Lanjutkan",
                         })
-                    </script>
+                    </script> --}}
                 </form>
             </div>
         </div>
