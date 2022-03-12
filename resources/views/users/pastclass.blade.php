@@ -4,7 +4,7 @@
 
 
 <div class="container">
-    <h3 class="display-4 text-center mb-2">Kelas Terdahulu</h1>
+    <h3 class="display-4 text-center mb-2 mt-5 text-primary">Kelas Terdahulu</h1>
 
         @foreach($pastClass as $order)
         <div class="row row-striped card shadow-dark mt-2">

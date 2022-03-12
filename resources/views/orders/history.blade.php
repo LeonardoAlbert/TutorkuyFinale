@@ -6,7 +6,7 @@
         <div class="card-header bg-white">
             <div class="media flex-sm-row flex-column-reverse justify-content-between ">
                 <div class="col my-auto">
-                    <h4 class="mb-0">Pesanan Anda</h4>
+                    <h4 class="mb-0 text-primary">Pesanan Anda</h4>
                 </div>
                 <div class="col-auto text-center my-auto pl-0 pt-sm-4"> 
                     {{-- <img class="img-fluid my-auto align-items-center mb-0 pt-3" src="/storage/logotutorkuy.png" width="115" height="115"> --}}

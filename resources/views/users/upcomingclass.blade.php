@@ -3,8 +3,8 @@
 @section('content')
 
 
-<div class="container">
-    <h3 class="display-4 text-center mb-2">Kelas Yang Akan Datang</h1>
+<div class="container mt-5">
+    <h3 class="display-4 text-center mb-2 text-primary">Kelas Yang Akan Datang</h1>
 
         @foreach($upCommingClass as $order)
         <div class="row row-striped card shadow-dark mt-2">

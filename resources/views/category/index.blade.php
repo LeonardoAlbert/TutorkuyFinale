@@ -18,17 +18,17 @@
 
 <div class="mt-1 row px-2">
     <form action="">
-        <div class="form-group">
-            <select name="type_id" id="type_id" class="form-control" value="{{ $type_id }}">
-                <option value="-1">All Category Types</option>
-                @foreach($allcategorytypes as $type)
-                    <option value="{{ $type->id }}">
-                        {{ $type->name }}
-                    </option>   
-                @endforeach
-            </select>
-        </div>
-        <input type="submit" class="btn btn-danger btn-sm" value="Filter">
+            <div class="form-group">
+                <select name="type_id" id="type_id" class="form-control" value="{{ $type_id }}">
+                    <option value="-1">Semua Kategori</option>
+                    @foreach($allcategorytypes as $type)
+                        <option value="{{ $type->id }}">
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        <input type="submit" class="btn btn-outline-primary btn-sm" value="Filter">
     </form>
 </div>
             

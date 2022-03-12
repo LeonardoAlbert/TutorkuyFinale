@@ -58,7 +58,7 @@
                                 </div>
 
                                 @if (Route::has('password.request'))
-                                    <a class="text-primary" href="{{ route('password.request') }}">
+                                    <a class="text" href="{{ route('password.request') }}">
                                         Lupa kata sandi?
                                     </a>
                                 @endif
@@ -74,7 +74,7 @@
                         </div>
                     </form>
 
-                    <small class="d-block">Belum punya? <a href="/register" class="text-primary">Daftar</a></small>
+                    <small class="d-block">Belum punya? <a href="/register" class="text">Daftar</a></small>
                 </div>
             </div>
         </div>

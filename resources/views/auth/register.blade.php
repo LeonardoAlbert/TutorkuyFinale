@@ -77,7 +77,7 @@
 
                         <div class="form-group text-left">
                             <input type="checkbox" name="agree" id="agree" class="@error('agree') is-invalid @enderror">
-                            <label class="align-middle" for="agree"><small>Saya setuju dengan <span class="text-primary">syarat</span> dan kebijakan <span class="text-primary">privasi</span></small></label>
+                            <label class="align-middle" for="agree"><small>Saya setuju dengan <span class="text">syarat</span> dan kebijakan <span class="text">privasi</span></small></label>
                             @error('agree')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </form>
-                    <small class="d-block">Sudah Memiliki? <a href="#" class="text-primary">Masuk</a></small>
+                    <small class="d-block">Sudah Memiliki? <a href="#" class="text">Masuk</a></small>
                 </div>
             </div>
         </div>
