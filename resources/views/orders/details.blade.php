@@ -57,12 +57,46 @@
 
 <div class="row">
     <div class="col-4">
-        <form action="/orders/ended" class="form-inline" method="POST">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Selesaikan Kelas
+        </button>
+        {{-- <form action="/orders/ended" class="form-inline" method="POST">
             @csrf
             <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
             <input type="submit" value="Selesai" class="btn btn-primary finish-class" data-toggle="tooltip"  style="width:250px" />
-        </form>
+        </form> --}}
     </div>
 </div>
 </div>
+
+<!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Selesaikan Kelas
+  </button> --}}
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Apakah anda ingin menyelesaikan kelas dan meneruskan pembayaran ke tutor?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Apabila anda telah menyelesaikan kelas, pembayaran anda akan diteruskan ke tutor.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <form action="/orders/ended" class="form-inline" method="POST">
+                @csrf
+                <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
+                <input type="submit" value="Selesai" class="btn btn-primary finish-class" data-toggle="tooltip"  style="width:250px" />
+            </form>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

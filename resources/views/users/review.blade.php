@@ -11,7 +11,7 @@
     <h5 class="text-left">Pendapatmu sangat berarti bagi kami.<br>
         Silakan nilai kelas anda yang telah berakhir.</h5>
         <br><br>
-        <h5 class="text-left">   Terimakasih.</h5>
+        <h5 class="text-left">Terimakasih.</h5>
     </div>
 
     <div class="col-3">
@@ -32,11 +32,8 @@
         @endif
       
         <form action ="/users/review/submit"   method="POST" >
-                @csrf
-                
-        
-            
-            <h6 class="mb-0">Rating Tutor</h6>
+            @csrf
+            <h6 class="mb-0">Berikan Rating:</h6>
             <input type="hidden" id="userId" name="userId" value="{{$user->id}}">
             <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
             <div class="buttons px-4 mt-0"> <input type="submit" value="submit" class="btn btn-primary btn-block rating-submit" /> </div>

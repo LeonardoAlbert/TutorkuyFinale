@@ -94,27 +94,25 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Unggah Material Meeting</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Unggah Materi Kelas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
                 <form action="/posts/uploadmaterial" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="image">Bahan Material Meeting</label><br><br />
+                        <label for="image">Silakan pilih materi kelas:</label><br><br />
                         <input type="file" name="material" id="material">
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <input type="submit" value="Unggah" class="btn btn-primary w-50">
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

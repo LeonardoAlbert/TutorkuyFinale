@@ -31,11 +31,25 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0 row">
             <div class="col-9 mx-auto">
                 <div class="d-flex justify-content-between w-100 px-2">
-
+                    @guest
                     <a class="navbar-brand my-auto" href="{{ url('/home') }}">
                         <img src="/storage/assets/img/logo/NavbarLogo.png" width="70" alt="" >
                         <span>TutorKuy</span>
                     </a>
+                    
+                    @else 
+                        @if(auth()->user()->role == 2)
+                        <a class="navbar-brand my-auto" href="{{ url('/admin') }}">
+                            <img src="/storage/assets/img/logo/NavbarLogo.png" width="70" alt="" >
+                            <span>TutorKuy</span>
+                        </a>
+                    @else
+                        <a class="navbar-brand my-auto" href="{{ url('/home') }}">
+                            <img src="/storage/assets/img/logo/NavbarLogo.png" width="70" alt="" >
+                            <span>TutorKuy</span>
+                        </a>
+                    @endif
+                    @endguest
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>

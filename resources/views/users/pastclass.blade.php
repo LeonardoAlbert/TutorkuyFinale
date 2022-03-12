@@ -23,7 +23,6 @@
                         <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{$order->linkmeeting}}</li>
                         @endif
                     </ul>
-
                 </div>
             </div>
         </div>
