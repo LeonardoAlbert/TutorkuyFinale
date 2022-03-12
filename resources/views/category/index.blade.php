@@ -40,25 +40,24 @@
         <div class="row el-element-overlay">
             @foreach($categories as $cat)
                 @if($cat->category_type_id == $type->id) 
-                        <div class="col-xs-3 mx-2">
-                            <div class="card" style="width: 15rem">
-                                <div class="el-card-item">
-                                    <div class="el-card-avatar">
-                                        <a href="/categories/{{$cat->id}}"> 
-                                            <img src="/storage/{{$cat->image}}" alt="img" class="w-100 rounded post">
-                                        </a>
-                                    </div>
-                                    <div class="el-card-content">
-                                        <p class="mt-2 ml-3 text-center">{{$cat->name}}</p>
-                                    </div>
+                    <div class="col-xs-3 mx-2">
+                        <div class="card" style="width: 15rem">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar">
+                                    <a href="/categories/{{$cat->id}}"> 
+                                        <img src="/storage/{{$cat->image}}" alt="img" class="w-100 rounded post">
+                                    </a>
+                                </div>
+                                <div class="el-card-content">
+                                    <p class="mt-2 ml-3 text-center">{{$cat->name}}</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 @endif
             @endforeach
         </div>
     </div>
 @endforeach
 </div>
-
 @endsection
