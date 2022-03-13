@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container-fluid my-5 d-flex justify-content-center">
+<div class="col-md-9 mx-auto mt-5">
     <div class="card card-1">
         <div class="card-header bg-white">
             <div class="media flex-sm-row flex-column-reverse justify-content-between ">
@@ -27,9 +26,7 @@
                     <div class="card card-2">
                         <div class="card-body">
                             <div class="media">
-                                <a href="/orders/{{$order->id}}/details">
-                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/storage/{{ $order->image }}" width="135" height="135" /> </div>
-                                </a>
+                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0 rounded" src="/storage/{{ $order->image }}" width="135" height="135" /> </div>
                                 <div class="media-body my-auto text-right">
                                     <div class="row my-auto flex-column flex-md-row">
                                         <div class="col my-auto">
@@ -37,6 +34,11 @@
                                         </div>
                                         <div class="col my-auto">
                                             <h6 class="mb-0">Price Rp. {{$order->total}}</h6>
+                                        </div>
+                                        <div class="col my-auto" >
+                                            <a href="/orders/{{$order->id}}/details">
+                                                <h6 class="text">Detail <i class="fa fa-arrow-circle-right" style="color:#1876d1"></i></h6>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +52,6 @@
                                         @else
                                             <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
                                         @endif
-                                         
                                         {{$order->status}} <span></small> 
                                 </div>
                                 <div class="col mt-auto "> <small> Jadwal Kelas:  </small> </div>

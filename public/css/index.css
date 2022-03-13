@@ -182,6 +182,11 @@ a.text-primary:hover {
     background: #ffffff;
 }
 
+/* .card:hover{
+    box-shadow: 2px 2px 2px #00ccff79;
+    /* transform:scale(1.01); */
+} */
+
 .heading {
     font-size: 40px;
     font-weight: 500;

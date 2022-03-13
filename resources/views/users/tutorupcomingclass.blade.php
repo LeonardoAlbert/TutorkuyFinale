@@ -3,8 +3,8 @@
 @section('content')
 
 
-<div class="container">
-    <h3 class="display-4 text-center mb-2 text-primary mt-5">Kelas Yang Akan Datang</h1>
+<div class="col-md-7 card mx-auto mt-5">
+    <h3 class="display-4 text-center mt-3 text-primary mt-5">Kelas Yang Akan Datang</h1>
 
         @foreach($upCommingClass as $order)
         <div class="row row-striped card shadow-dark mt-2">
@@ -14,7 +14,7 @@
                     <h2>{{$order->month}}</h2>
                 </div>
                 <div class="col-10">
-                    <h3 class="text-uppercase"><strong><a href="/posts/{{$order->id}}/details">Kelas {{$order->title}}</a></strong></h3>
+                    <h3 class="text-uppercase"><strong><a href="/posts/{{$order->id}}/details">Kelas {{$order->title}} <i class="fa fa-arrow-circle-right" style="color:#1876d1"></i></a></strong></h3>
                     <ul class="list-inline">
                         <br>
                         <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{$order->DayofWeek}}</li>

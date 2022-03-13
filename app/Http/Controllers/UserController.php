@@ -183,7 +183,6 @@ class UserController extends Controller
 
     public function review(User $user)
     {
-        alert()->warning('Anda yakin telah selesai?','Lorem Lorem Lorem');  
         return view('users/review', compact('user'));
     }
 
@@ -234,7 +233,7 @@ class UserController extends Controller
         $user->save();
         // Alert::success('Perubahan Berhasil');
         toast('Perubahan Profil Berhasil','success');
-        return redirect("/home");
+        return redirect()->back();
     }
     public function verifaccepted(Request $request)
     {

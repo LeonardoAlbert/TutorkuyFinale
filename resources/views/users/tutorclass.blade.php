@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="col-md-7 card mx-auto mt-5">
     <h3 class="display-4 text-center mb-2 text-primary mt-5">Order Anda</h1>
         <h4>Upcoming class:</h4>
         @foreach($class as $data)

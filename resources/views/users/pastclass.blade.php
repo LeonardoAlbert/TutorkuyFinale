@@ -3,33 +3,33 @@
 @section('content')
 
 
-<div class="container">
-    <h3 class="display-4 text-center mb-2 mt-5 text-primary">Kelas Terdahulu</h1>
-
+<div class="col-md-7 card mx-auto mt-5">
+    <h3 class="display-4 text-center  mt-3 text-primary">Kelas Terdahulu</h1>
         @foreach($pastClass as $order)
         <div class="row row-striped card shadow-dark mt-2">
             <div class="row mt-4">
                 <div class="col-2 text-right">
-                    <h1 class="display-4"><span class="badge badge-primary">{{$order->day}}</span></h1>
+                    <h1 class="display-4"><span class="badge badge-dark">{{$order->day}}</span></h1>
                     <h2>{{$order->month}}</h2>
                 </div>
                 <div class="col-10">
-                    <h3 class="text-uppercase"><strong><a href="/orders/{{$order->id}}/details">Kelas {{$order->title}}</a></strong></h3>
+                    <h3 class="text-uppercase"><strong><a href="/orders/{{$order->id}}/details">Kelas {{$order->title}} <i class="fa fa-arrow-circle-right" style="color:#1876d1"></i></a></strong></h3>
                     <ul class="list-inline">
                         <br>
-                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{$order->DayofWeek}}</li>
-                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$order->hour}}:{{$order->minute}} - {{$order->end_hour}}:{{$order->minute}}</li>
+                        <li class="list-inline-item"><i class="fa fa-calendar-o " style="color:#00254b" aria-hidden="true"></i> {{$order->DayofWeek}}</li>
+                        <li class="list-inline-item"><i class="fa fa-clock-o" style="color:#00254b" aria-hidden="true"></i> {{$order->hour}}:{{$order->minute}} - {{$order->end_hour}}:{{$order->minute}}</li>
                         @if($order->linkmeeting)
                         <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{$order->linkmeeting}}</li>
                         @endif
-                    </ul>
+                        Kelas Selesai <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
+                       </ul>
                 </div>
             </div>
         </div>
         @endforeach
         <br><br>
         @empty($pastClass)
-        <h4><span class="text-dark">Belum ada jadwal kelas terdaftar</span></h4>
+        <h4 class="text-center"><span class="text-dark">Belum ada kelas</span></h4>
         @endempty
 
         @endsection

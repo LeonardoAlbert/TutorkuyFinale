@@ -30,7 +30,6 @@
                 </i> 
                 <small class="text-truncate ml-2"> {{ $user->city }}@if($user->city and $user->country), @endif {{$user->country}}</small> </span> <span></span> </div>
         @endif
-      
         <form action ="/users/review/submit"   method="POST" >
             @csrf
             <h6 class="mb-0">Berikan Rating:</h6>
@@ -39,10 +38,7 @@
             <div class="buttons px-4 mt-0"> <input type="submit" value="submit" class="btn btn-primary btn-block rating-submit" /> </div>
             </form>
         </div>
-
     </div>
     </div>
 </div>
-
-
 @endsection
