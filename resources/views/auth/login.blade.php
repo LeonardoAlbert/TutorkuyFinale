@@ -49,14 +49,14 @@
 
                         <div class="form-group row">
                             <div class="col-md-12 d-flex justify-content-between">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <div class="form-check form-check-lg">
+                                    <input class="form-check-input me-2" type="checkbox" value="remember" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         Ingat Saya
                                     </label>
+                                    {{-- <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"></button> --}}
                                 </div>
-
                                 @if (Route::has('password.request'))
                                     <a class="text" href="{{ route('password.request') }}">
                                         Lupa kata sandi?

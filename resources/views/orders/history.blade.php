@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-md-9 mx-auto mt-5">
     <div class="card card-1">
-        <div class="card-header bg-white">
+        <div class="card-header bg-white rounded">
             <div class="media flex-sm-row flex-column-reverse justify-content-between ">
                 <div class="col my-auto">
                     <h4 class="mb-0 text-primary">Pesanan Anda</h4>
@@ -54,7 +54,7 @@
                                         @endif
                                         {{$order->status}} <span></small> 
                                 </div>
-                                <div class="col mt-auto "> <small> Jadwal Kelas:  </small> </div>
+                                {{-- <div class="col mt-auto "> <small> Jadwal Kelas:  </small> </div> --}}
                                 <div class="text-right "> <small> Dipesan Pada:  </small> </div>
                                 {{-- <div class="col mt-auto"> --}}
                                     {{-- <div class="media row justify-content-between "> --}}
