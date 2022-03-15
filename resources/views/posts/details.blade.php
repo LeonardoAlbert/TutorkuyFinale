@@ -84,8 +84,6 @@
             </div>
         </div>
         @endif
-        
-        </div>
         @if(auth()->user()->role == 0)
         <div class="btn btn-primary rounded-pill " onclick="location.href='/orders/{{$post->id}}/create';">
             Daftar Kelas
@@ -93,9 +91,11 @@
         @endif
         @if(auth()->user()->role == 1 && $post->status == 'Menunggu Peserta')
         <div class="row mt-3 ml-3">
-            <a href="/posts/{{$post->id}}/edit" class="daftar-kelas"> <button type="button" class="btn btn-primary ">Edit Kelas</button></a>
+            <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary ">Edit Kelas</button></a>
         </div>
         @endif
+        </div>
+        
     </div>
 </div>
 <br>
