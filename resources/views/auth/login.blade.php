@@ -18,7 +18,6 @@
 
                     <form class="mb-3" method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right"></label>
 
@@ -38,7 +37,6 @@
 
                             <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror formInput" name="password" required autocomplete="current-password" placeholder="Kata Sandi">
-
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -46,12 +44,10 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-md-12 d-flex justify-content-between">
                                 <div class="form-check form-check-lg">
                                     <input class="form-check-input me-2" type="checkbox" value="remember" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
                                     <label class="form-check-label" for="remember">
                                         Ingat Saya
                                     </label>
@@ -64,7 +60,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary w-100">
@@ -73,7 +68,6 @@
                             </div>
                         </div>
                     </form>
-
                     <small class="d-block">Belum punya? <a href="/register" class="text">Daftar</a></small>
                 </div>
             </div>

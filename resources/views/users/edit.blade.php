@@ -34,7 +34,6 @@
                                     </span>
                                 @enderror
                             </div>
-
                             <div class="col-6">
                                     <label for="image">Foto Profil</label>
                                     <input type="file" 
@@ -49,7 +48,7 @@
                                         </span>
                                     @enderror
                                 </div>
-  
+
                             <div class="form-group row">
                                 
                                 <div class="col-6">
@@ -84,7 +83,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="headline">Headline <span class="text-muted">(max: 150)</span></label>
@@ -102,7 +100,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label for="bio">Bio <span class="text-muted">(max: 350)</span></label>
                         <textarea name="bio" 
@@ -119,9 +116,8 @@
                             </span>
                         @enderror
                     </div>
-
                     <div class="form-group">
-                        <button class="btn btn-primary form-control mt-2">Simpan</button>
+                        <button class="btn btn-primary form-control mt-2 rounded-pill">Simpan</button>
                     </div>
                 </form>
             </div>

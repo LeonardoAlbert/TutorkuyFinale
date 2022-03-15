@@ -13,7 +13,7 @@
                         <br>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h2>Pesanan Anda<br>
+                                <h2 class="text-primary"><strong>Pesanan Anda</strong><br>
                                     {{-- <span class="small">Pesanan Anda</span> --}}
                                 </h2>
                             </div>
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <div class="text-primary"><strong>Tertagih kepada:</strong></div>
+                                <div class="text-primary">Tertagih kepada :</div>
                                 Nama    : {{$user->name}}<br>
                                 Email   : {{$user->email}}<br>
                             </address>
@@ -32,18 +32,18 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <address>
-                                <div class="text-primary"><strong>Mohon untuk melakukan transfer bank kepada:</strong></div>
+                                <div class="text-primary">Mohon untuk melakukan transfer bank kepada :</div>
                                 32132179312 a.n TutorKuy(BCA)<br>
                             </address>
                         </div>
                     </div>
                     <div class="row">
                         {{-- <div class="col-md-12"> --}}
-                        <h3>Rincian Pesanan Anda</h3>
+                        <h3 class="text-primary">Rincian Pesanan Anda :</h3>
                     </div>
                     {{-- <br> --}}
                     <div class="row">
-                        <h5>Kelas: {{$post->title}}</h5>
+                        <h5 class="text-bold">Kelas: {{$post->title}}</h5>
                         <table class="table table-striped">
                             <thead>
                                 <tr class="line">
@@ -65,7 +65,7 @@
                                 <tr>
                                     <td colspan="2"></td>
                                     <td class="text-right"><strong>PPN</strong></td>
-                                    <td class="text-right"><strong>N/A</strong></td>
+                                    <td class="text-right"><strong>0</strong></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
@@ -88,66 +88,62 @@
             <!-- END INVOICE -->
 
             <div class="card-body">
-                <div class="text-primary heading mb-3">Bukti Pembayaran</div>
-                <div class="text-primary">Harap masukkan bukti pembayaran anda</div>
-                <form action="/orders" enctype="multipart/form-data" method="POST" id="create-post-form">
-                    @csrf
+                <div class="text-primary heading">Bukti Pembayaran</div>
+                    <div class="text mb-2" style="font-size:22px">Harap masukkan bukti pembayaran anda :</div>
+                        <form action="/orders" enctype="multipart/form-data" method="POST" id="create-post-form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="ordername">Nama</label>
+                                <input type="text" name="ordername" class="form-control formInput @error('ordername') is-invalid @enderror formInput" value="{{ old('ordername') }}">
 
-                    <div class="form-group">
-                        <label for="ordername">Nama</label>
-                        <input type="text" name="ordername" class="form-control formInput @error('ordername') is-invalid @enderror formInput" value="{{ old('ordername') }}">
+                                @error('ordername')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
-                        @error('ordername')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
+                            <div class="form-group">
+                                <label for="banknumber">Nomor Rekening Anda</label>
+                                <input type="text" name="banknumber" class="form-control formInput @error('banknumbe') is-invalid @enderror formInput" value="{{ old('banknumber') }}">
+                                @error('banknumber')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
-                    <div class="form-group">
-                        <label for="banknumber">Nomor Rekening Anda</label>
-                        <input type="text" name="banknumber" class="form-control formInput @error('banknumbe') is-invalid @enderror formInput" value="{{ old('banknumber') }}">
-                        @error('banknumber')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
+                            <div class="form-group">
+                                <label for="bankcode">Bank Pengirim</label>
+                                <input type="text" name="bankcode" class="form-control formInput @error('bankcode') is-invalid @enderror formInput" value="{{ old('bankcode') }}">
 
-                    <div class="form-group">
-                        <label for="bankcode">Bank Pengirim</label>
-                        <input type="text" name="bankcode" class="form-control formInput @error('bankcode') is-invalid @enderror formInput" value="{{ old('bankcode') }}">
+                                @error('bankcode')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Foto Bukti Pembayaran</label>
+                                <input type="file" name="image" id="image" class="d-block @error('image') is-invalid @enderror">
 
-                        @error('bankcode')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
+                            <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
+                            <input type="hidden" id="scheduleId" name="scheduleId" value="{{$schedule->id}}">
 
-
-                    <div class="form-group">
-                        <label for="image">Foto Bukti Pembayaran</label>
-                        <input type="file" name="image" id="image" class="d-block @error('image') is-invalid @enderror">
-
-                        @error('image')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
-                    <input type="hidden" id="scheduleId" name="scheduleId" value="{{$schedule->id}}">
-
-                    <button class="btn btn-primary w-100">Proses Pesanan</button>
-                    {{-- <script>
-                        swal("Selamat, pesanan anda telah dibuat.", "{!!Session::get('record_added')!!}","success", {
-                            button:"Lanjutkan",
-                        })
-                    </script> --}}
-                </form>
+                            <button class="btn btn-primary w-100">Proses Pesanan</button>
+                            {{-- <script>
+                                swal("Selamat, pesanan anda telah dibuat.", "{!!Session::get('record_added')!!}","success", {
+                                    button:"Lanjutkan",
+                                })
+                            </script> --}}
+                        </form>
             </div>
         </div>
     </div>

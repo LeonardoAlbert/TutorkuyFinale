@@ -9,6 +9,10 @@ html {
     margin-right: 0 !important;
 }
 
+.badge-light{
+    background-color: #ebebeb;
+}
+
 body {
     background: rgb(153, 153, 153);
     min-height: 100%;
@@ -205,6 +209,7 @@ a.text-primary:hover {
 .left-bar-profile {
     position: relative;
     min-height: 500px;
+    background-color: white;
 }
 
 .left-bar-profile-content {
@@ -239,7 +244,8 @@ a.text-primary:hover {
 }
 
 .post {
-    height: 200px;
+    height: 100px;
+    width: 100px;
     overflow: hidden;
     object-fit: cover;
 }
@@ -247,6 +253,7 @@ a.text-primary:hover {
 .post-item-inner {
     position: relative;
     z-index: 0;
+    width: 500;
 }
 
 .post-information {

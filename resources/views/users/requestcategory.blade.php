@@ -29,21 +29,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="type">Tipe Kategori</label>
-                        <select name="type" id="type" class="form-control" id="exampleFormControlSelect1">
-                        <option>Materi Kelas SMP</option>
-                        <option>Materi Kelas SMA</option>
-                        <option>Materi Kuliah</option>
-                        </select>
-                    </div> -->
-             
-                
-                    
-                    <!-- </div> -->
-                 
-
-                   <button class="btn btn-primary w-100">Unggah</button> 
+                   <button class="btn btn-primary w-100 rounded-pill">Unggah</button> 
                 </form>
             </div>
         </div>

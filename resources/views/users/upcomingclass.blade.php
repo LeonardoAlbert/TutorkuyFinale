@@ -10,20 +10,24 @@
         <div class="row row-striped card shadow-dark mt-2">
             <div class="row mt-4">
                 <div class="col-2 text-right">
-                    <h1 class="display-4"><span class="badge badge-primary">{{$order->day}}</span></h1>
-                    <h2>{{$order->month}}</h2>
+                    <h1 class="display-4"><span class="badge badge-warning">{{$order->day}}</span></h1>
+                    <h3>{{$order->month}}</h3>
                 </div>
-                <div class="col-10">
-                    <h3 class="text-uppercase"><strong><a href="/orders/{{$order->id}}/details">Kelas {{$order->title}} <i class="fa fa-arrow-circle-right" style="color:#1876d1"></i></a></strong></h3>
+                <div class="col-10 d-flex justify-content-between">
+                    <h3 class="text-uppercase"><strong><a href="/orders/{{$order->id}}/details">Kelas {{$order->title}} </a></strong></h3>
                     <ul class="list-inline">
                         <br>
-                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>{{$order->DayofWeek}}</li>
-                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{$order->hour}}:{{$order->minute}} - {{$order->end_hour}}:{{$order->minute}}</li>
+                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true" style="color:#0d47a0"></i> {{$order->DayofWeek}}</li>
+                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true" style="color:#0d47a0"></i> {{$order->hour}}:{{$order->minute}} - {{$order->end_hour}}:{{$order->minute}}</li>
                         @if($order->linkmeeting)
                         <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{$order->linkmeeting}}</li>
+                        @else
+                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true" style="color:#0d47a0"></i> (Belum Tersedia)</li>
                         @endif
                     </ul>
-
+                    <div class="btn btn-primary" onclick="location.href='/orders/{{$order->id}}/details'">
+                        <h6 class="text mt-4">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6></div>
+                    
                 </div>
             </div>
         </div>

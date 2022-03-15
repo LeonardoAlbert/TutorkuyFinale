@@ -36,9 +36,9 @@
                                             <h6 class="mb-0">Price Rp. {{$order->total}}</h6>
                                         </div>
                                         <div class="col my-auto" >
-                                            <a href="/orders/{{$order->id}}/details">
-                                                <h6 class="text">Detail <i class="fa fa-arrow-circle-right" style="color:#1876d1"></i></h6>
-                                            </a>
+                                            <div class="btn btn-primary rounded-pill form-group" onclick="location.href='/orders/{{$order->id}}/details'">
+                                                <h6 class="text mt-2">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
