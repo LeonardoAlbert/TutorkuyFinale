@@ -131,14 +131,16 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a href="/users/{{Auth::user()->id}}" class="dropdown-item">Profil Saya</a>
                                         <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profil</a>
-
-                                        @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
-                                            <a href="/users/requestcategory" class="dropdown-item">Request Kategori</a>
-                                        @endif
-
+                                        
                                         @if(auth()->user()->role == 0)
                                             <a href="/orders/history" class="dropdown-item">Pesanan Anda</a>
                                         @endif
+
+                                        @if(auth()->user()->role == 0 || auth()->user()->role == 1 )
+                                            <a href="/users/requestcategory" class="dropdown-item">Ajukan Kategori</a>
+                                        @endif
+
+                                        
 
                                         @if( auth()->user()->role == 1)
                                             <a href="/posts/create" class="dropdown-item">Buat Kelas </a>
