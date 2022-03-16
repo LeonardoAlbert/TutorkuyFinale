@@ -28,7 +28,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0 row">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0 row rounded-pill">
             <div class="col-9 mx-auto">
                 <div class="d-flex justify-content-between w-100 px-2">
                     @guest

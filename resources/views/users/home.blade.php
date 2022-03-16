@@ -26,7 +26,7 @@
                 @foreach($categories as $category)
                 <div class="col-3">
                 <div class="card rounded shadow-sm border-0" style="height: 210px">
-                <div class="card-body p-4"><img src="/storage/{{$category->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3"></div>
+                <div class="card-body p-4"><a href="/categories/{{ $category->id }}" class="text-center"><img src="/storage/{{$category->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3"></a></div>
                 <h5 class=" text-center mb-2"> <a href="/categories/{{ $category->id }}" class="text-center">{{$category->name}}</a></h5>
                 </div>
                 </div>
@@ -51,9 +51,10 @@
                 @foreach($users as $user)
                 <div class="col-3">
                   <div class="card rounded shadow-sm border-0 mt-5">
-
+                    <a href="/users/{{ $user->id }}" class="">
                     <img src="/storage/{{$user->image }}" alt="" class=" profile-image-main mb-3">
-                      <br><br><br><br><br><br>
+                    <br><br><br><br><br>
+                  </a>
                     <div class="row d-flex justify-content-center"> 
                       <h5 class="text-center"> <a href="/users/{{ $user->id }}" class=" ">{{$user->name}}</a>
                       @if($user->verif == 2)

@@ -3,20 +3,34 @@
 @section('content')
 <div class="mt-4 row">
     <div class="col-9 mx-auto">
-        <form action="">
-            <div class="row px-2">
-                <div class="col-10 p-0 pr-4">
-                    <div class="form-group form-group-search">
-                        <input name="search" id="search" type="text" class="form-control form-search" value="{{ $search }}">
-                        <i class="fas fa-search"></i>
-                    </div>
-                </div>
+        <form class="row g-3">
+            <div class="col-md-6">
+                {{-- <div class="form"><i class="fa fa-search"></i><input type="text" class="form-control form-input" placeholder="Search anything..."> <span class="left-pan"><i class="fa fa-microphone"></i></span></div> --}}
+                <input name="search" id="search" type="text" class="form-control form-search rounded-pill" placeholder="Cari dan tekan enter" value="{{ $search }}">
             </div>
+            <div class="col-md-6 ">
+                <select name="type_id" id="type_id" class="form-control btn-sm rounded-pill" value="{{ $type_id }}">
+                    <option value="-1">Semua Kategori</option>
+                    @foreach($allcategorytypes as $type)
+                        <option value="{{ $type->id }}">
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                    <input type="submit" class="btn btn-primary btn-sm rounded-pill mt-2" value="Pilih Kategori">
+                </select>
+                {{-- <input type="submit" class="btn btn-primary btn-sm rounded-pill" value="Filter"> --}}
+            </div>
+            {{-- <div class="row-cols-2">
+                <input type="submit" class="btn btn-primary btn-sm rounded-pill" value="Filter">
+            </div> --}}
+            
+            
+            {{-- <div class="col-md-6">
+                <input type="submit" class="btn btn-primary btn-sm rounded-pill" value="Filter">
+            </div> --}}
         </form>
-    <div class="col-2 px-0">
 </div>
-
-<div class="mt-1 row px-2">
+{{-- <div class="mt-1 row px-2">
     <form action="">
             <div class="form-group">
                 <select name="type_id" id="type_id" class="form-control" value="{{ $type_id }}">
@@ -28,9 +42,9 @@
                     @endforeach
                 </select>
             </div>
-        <input type="submit" class="btn btn-outline-primary btn-sm" value="Filter">
+            <input type="submit" class="btn btn-outline-primary btn-sm rounded-pill" value="Filter">
     </form>
-</div>
+</div> --}}
             
 
 <div class="container">
