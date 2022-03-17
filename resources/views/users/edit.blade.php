@@ -6,7 +6,7 @@
         <div class="col-md-8 card p-0 mx-auto">
             <div class="card-header text-primary">Edit Profil Anda
             @if(auth()->user()->role == 1)
-            <a href="/createverif/" class="btn btn-primary float-md-right">Mengajukan sebagai <i>Verified Tutor</i></a>
+            <a href="/createverif/" class="btn btn-primary float-md-right rounded-pill">Mengajukan sebagai <i>Verified Tutor</i></a>
             @else
             @endif
             </div>

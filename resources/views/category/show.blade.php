@@ -40,7 +40,7 @@
         </div>
             <h1 class="d-block display-1 text-primary text-bold text-center" style="font-size: 200%; ">{{$category->name}}</h1>
             <br>
-            <div class="row">
+            <div class="row" style="">
             @foreach($posts as $post)
                 <div class="card col-xs-12 mx-2 " style="width: 15rem">
                     <a href="/posts/{{$post->id}}/details"><img class="card-img-top" src="/storage/{{ $post->postimage }}" alt="Post Image"></a>

@@ -7,7 +7,7 @@
             <div class="card border-0 text-center">
                 <div class="card-body">
                     
-                    <div class="welcome mt-4">Buat Akun Anda</div>
+                    <div class="welcome mt-2">Buat Akun Anda</div>
                     <div class="mx-auto welcome-border mb-4"></div>
                     <div class="text-center mb-4">
                         <i class="fab fa-google icon"></i>
@@ -21,7 +21,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror formInput" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Nama lengkap">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror formInput rounded-pill" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Nama lengkap">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror formInput" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror formInput rounded-pill" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror formInput" name="password" autocomplete="new-password" placeholder="Kata sandi">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror formInput rounded-pill" name="password" autocomplete="new-password" placeholder="Kata sandi">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="password-confirm" type="password" class="form-control formInput" name="password_confirmation" autocomplete="new-password" placeholder="Konfirmasi Kata Sandi">
+                                <input id="password-confirm" type="password" class="form-control formInput rounded-pill" name="password_confirmation" autocomplete="new-password" placeholder="Konfirmasi Kata Sandi">
                             </div>
                         </div>
 
@@ -65,7 +65,6 @@
                             Mendaftar Sebagai
                             <label for="client" class="btn btn-outline-primary mx-2 rounded-pill" id="client-btn">Tutor</label>
                             <input type="radio" class="d-none @error('role') is-invalid @enderror" name="role" id="client" value="client">
-
                             <label for="student" class="btn btn-outline-primary rounded-pill" id="student-btn">Murid</label>
                             <input type="radio" class="d-none @error('role') is-invalid @enderror" name="role" id="student" value="student">
                             @error('role')
@@ -93,7 +92,7 @@
                             </div>
                         </div>
                     </form>
-                    <small class="d-block">Sudah Memiliki? <a href="#" class="text">Masuk</a></small>
+                    <small class="d-block">Sudah Memiliki? <a href="{{ route('login') }}" class="text">Masuk</a></small>
                 </div>
             </div>
         </div>
