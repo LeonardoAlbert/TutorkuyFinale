@@ -33,6 +33,7 @@ Route::get('/admin/managepayment', 'AdminController@managepayment');
 Route::get('/admin/manageverif', 'AdminController@manageverif');
 Route::get('/admin/managecategory', 'AdminController@managecategory');
 Route::get('/admin/manageexistingcategory', 'AdminController@manageexistingcategory');
+Route::get('/admin/managetutorspayment', 'AdminController@managetutorspayment');
 
 Route::get('/admin/{category}/managecategorydetails', 'AdminController@categorydetails');
 

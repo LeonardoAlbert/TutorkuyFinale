@@ -79,6 +79,11 @@ class AdminController extends Controller
         //    return view('/admin/manageverifdetails', compact('user'));
         }
 
+    public function managetutorspayment(){
+        
+        return view("/admin/managetutorspayment");
+    }
+
     
 
     

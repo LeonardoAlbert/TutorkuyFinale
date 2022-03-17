@@ -70,6 +70,23 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-6">
+            <div class="card shadow-dark p-4">
+                <div class="row">
+                    <div class="col-11">
+                        <h6 class="text-primary">Manage Tutor's Payment</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="margin-right: 0; margin-left: auto;">
+                        <a href="/admin/manageverif" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
 
 </div>
