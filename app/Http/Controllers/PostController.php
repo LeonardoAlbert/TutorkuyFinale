@@ -25,6 +25,7 @@ class PostController extends Controller
 
     public function store()
     {
+        // dd(request());
         $data = request()->validate([
             'title' => 'required|max:50',
             'image' => 'required|image',
@@ -55,7 +56,7 @@ class PostController extends Controller
         while ($counter < request('occurrence')) {
             $schedule_class = new ClassSchedule;
             $schedule_class->post_id = $postRes->id;
-            $time = str_replace('T', ' ', request('schedule')[0]);
+            $time = str_replace('T', ' ', request('schedule'));
             $start_date = Carbon::createFromFormat('Y-m-d H:i', $time)->addWeek($counter);
             $end_date = Carbon::createFromFormat('Y-m-d H:i', $time)->addWeek($counter)->addHours(request('class_duration'));
             $schedule_class->start_date = $start_date;
@@ -63,7 +64,7 @@ class PostController extends Controller
             $schedule_class->save();
             $counter++;
         }
-        alert()->warning('Title','Lorem Lorem Lorem');
+        // alert()->warning('Title','Lorem Lorem Lorem');
         return redirect("/home");
     }
 
