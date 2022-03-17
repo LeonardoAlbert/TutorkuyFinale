@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div id="container" class="zone-card2">
-<br>
+<div class="container mt-4">
+<div class="card shadow-dark p-4">
   <div class="row">
     <div class="col-9">
         <br>
@@ -45,6 +45,7 @@
   </tbody>
 </table>
              
+</div>
 </div>
 
 @endsection

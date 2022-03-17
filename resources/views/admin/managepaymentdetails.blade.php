@@ -7,9 +7,8 @@
 <script src="/path/to/cdn/jquery.min.js"></script>
 
 <script src="/path/to/dist/js/image-zoom.min.js"></script>
-<div id="container" class="zone-card2">
-
-<br>
+<div class="container mt-4">
+<div class="card shadow-dark p-4">
   <div class="row">
         <br>
         <h3 class="text-primary">Order Details</h3>
@@ -80,8 +79,8 @@
                 <input type="submit" value="Accept" class="btn btn-primary ml-5 text-center" />
             </form> 
         </div>
-    </div>
-  
+    </div>  
+</div>
 </div>
 
 

@@ -7,14 +7,15 @@
 <script src="/path/to/cdn/jquery.min.js"></script>
 
 <script src="/path/to/dist/js/image-zoom.min.js"></script>
-<div id="container" class="zone-card2">
+<div class="container mt-4">
+<div class="card shadow-dark p-4">
     <div class="card title-card">
         <h1>Tutor Verification</h1>
     </div>
     <div class="card table-card">
     <div class="table-responsive">
         <table class="table t3">
-        <tr>
+            <tr>
                 <th>
                    Tutor Name
                 </th>
@@ -67,7 +68,7 @@
             </form> 
         </div>
     </div>
-  
+</div>
 </div>
 
 

@@ -73,7 +73,7 @@ class CategoryController extends Controller
         $type_id = $request->type_id;
         //dd($type_id);
 
-        if($type_id == -1){
+        if($type_id == -1 || $type_id == null){
             $categorytypes = CategoryType::whereHas('categories', function($q) use($request)
             {
                 $q->where('name', 'like', "%$request->search%");

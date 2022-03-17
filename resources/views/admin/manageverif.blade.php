@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div id="container" class="zone-card2">
-<br>
+<div class="container mt-4">
+<div class="card shadow-dark p-4">
   <div class="row">
         <br>
         <h3 class="text-primary">Manage User Verification</h3>
@@ -39,6 +39,7 @@
     @endforeach
   </tbody>
 </table>
+</div>
 </div>
 
 
