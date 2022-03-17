@@ -7,10 +7,17 @@ html {
 .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
+    
+}
+
+.profile-img-page{
+    margin: auto;    
+    display: block;
 }
 
 .badge-light{
     background-color: #ebebeb;
+
 }
 
 body {

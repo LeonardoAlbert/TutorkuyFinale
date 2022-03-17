@@ -10,9 +10,12 @@
                 <div class="row">
                 </div>
                 <div class="row">
-                    <h4 class="text-danger"> ( Terisi {{ $post->count_participant }} / {{$post->participants}}! Daftar Segera! )</h4>
+                    @if ($post->count_participant == $post->participants)
+                        <label class="badge badge-light  text-danger"> <h4>Kelas Telah Penuh {{ $post->count_participant }} / {{$post->participants}}.</h4></label>
+                    @else
+                        <label class="badge badge-dark text-light"> <h4>Terisi {{ $post->count_participant }} / {{$post->participants}}! Daftar Segera!</h4></label>
+                    @endif
                 </div>
-        
                 <div class="row">
                     <img src="/storage/{{ $post->user->image }}" alt="User Image" class="rounded-circle w-200 ">
         
@@ -84,7 +87,7 @@
             </div>
         </div>
         @endif
-        @if(Auth::check() && auth()->user()->role == 0)
+        @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
             <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                 Daftar Kelas
             </div>

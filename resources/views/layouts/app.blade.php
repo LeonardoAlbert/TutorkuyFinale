@@ -58,16 +58,15 @@
                         <ul class="navbar-nav w-100  justify-content-center p-0">
 
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
+                                <a href="/categories/index" class="nav-link p-0">Cari Kelas</a>
                             </li>
 
                         @else
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav w-100 d-flex justify-content-center p-0">
                             @if(auth()->user()->role == 0 )
-
                             <li class="nav-item mx-4 py-4 px-2">
-                                <a href="/categories/index" class="nav-link p-0">Cari Tutor</a>
+                                <a href="/categories/index" class="nav-link p-0">Cari Kelas</a>
                             </li>
 
                             <li class="nav-item mx-4 py-4 px-2">
@@ -131,7 +130,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a href="/users/{{Auth::user()->id}}" class="dropdown-item">Profil Saya</a>
                                         <a href="/users/{{Auth::user()->id}}/edit" class="dropdown-item">Edit Profil</a>
-                                        
+
                                         @if(auth()->user()->role == 0)
                                             <a href="/orders/history" class="dropdown-item">Pesanan Anda</a>
                                         @endif

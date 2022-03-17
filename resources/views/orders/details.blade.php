@@ -36,8 +36,8 @@
                             <span class="text-danger"> Rp.{{$orders->total}},00</span>
                             <div class="text-dark my-1"></div>
                         </div>
-                        <div class="btn btn-primary rounded-pill " onclick="location.href='/posts/{{$orders->post_id}}/details'">
-                            <h6 class="text mt-2">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
+                        <div class="btn btn-primary rounded-pill mt-3" onclick="location.href='/posts/{{$orders->post_id}}/details'">
+                            <h6 class="text" style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
                         {{-- </button> --}}
                         </div>
                 </a>
@@ -46,36 +46,32 @@
         <div class="row"><span class="text-dark">Deskripsi Kelas </span> </div>
         <div class="row mb-3"> <span>{{$orders->post->description}}</span></div>
         @if($orders->post->link_meeting)
-        <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div>
-        <div class="row mb-3"> <span>{{$orders->post->link_meeting}}</span></div>
+            <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div>
+            <div class="row mb-3"> <span>{{$orders->post->link_meeting}}</span></div>
+        @else
+
         @endif
         
     </div>
 </div>
 
-<div class="row">
-    <div class="card shadow-dark p-4">
-        <div>
-            <h6 class="text-primary">Jadwal Kelas</h6>
+    <div class="row">
+        <div class="card shadow-dark p-4">
+            <div>
+                <h6 class="text-primary">Jadwal Kelas</h6>
+            </div>
+            @foreach($sched as $sche)
+            <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} Pada Pukul: {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}}</span><br>
+            @endforeach
         </div>
-        @foreach($sched as $sche)
-        <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} Pada Pukul: {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}}</span><br>
-        @endforeach
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-4 mb-4">
+        <div class="col-12 d-flex justify-content-center mb-4">
             <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModalCenter">
                 Selesaikan Kelas
             </button>
-        {{-- <form action="/orders/ended" class="form-inline" method="POST">
-            @csrf
-            <input type="hidden" id="orderId" name="orderId" value="{{$orders->id}}">
-            <input type="submit" value="Selesai" class="btn btn-primary finish-class" data-toggle="tooltip"  style="width:250px" />
-        </form> --}}
+        </div>
     </div>
-</div>
+
+
 </div>
 
 <!-- Button trigger modal -->

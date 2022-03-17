@@ -29,7 +29,7 @@
                                 @if($cr->tutor->verif == 1)
                                 <div class="status"> <i class="fa fa-check"></i> verified tutor</div>
                                 @else
-                                <div class="status"></i> un-verified tutor </div>
+                                {{-- <div class="status"></i> un-verified tutor </div> --}}
                                 @endif
                             </div>
                             @else
@@ -39,7 +39,7 @@
                                 @if($cr->student->verif == 1)
                                 <div class="status"> <i class="fa fa-check"></i> verified student</div>
                                 @else
-                                <div class="status"></i> un-verified student </div>
+                                {{-- <div class="status"></i> un-verified student </div> --}}
                                 @endif
                             @endif
                         </li>
@@ -50,7 +50,7 @@
                 @if ($selected != 0)
                 <div class="chat box" id="chat-box-container">
                     <div class="chat-header clearfix">
-                        <div class="row">
+                        <div class="row" style="justify-content: flex-start">
                             <div class="col-lg-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
                                     <img src="/storage/{{$selectedUser->image}}" alt="avatar">
@@ -60,7 +60,7 @@
                                     @if($selectedUser->verif == 1)
                                     <small>verified</small>
                                     @else
-                                    <small>un-verified</small>
+                                    {{-- <small>un-verified</small> --}}
                                     @endif
                                 </div>
                             </div>
