@@ -87,6 +87,7 @@ class UserController extends Controller
                 $query->where('orders.status', '=', 'Menunggu Kelas Dilaksanakan')
                       ->orWhere('orders.status', '=', 'Selesai');
             })
+            // ->paginate(5);
             ->get();
 
         foreach ($orders as $order) {
@@ -143,6 +144,7 @@ class UserController extends Controller
             $schedules = ClassSchedule::where('post_id', $post->id)
                 ->where('status', 'Menunggu')
                 ->get();
+                // ->paginate(2);
 
             foreach ($schedules as $schedule) {
                 $datum = new \stdClass;

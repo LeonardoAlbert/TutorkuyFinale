@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-7 card mx-auto mt-5">
+<div class="col-md-5 card mx-auto mt-5">
     <div class="display-4 text-center mt-3 text-primary">
         <h4 class="font-weight-bold text-primary">Rincian Pesanan</h4>
     </div>
@@ -10,6 +10,7 @@
         <div class="card shadow-dark p-4">
             
             <div><span class="text-dark"> Status Kelas</span><br><span> 
+                {{-- Menunggu Peserta, Memulai, Selesai, Batal --}}
             @if ($orders->status=="Menunggu Kelas Dilaksanakan")
                 <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
             @else
@@ -28,18 +29,21 @@
             <div class="card shadow-dark p-4">
                 <a href="/posts/{{$orders->post_id}}/details" class="text-black">
                     <div class="d-flex justify-content-between">
-                        <div class="row-1 p-0">
-                            <img src="/storage/{{ $orders->post->image }}" width="50px" height="50px" alt="">
+                        <div class="col my-auto">
+                            <img src="/storage/{{ $orders->post->image }}"alt="" class="mt-2 rounded smallPost d-block mx-auto mb-3">
                         </div>
-                        <div class="ml-3 row-1">
+                        <div class="col my-auto">
                             <a href="/posts/{{$orders->post_id}}/details" class="text-black text-bold">{{ $orders->post->title }}</a><br>
                             <span class="text-danger"> Rp.{{$orders->total}},00</span>
                             <div class="text-dark my-1"></div>
                         </div>
-                        <div class="btn btn-primary rounded-pill mt-3" onclick="location.href='/posts/{{$orders->post_id}}/details'">
-                            <h6 class="text" style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
-                        {{-- </button> --}}
+                        <div class="col my-auto">
+                            <div class="btn btn-primary rounded-pill form-group mt-3 float-right" onclick="location.href='/posts/{{$orders->post_id}}/details'">
+                                <h6 class="text " style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
+                            {{-- </button> --}}
+                            </div>
                         </div>
+                        
                 </a>
             </div>
         </div>
@@ -49,7 +53,6 @@
             <div class="row "><span class="text-dark">Link Meeting Kelas </span> </div>
             <div class="row mb-3"> <span>{{$orders->post->link_meeting}}</span></div>
         @else
-
         @endif
         
     </div>

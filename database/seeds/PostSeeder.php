@@ -56,7 +56,7 @@ class PostSeeder extends Seeder
                 'link_meeting' => "https://zoom.com",
             ],
             [
-                'title' => 'Data Structure Advance',
+                'title' => 'Data Class 1',
                 'description'=> 'Advance',
                 'image' =>'profile/58MK4R1v3BZ735MvWR7yrHSCZb7MfpyIPL6MT05c.jpg',
                 'user_id' => 3,
@@ -70,7 +70,7 @@ class PostSeeder extends Seeder
                 'link_meeting' => "",
             ],
             [
-                'title' => 'Data Structure Advance',
+                'title' => 'Data Class 2',
                 'description'=> 'Advance',
                 'image' =>'profile/58MK4R1v3BZ735MvWR7yrHSCZb7MfpyIPL6MT05c.jpg',
                 'user_id' => 3,
@@ -84,7 +84,7 @@ class PostSeeder extends Seeder
                 'link_meeting' => "",
             ],
             [
-                'title' => 'Data Structure Advance',
+                'title' => 'Data 3',
                 'description'=> 'Advance',
                 'image' =>'profile/58MK4R1v3BZ735MvWR7yrHSCZb7MfpyIPL6MT05c.jpg',
                 'user_id' => 3,

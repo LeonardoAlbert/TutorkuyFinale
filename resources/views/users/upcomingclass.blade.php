@@ -35,10 +35,11 @@
             </div>
         </div>
         @endforeach
+        {{-- {{$order->links()}} --}}
 
 
         <br><br>
         @empty($upCommingClass)
-        <h4 class="text-center"><span class="text-dark">Belum ada kelas</span></h4>
+        <h4 class="text-center justify-content-center"><span class="text-dark">Belum ada kelas</span></h4>
         @endempty
 @endsection

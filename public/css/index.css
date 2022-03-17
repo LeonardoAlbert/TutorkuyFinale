@@ -250,6 +250,13 @@ a.text-primary:hover {
     height: 400px;
 }
 
+.smallPost {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
 .post {
     height: 100px;
     width: 100px;

@@ -242,6 +242,7 @@ $sched = [];
     public function history()
     {
         $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id', auth()->user()->id)->get();
+        // dd($orders);
         return view('/orders/history', compact('orders'));
     }
 }

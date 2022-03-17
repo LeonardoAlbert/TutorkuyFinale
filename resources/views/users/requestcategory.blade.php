@@ -12,9 +12,9 @@
                         <label for="name">Nama Kategori Baru</label>
                         <input type="text" 
                             name="name" 
-                            class="form-control formInput @error('name') is-invalid @enderror formInput"
+                            class="form-control formInput @error('name') is-invalid @enderror formInput rounded-pill"
                             value="{{ old('name') }}">
-                            <div class="line mb-2"></div>
+                            {{-- <div class="line mb-2"></div> --}}
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -23,13 +23,13 @@
                     </div>
                     <div class="text my-2">Kategori</div>
                     <div class="mb-4">
-                        <select name="type" id="type" class="form-control">
+                        <select name="type" id="type" class="form-control rounded-pill">
                             @foreach($categorytypes as $cat)
                                 <option value="{{ $cat->name }}">{{ $cat->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                   <button class="btn btn-primary w-100 rounded-pill">Unggah</button> 
+                   <button class="btn btn-primary w-100 rounded-pill">Minta</button> 
                 </form>
             </div>
         </div>

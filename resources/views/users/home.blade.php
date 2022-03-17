@@ -46,7 +46,7 @@
                 <a href="/categories/index" class="btn btn-primary rounded-pill" style="width:100px height:30px">Lainnya </a>
                 </div>
             </div>
-            <div class="card shadow-dark p-4">
+            {{-- <div class="card shadow-dark p-4"> --}}
               <div class="row"> 
                 @foreach($users as $user)
                 <div class="col-3">
@@ -69,7 +69,7 @@
                 </div>
                 @endforeach  
               </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
     <div class="row">
@@ -82,18 +82,18 @@
                 <a href="/categories/index" class="btn btn-primary mr-3 rounded-pill" style="width:100px height:30px ">Lainnya</a>
                 </div>
             </div>
-            <div class="card shadow-dark p-4">
+            {{-- <div class="card shadow-dark p-4"> --}}
               <div class="row"> 
                 @foreach($posts as $post)
                 <div class="col-3">
                 <div class="card rounded shadow-sm border-0">
-                <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class=" w-100 rounded post img-fluid d-block mx-auto mb-3"> </a></div>
+                <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3"> </a></div>
                 <h5 class=" text-center"> <a href="/posts/{{ $post->id }}/details" class=" ">{{$post->title}}</a></h5>
                 </div>
                 </div>
                 @endforeach  
               </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 

@@ -26,16 +26,17 @@
                     <div class="card card-2">
                         <div class="card-body">
                             <div class="media">
-                                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0 rounded" src="/storage/{{ $order->image }}" width="135" height="135" /> </div>
+                                    <div class="sq align-self-center "> <img class="mt-2 rounded post d-block mx-auto mb-3" src="/storage/{{ $order->image }}" width="135" height="135" /> </div>
                                 <div class="media-body my-auto text-right">
                                     <div class="row my-auto flex-column flex-md-row">
                                         <div class="col my-auto">
                                             <h6 class="mb-0"> {{$order->title}} </h6>
                                         </div>
                                         <div class="col my-auto">
-                                            <h6 class="mb-0">Price Rp. {{$order->total}}</h6>
+                                            <h6 class="mb-0">Harga Terbayar: Rp. {{$order->total}}</h6>
                                         </div>
                                         <div class="col my-auto" >
+                                            {{-- {{$order->id}} --}}
                                             <div class="btn btn-primary rounded-pill form-group mt-3" onclick="location.href='/orders/{{$order->id}}/details'">
                                                 <h6 class="text" style="margin:0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
                                             </div>

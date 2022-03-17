@@ -13,10 +13,10 @@
                     <h3>{{$order->month}}</h3>
                 </div>
                 <div class="col-10 d-flex justify-content-between">
-                    <h3 class="text-uppercase"><strong><a href="/orders/{{$order->id}}/details">Kelas {{$order->title}} 
+                    <h3 class="text-uppercase"><strong>Kelas {{$order->title}} 
                         <br> 
                         <div class="btn btn-primary rounded-pill mt-2" onclick="location.href='/orders/{{$order->id}}/details'">
-                        <h6 class="text" style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6></div></a></strong></h3>
+                        <h6 class="text" style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6></div></strong></h3>
                     <ul class="list-inline">
                         <br>
                         <li class="list-inline-item"><i class="fa fa-calendar-o " aria-hidden="true"></i> {{$order->DayofWeek}}</li>

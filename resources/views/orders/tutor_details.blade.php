@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="container mt-4">
-    <div class="position-sticky">
+<div class="col-md-7 card mx-auto mt-5">
+    <div class="display-4 text-center mt-3 text-primary">
         <h4 class="font-weight-bold text-primary">Rincian Pesanan</h4>
     </div>
     <div class="row">

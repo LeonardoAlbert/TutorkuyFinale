@@ -19,27 +19,24 @@
     </div>
 </div>
 <div class="container">
-    <div class="col-md-12 mx-auto mt-2">
+    <div class="col-md-10 mx-auto mt-2">
         <div class="card shadow-dark p-3">
             {{-- <div class="card shadow-dark rounded-pill"> --}}
+                <h1 class="d-block display-1 text-primary text-bold text-center" style="font-size: 200%; ">{{$category->name}}</h1>
                 <form action="" class="" style="margin:0px">
-                    <div class="row px-2">
+                    <div class="row px-5 align-self-center">
                         <div class="col-10 p-0 pr-4">
                             <div class="form-group form-group-search">
                                 <input name="search" id="search" type="text" class="form-control form-search rounded-pill" placeholder="Cari dan tekan enter" value="{{ $search }}">
                                 <i class="fas fa-search"></i>
                             </div>
                         </div>
-                        {{-- <div class="col-2 px-0">
-                            <div class="input-group" >
-                                <h1 class="font-weight-bold text-primary heading" style="font-size:20px">Cari Kategori</h1>
-                            </div>
-                        </div> --}}
+                    </div>
                 </form>
-            {{-- </div> --}}
-        </div>
-            <h1 class="d-block display-1 text-primary text-bold text-center" style="font-size: 200%; ">{{$category->name}}</h1>
+        
+            
             <br>
+            
             <div class="row" style="">
             @foreach($posts as $post)
                 <div class="card col-xs-12 mx-2 " style="width: 15rem">
@@ -71,15 +68,16 @@
                     </div>
                 </div>
             @endforeach
-            @empty($post)
-            {{-- <div class="col-12"> --}}
-                
-                <h4 class="text-center"><span class="text-dark">Belum ada kelas</span></h4>
            
-            @endempty
             {{-- </div> --}}
             
         </div>
+        @empty($post)
+        {{-- <div class="col-12"> --}}
+            
+            <h4 class="text-center" ><span class="text-dark">Belum ada kelas</span></h4>
+       
+        @endempty
     </div>
 </div>
 
