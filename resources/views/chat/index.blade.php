@@ -58,7 +58,7 @@
                                 <div class="chat-about">
                                     <h6 class="m-b-0" style="margin: 0">{{$selectedUser->name}}</h6>
                                     @if($selectedUser->verif == 1)
-                                    <small>verified</small>
+                                    <small>Verified Tutor</small>
                                     @else
                                     {{-- <small>un-verified</small> --}}
                                     @endif
