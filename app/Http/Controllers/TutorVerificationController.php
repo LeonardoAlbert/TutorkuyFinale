@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\Http\UploadedFile;
+use RealRashid\SweetAlert\Facades\Alert;
 class TutorVerificationController extends Controller
 {
     public function verif(User $user){
@@ -42,7 +43,7 @@ class TutorVerificationController extends Controller
         $user->verif = 1;
     //    dd($user);
         $user->save();
-
+        Alert::success('Pengajuan verifikasi berhasil. Mohon tunggu konfirmasi admin.');
         return redirect('/home');
     }
 }

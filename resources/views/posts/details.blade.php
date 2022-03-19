@@ -96,10 +96,9 @@
                                 {{-- <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a> --}}
                             </div>
                         </div>
-                    @else
+                    @elseif(Auth::check() && auth()->user()->role == 1 && $post->status != 'Menunggu Peserta')
                     <hr>
                         <div class="col-12">
-                            
                             <div class="btn btn-light rounded-pill float-right" onclick="">
                                 Edit Kelas
                                 {{-- <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a> --}}

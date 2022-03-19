@@ -170,12 +170,33 @@
                                 <input type="hidden" id="postId" name="postId" value="{{$post->id}}">
                                 <input type="hidden" id="scheduleId" name="scheduleId" value="{{$schedule->id}}">
     
-                                <button class="btn btn-primary w-100 rounded-pill">Proses Pesanan</button>
-                                {{-- <script>
-                                    swal("Selamat, pesanan anda telah dibuat.", "{!!Session::get('record_added')!!}","success", {
-                                        button:"Lanjutkan",
-                                    })
-                                </script> --}}
+                                {{-- <button class="btn btn-primary w-100 rounded-pill">Proses Pesanan</button> --}}
+                                <button type="button" class="btn btn-primary rounded-pill float-right" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Proses Pesanan
+                                </button>
+
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Apakah anda yakin?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Pesanan akan <i>direview</i> admin dalam 1x24 jam. Setelah pembayaran anda disetujui oleh admin, kelas dapat anda ikuti.
+                                                    <div class="modal-footer">
+                                                        
+                                                        {{-- <input type="hidden" id="postId" name="postId" value="{{$post->id}}"> --}}
+                                                        <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Batal</button>
+                                                        <input type="submit" value="Proses Pesanan" class="btn btn-primary w-50 rounded-pill">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         

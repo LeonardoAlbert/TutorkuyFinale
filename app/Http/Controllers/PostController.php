@@ -12,7 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 
 class PostController extends Controller
@@ -64,7 +64,7 @@ class PostController extends Controller
             $schedule_class->save();
             $counter++;
         }
-        // alert()->warning('Title','Lorem Lorem Lorem');
+        toast('Kelas Telah Berhasil Dibuat.','success');
         return redirect("/home");
     }
 
@@ -161,7 +161,7 @@ class PostController extends Controller
             'participants' => request()->participants,
             'occurrence' => request()->occurrence,
         ]);
-
+        toast('Kelas Telah Berhasil diubah.','success');
         return redirect("/posts/" . $post->id . "/details");
     }
 
@@ -176,7 +176,7 @@ class PostController extends Controller
 
     public function createlinkmeeting(Post $post)
     {
-
+        
         return view('/posts/linkmeeting', compact('post'));
     }
 
@@ -189,6 +189,7 @@ class PostController extends Controller
         $post = Post::where('id', $request->postId)->first();
         $post->link_meeting = $data['linkmeeting'];
         $post->save();
+        toast('Link Meeting Telah Diperbaharui.','success');
         return redirect('/orders/' . $post->id . '/tutor/details');
     }
 
@@ -205,6 +206,7 @@ class PostController extends Controller
         $filePath = request('material')->store('materialfile', 'public');
         $post->material = $filePath;
         $post->save();
+        toast('Materi Telah Diperbaharui.','success');
         return redirect('/orders/' . $post->id . '/tutor/details');
     }
 

@@ -122,7 +122,7 @@ class OrderController extends Controller
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($orders));
         //\Mail::to('$user->email')->send(new \App\Mail\TutorKuyMail($orders));
         Alert::success('Pesanan anda sukses dibuat');
-        return redirect('/home');
+        return redirect('/orders/history');
     }
     public function accepted(Request $request)
     {
@@ -234,7 +234,7 @@ $sched = [];
         //dd($order);
         $order->save();
         //dd($order);      
-        alert('Title','Lorem Lorem Lorem', 'success');
+        // alert('Title','Lorem Lorem Lorem', 'success');
         return redirect('/users/' . $post->user_id . '/review');
         
     }

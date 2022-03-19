@@ -13,8 +13,10 @@
                 {{-- Menunggu Peserta, Memulai, Selesai, Batal --}}
             @if ($orders->status=="Menunggu Kelas Dilaksanakan")
                 <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
+            @elseif($orders->status=="Menunggu Pembayaran")
+                <i class="fa fa-circle active" style="color:rgb(151, 142, 14)"></i>
             @else
-                <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
+                <i class="fa fa-circle active" style="color:rgb(14, 151, 21)"></i>
             @endif
             <span></small> {{$orders->status}}</span></div>
             <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
