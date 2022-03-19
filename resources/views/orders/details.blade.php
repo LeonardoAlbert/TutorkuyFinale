@@ -41,11 +41,22 @@
                             <div class="btn btn-primary rounded-pill form-group mt-3 float-right" onclick="location.href='/posts/{{$orders->post_id}}/details'">
                                 <h6 class="text " style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
                             {{-- </button> --}}
-                            </div>
                         </div>
-                        
+                    </div>     
                 </a>
             </div>
+            {{-- <div class="card shadow-dark p-4">
+                <a href="/posts/{{$post->id}}/details" class="text-black">
+                    <div class="row">
+                        <div class="col-1 p-0">
+                            <img src="/storage/{{ $post->image }}" width="50px" height="50px" alt="">
+                        </div>
+                        <div class="col-11">
+                            <a href="/posts/{{$post->id}}/details" class="text-black text-bold text-center">{{ $post->title }}</a><br>
+                            <div class="text-dark my-1"></div>
+                        </div>
+                </a>
+            </div> --}}
         </div>
         <div class="row"><span class="text-dark">Deskripsi Kelas </span> </div>
         <div class="row mb-3"> <span>{{$orders->post->description}}</span></div>
@@ -54,7 +65,8 @@
             <div class="row mb-3"> <span>{{$orders->post->link_meeting}}</span></div>
         @else
         @endif
-        
+        <div class="row"><span class="text-dark">Material Kelas</span> </div>
+        <div class="row mb-3"> <span> <a href="{{ route('material.download', $orders->post->id) }}"><i class="fas fa-download" font-size="20em"></i></a></span></div>
     </div>
 </div>
 

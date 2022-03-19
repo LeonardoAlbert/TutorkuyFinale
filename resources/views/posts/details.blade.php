@@ -3,30 +3,26 @@
 @section('content')
 <div class="container">
     <div class="col-md-9 mx-auto mt-5">
-        <div class="card card-2">
+        {{-- <div class="card card-2">
             <div class="card-header bg-white">
                 <div class="invoice-title">
                     <div class="row">
                     </div>
                     <br>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="text-primary">Detail Kelas: <b style="color: rgb(36, 36, 36)">{{ $post->title }}</b></h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        @if ($post->count_participant == $post->participants)
-                            <label class="badge badge-light  text-danger"> <h4>Kelas Telah Penuh {{ $post->count_participant }} / {{$post->participants}}.</h4></label>
-                        @else
-                            <label class="badge badge-dark text-light"> <h4>Terisi {{ $post->count_participant }} / {{$post->participants}}! Daftar Segera!</h4></label>
-                        @endif
-                    </div>
+                    
                 </div>
             </div>
-        </div>
+        </div> --}}
             {{-- <div class="row row-striped card shadow-dark mt-2"> --}} 
             <div class="card shadow-dark p-4">
                 <div class="row">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-primary">Detail Kelas: <br>
+                                
+                        </div>
+                    </div>
+                    <br>
                     
                     <div class="row">
                         {{-- <img src="/storage/{{ $post->user->image }}" alt="User Image" class="rounded-circle w-200 "> --}}
@@ -38,22 +34,42 @@
             
                         {{-- <h5 class="mt-0 text-center mt-2 ml-3"> <i class="fas fa-star"></i>{{$user->rate}} ( {{$user->num_work}} Reviews ) </h5> --}}
                     </div>
-                    <div class="row">
-                        <img src="/storage/{{ $post->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3" width="800px" height="500px">
+                    
+                    <div class="card shadow-dark p-4">
+                        <div class="row">
+                            <div class="col my-auto">
+                                <img src="/storage/{{ $post->image }}" alt="" class="mt-2 rounded post d-block mb-3" width="800px" height="500px">
+                            </div>
+                            <div class="col my-auto">
+                                <h4 style="color: rgb(36, 36, 36)">{{ $post->title }}</h4>
+                            </div>
+                            <div class="col my-auto">
+                                @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
+                                    @if ($post->count_participant == $post->participants)
+                                        <label class="badge badge-light  text-danger"> <h4>Kelas Telah Penuh {{ $post->count_participant }} / {{$post->participants}}.</h4></label>
+                                    @else
+                                        <h4 style="text-align:end" class="float-right">Terisi <label class="badge badge-dark text-light"> {{ $post->count_participant }} / {{$post->participants}} </label>! <br>Daftar Segera!</h4>
+                                    @endif
+                                @elseif(Auth::check() && auth()->user()->role == 1)
+                                    <h4 class="float-right">Terisi <label class="badge badge-dark text-light"> {{ $post->count_participant }} / {{$post->participants}} </label> ! </h4>
+                                @endif
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <h3 class="text-primary">Tentang Kelas</h3>
+                        </div>
+                        <div class="row mt-2">
+                            <p class="lead">{{ $post->description }} </p>
+                        </div>
                     </div>
                 </div>
+                
             </div>
+                
                 <div class="card shadow-dark p-4">
                     <div class="row">
-                        <h3 class="text-bold">Tentang Kelas</h3>
-                    </div>
-                    <div class="row mt-2">
-                        <p class="lead">{{ $post->description }} </p>
-                    </div>
-                </div>
-                <div class="card shadow-dark p-4">
-                    <div class="row">
-                        <h3 class="text-bold">Harga dan Jadwal Kelas</h3>
+                        <h3 class="text-primary">Harga dan Jadwal Kelas</h3>
                     </div>
                     <div class="row mt-2">
                         <h4 class="text-center mt-1">Jumlah Sesi Tersedia: {{$post->occurrence}} </h4>
@@ -72,12 +88,32 @@
                             <h4 class="badge badge-light sub-heading cs">{{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} at {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}} </h4>
                         </div>
                         @endforeach
+                    @if(Auth::check() && auth()->user()->role == 1 && $post->status == 'Menunggu Peserta')
+                        <hr>
+                        <div class="col-12">
+                            <div class="btn btn-primary rounded-pill float-right" onclick="location.href='/posts/{{$post->id}}/edit';">
+                                Edit Kelas
+                                {{-- <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a> --}}
+                            </div>
+                        </div>
+                    @else
+                    <hr>
+                        <div class="col-12">
+                            
+                            <div class="btn btn-light rounded-pill float-right" onclick="">
+                                Edit Kelas
+                                {{-- <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a> --}}
+                            </div>
+                            <h5 class="text-dark">Anda tidak bisa edit kelas karena</h5>
+                        </div>
+                    @endif
                     </div>
+                
                 </div>
                 @if(Auth::check() && auth()->user()->role == 0)
                 <div class="card shadow-dark p-4">
                     <div class="row">
-                        <h3 class="text-bold">Tentang Tutor</h3>
+                        <h3 class="text-primary">Tentang Tutor</h3>
                     </div>
                 <div class="row mt-2">
                     <div class="col-2">
@@ -87,8 +123,13 @@
                         <h3 class="mt-0 font700  ml-3">
                             {{-- <a href="{{ url("users", $post->user->id) }}">  --}}
                             {{ $post->user->name }} 
+                            @if($user->verif == 1)
+                                <i class="fa fa-check mr-1"></i>
+                            @endif    
                             <a href="{{ url("users", $post->user->id) }}" class="daftar-kelas mb-3"> 
+                                
                                 <i class="fa fa-user-circle"></i> 
+                            </a>
                             {{-- </a> --}}
                             
                             @if($user->verif == 2)
@@ -108,15 +149,12 @@
             @endif
             <br>
             @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
+                
                 <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                     Daftar Kelas
                 </div>
             @endif
-            @if(Auth::check() && auth()->user()->role == 1 && $post->status == 'Menunggu Peserta')
-                <div class="row mt-3 ml-3">
-                    <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a>
-                </div>
-            @endif
+           
             </div>
         </div>
     </div>
