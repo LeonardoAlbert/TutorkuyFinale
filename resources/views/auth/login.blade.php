@@ -14,7 +14,7 @@
                         <i class="fab fa-twitter icon"></i>
                         <i class="fab fa-linkedin-in icon"></i>
                     </div>
-                    <thead class="d-block mb-3">atau gunakan alamat email anda</thead>
+                    <thead class="d-block mb-3">Silakan masukkan email dan password anda</thead>
 
                     <form class="mb-3" method="POST" action="{{ route('login') }}">
                         @csrf
@@ -34,7 +34,6 @@
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right"></label>
-
                             <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror formInput rounded-pill" name="password" required autocomplete="current-password" placeholder="Kata Sandi">
                                 @error('password')

@@ -60,7 +60,6 @@
                                 <input id="password-confirm" type="password" class="form-control formInput rounded-pill" name="password_confirmation" autocomplete="new-password" placeholder="Konfirmasi Kata Sandi">
                             </div>
                         </div>
-
                         <div class="form-group w-100 text-center my-3">
                             Mendaftar Sebagai
                             <label for="client" class="btn btn-outline-primary mx-2 rounded-pill" id="client-btn">Tutor</label>
@@ -85,10 +84,34 @@
                         </div>
 
                         <div class="form-group mb-0">
-                            <div>
+                            {{-- <div>
                                 <button type="submit" class="btn btn-primary w-100 rounded-pill">
                                     Daftar
                                 </button>
+                            </div> --}}
+                            <button type="button" class="btn btn-primary rounded-pill w-100" data-toggle="modal" data-target="#exampleModalCenter">
+                                Daftar
+                            </button>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Apakah anda yakin?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                               Dengan menekan tombol ini, anda setuju dengan syarat dan ketentuan kami dan anda akan diarahkan ke halaman utama.
+                                                <div class="modal-footer">
+                                                    {{-- <input type="hidden" id="postId" name="postId" value="{{$post->id}}"> --}}
+                                                    <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Batal</button>
+                                                    <input type="submit" value="Buat Akun" class="btn btn-primary w-40 rounded-pill">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

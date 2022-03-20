@@ -44,6 +44,13 @@
                                 <h4 style="color: rgb(36, 36, 36)">{{ $post->title }}</h4>
                             </div>
                             <div class="col my-auto">
+                                @guest
+                                    @if ($post->count_participant == $post->participants)
+                                <label class="badge badge-light  text-danger"> <h4>Kelas Telah Penuh {{ $post->count_participant }} / {{$post->participants}}.</h4></label>
+                                    @else
+                                <h4 style="text-align:end" class="float-right">Terisi <label class="badge badge-dark text-light"> {{ $post->count_participant }} / {{$post->participants}} </label>! <br>Daftar Segera!</h4>
+                            @endif
+                                @endguest
                                 @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
                                     @if ($post->count_participant == $post->participants)
                                         <label class="badge badge-light  text-danger"> <h4>Kelas Telah Penuh {{ $post->count_participant }} / {{$post->participants}}.</h4></label>
@@ -109,6 +116,45 @@
                     </div>
                 
                 </div>
+                @guest
+                <div class="card shadow-dark p-4">
+                    <div class="row">
+                        <h3 class="text-primary">Tentang Tutor</h3>
+                    </div>
+                <div class="row mt-2">
+                    <div class="col-2">
+                        <img src="/storage/{{$user->image }}" alt="" class=" rounded-circle-lg w-200" style="width:250px " style="height:100px">
+                    </div>
+                    <div class="col-10">
+                        <h3 class="mt-0 font700  ml-3">
+                            {{-- <a href="{{ url("users", $post->user->id) }}">  --}}
+                            {{ $post->user->name }} 
+                            @if($user->verif == 1)
+                                <i class="fa fa-check mr-1"></i>
+                            @endif    
+                            <a href="{{ url("users", $post->user->id) }}" class="daftar-kelas mb-3"> 
+                                
+                                <i class="fa fa-user-circle"></i> 
+                            </a>
+                            {{-- </a> --}}
+                            
+                            @if($user->verif == 2)
+                                <i class="fa fa-check mr-1"></i>
+                            @endif <br> </a>
+                            <label class="badge badge-light rounded-pill full-width" ><i class="fas fa-star" style="color:#FFD700"></i> {{$user->rate}} x {{$user->num_work}} Ulasan </label>
+                            <form action="/chat/newRoom" class="form-inline" method="POST">
+                                @csrf
+                                <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
+                                <input type="submit" style="width:250px " value="Kontak Saya" class="btn btn-primary rounded-pill " />
+                            </form>
+                            
+                        </h3>
+                    </div>
+                </div>
+                <div class="btn btn-primary rounded-pill mt-3" onclick="location.href='/orders/{{$post->id}}/create';">
+                    Daftar Kelas
+                </div>
+                @endguest
                 @if(Auth::check() && auth()->user()->role == 0)
                 <div class="card shadow-dark p-4">
                     <div class="row">
@@ -145,7 +191,7 @@
                     </div>
                 </div>
             {{-- </div> --}}
-            @endif
+                 @endif
             <br>
             @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
                 
