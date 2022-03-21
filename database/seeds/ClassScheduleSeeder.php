@@ -65,18 +65,18 @@ class ClassScheduleSeeder extends Seeder
                 'end_date' => Carbon::parse('2022-01-15 17:00:00'),
                 'status' => 'Selesai',
             ],
-            [
-                'post_id' => 4,
-                'start_date' => Carbon::parse('2022-01-15 18:00:00'),
-                'end_date' => Carbon::parse('2022-01-15 20:00:00'),
-                'status' => 'Menunggu',
-            ],
-            [
-                'post_id' => 4,
-                'start_date' => Carbon::parse('2022-01-22 18:00:00'),
-                'end_date' => Carbon::parse('2022-01-22 20:00:00'),
-                'status' => 'Menunggu',
-            ],
+            // [
+            //     'post_id' => 4,
+            //     'start_date' => Carbon::parse('2022-01-15 18:00:00'),
+            //     'end_date' => Carbon::parse('2022-01-15 20:00:00'),
+            //     'status' => 'Menunggu',
+            // ],
+            // [
+            //     'post_id' => 4,
+            //     'start_date' => Carbon::parse('2022-01-22 18:00:00'),
+            //     'end_date' => Carbon::parse('2022-01-22 20:00:00'),
+            //     'status' => 'Menunggu',
+            // ],
         ]);
     }
 }
