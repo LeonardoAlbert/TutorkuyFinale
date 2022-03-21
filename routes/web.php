@@ -79,7 +79,7 @@ Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/createverify', 'UserController@createverify');
 Route::get('/users/{user}/review/{post}', 'UserController@review');
 
-Route::get('/users/index', 'UserController@index');
+Route::get('/listoftutors', 'UserController@listoftutors');
 
 Route::post('/users/review/submit', 'UserController@reviewsubmit');
 Route::post('/users/verifaccepted', 'UserController@verifaccepted');

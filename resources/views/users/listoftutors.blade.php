@@ -6,6 +6,7 @@
         
 </div> --}}
             
+<br>
 
 <div class="container">    
     <div class="card shadow-dark p-4" style="">
@@ -17,11 +18,11 @@
                         <div class="card-body p-4">
                             <div class="el-card-avatar">
                                 <a href="/user/{{$tutor->id}}"> 
-                                    <img src="/storage/{{$user->image}}" alt="img" class="mt-2 rounded post d-block mx-auto mb-3">
+                                    <img src="/storage/{{$tutor->image}}" alt="img" class="mt-2 rounded post d-block mx-auto mb-3">
                                 </a>
                             </div>
                             <div class="el-card-content">
-                                <p class="text-center mb-2">{{$user->name}}</p>
+                                <p class="text-center mb-2">{{$tutor->name}}</p>
                             </div>
                         </div>
                     </div>
