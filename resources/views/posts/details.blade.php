@@ -198,10 +198,10 @@
                 <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                     Daftar Kelas
                 </div>
-            @else
-                <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
+            @elseif(Auth::check() && auth()->user()->role == 1)
+                {{-- <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                 Daftar Kelas
-                </div>
+                </div> --}}
             @endif
            
             </div>
