@@ -13,15 +13,23 @@
                 {{-- Menunggu Peserta, Memulai, Selesai, Batal, Closed --}}
             @if ($orders->post->status=="Memulai")
                 <i class="fa fa-circle active" style="color: rgb(14, 151, 21)"></i>
-            @elseif($orders->post->status=="Menunggu Pembayaran")
+            @elseif($orders->post->status=="Menunggu Peserta")
                 <i class="fa fa-circle active" style="color:rgb(151, 142, 14)"></i>
+            @elseif($orders->post->status=="Batal")
+                <i class="fa fa-circle active" style="color:rgb(255, 0, 0)"></i>
             @else
-                <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
+                <i class="fa fa-circle active" style="color:rgb(0, 224, 224)"></i>
             @endif
             <span></small> {{$orders->post->status}}</span></div>
-            <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
             {{-- Menunggu Pembayaran, Sudah Dibayar --}}
-            <div><span class="text-dark">Status Order </span><br><span> {{$orders->status}}</span></div>
+            <div><span class="text-dark">Status Pembayaran </span><br><span> 
+            @if ($orders->status=="Sudah Dibayar")
+                <i class="fa fa-circle active" style="color: rgb(14, 151, 21)"></i>
+            @else
+                <i class="fa fa-circle active" style="color:rgb(151, 142, 14)"></i>
+            @endif
+            {{$orders->status}}</span></div>
+            <div><span class="text-dark">Nomor Pesanan </span><br><span> OD{{$orders->id}}</span></div>
         </div>
     </div>
     <div class="row">

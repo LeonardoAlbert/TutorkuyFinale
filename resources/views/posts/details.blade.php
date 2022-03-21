@@ -184,7 +184,7 @@
                             <form action="/chat/newRoom" class="form-inline" method="POST">
                                 @csrf
                                 <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
-                                <input type="submit" style="width:250px " value="Kontak Saya" class="btn btn-primary rounded-pill " />
+                                <input type="submit" value="Kontak Saya" class="btn btn-primary rounded-pill " />
                             </form>
                             
                         </h3>

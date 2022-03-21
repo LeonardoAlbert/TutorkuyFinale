@@ -65,7 +65,13 @@
                       {{-- <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span> --}}
                       <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($user->rate,1)}} x {{$user->num_work}} Ulasan </label>
                     </div>
+                    <div class="row d-flex justify-content-center">
+                      <div class="btn btn-primary rounded-pill full-width justify-content-between" style="margin: 0.7em; width:100px" onclick="location.href='/users/{{$user->id}}'">
+                          <h6 class="text" style="margin: 0%;">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
+                      </div>
+                    </div>
                   </div>
+                  
                 </div>
                 @endforeach  
               </div>
@@ -86,10 +92,11 @@
               <div class="row"> 
                 @foreach($posts as $post)
                 <div class="col-3">
-                <div class="card rounded shadow-sm border-0">
-                <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3"> </a></div>
-                <h5 class=" text-center"> <a href="/posts/{{ $post->id }}/details" class=" ">{{$post->title}}</a></h5>
-                </div>
+                  <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><a href="/posts/{{ $post->id }}/details"> <img src="/storage/{{$post->image }}" alt="" class="mt-2 rounded post d-block mx-auto mb-3"> </a></div>
+                    <h5 class=" text-center"> <a href="/posts/{{ $post->id }}/details" class=" ">{{$post->title}}</a></h5>
+                  </div>
+                  
                 </div>
                 @endforeach  
               </div>
