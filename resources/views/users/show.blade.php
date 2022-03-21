@@ -15,30 +15,31 @@
                         <i class="fa fa-check mr-1"></i>
                         @endif
                         </div>
-                        <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{$user->rate}} x {{$user->num_work}} Ulasan </label>
+                        <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($user->rate,1)}} x {{$user->num_work}} Ulasan </label>
                         @if($user->city || $user->country)
                             <div class="text-muted mt-2">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 {{ $user->city }}@if($user->city and $user->country), @endif {{$user->country}}
                             </div>
                     @endif
+                    <div class="w-100">
+                        <span class="rating">
+                            <div class="rating-upper" style="width: {{ ($user->rate/5)*100 }}%">
+                                <span><i class="fas fa-star" style="color:#FFD700"></i></span>
+                                <span><i class="fas fa-star" style="color:#FFD700"></i></span>
+                                <span><i class="fas fa-star" style="color:#FFD700"></i></span>
+                                <span><i class="fas fa-star" style="color:#FFD700"></i></span>
+                                <span><i class="fas fa-star" style="color:#FFD700"></i></span>
+                            </div>
+                        </span>
+                    </div>
                         <div class="text-center pt-3">
                             {{ $user->headline }}
                             @empty($user->headline)
                                 <h6 class="text-center"><span class="text-dark">Belum Ada Headline</span></h6>
                             @endempty
                         </div>
-                        <div class="w-100">
-                            <span class="rating">
-                                <div class="rating-upper" style="width: {{ ($user->rate/5)*100 }}%">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
-                            </span>
-                        </div>
+                        
 
                         <div class="line w-100 mt-4"></div>
 

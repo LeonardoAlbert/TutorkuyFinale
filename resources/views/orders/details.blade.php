@@ -10,16 +10,17 @@
         <div class="card shadow-dark p-4">
 
             <div><span class="text-dark"> Status Kelas</span><br><span>
-                {{-- Menunggu Peserta, Memulai, Selesai, Batal --}}
+                {{-- Menunggu Peserta, Memulai, Selesai, Batal, Closed --}}
             @if ($orders->post->status=="Memulai")
-                <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
+                <i class="fa fa-circle active" style="color: rgb(14, 151, 21)"></i>
             @elseif($orders->post->status=="Menunggu Pembayaran")
                 <i class="fa fa-circle active" style="color:rgb(151, 142, 14)"></i>
             @else
-                <i class="fa fa-circle active" style="color:rgb(14, 151, 21)"></i>
+                <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
             @endif
             <span></small> {{$orders->post->status}}</span></div>
             <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
+            {{-- Menunggu Pembayaran, Sudah Dibayar --}}
             <div><span class="text-dark">Status Order </span><br><span> {{$orders->status}}</span></div>
         </div>
     </div>

@@ -43,7 +43,7 @@
                 <h6 class="text-primary">Tutor Kami</h6>
                 </div>
                 <div class="col-1">
-                <a href="/categories/index" class="btn btn-primary rounded-pill" style="width:100px height:30px">Lainnya </a>
+                <a href="/listoftutors" class="btn btn-primary rounded-pill" style="width:100px height:30px">Lainnya </a>
                 </div>
             </div>
             {{-- <div class="card shadow-dark p-4"> --}}
@@ -63,7 +63,7 @@
                     </div>
                     <div class="row d-flex justify-content-center"> 
                       {{-- <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span> --}}
-                      <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{$user->rate}} x {{$user->num_work}} Ulasan </label>
+                      <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($user->rate,1)}} x {{$user->num_work}} Ulasan </label>
                     </div>
                   </div>
                 </div>

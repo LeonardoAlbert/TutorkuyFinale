@@ -141,7 +141,7 @@
                             @if($user->verif == 2)
                                 <i class="fa fa-check mr-1"></i>
                             @endif <br> </a>
-                            <label class="badge badge-light rounded-pill full-width" ><i class="fas fa-star" style="color:#FFD700"></i> {{$user->rate}} x {{$user->num_work}} Ulasan </label>
+                            <label class="badge badge-light rounded-pill full-width" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($user->rate,1)}} x {{$user->num_work}} Ulasan </label>
                             <form action="/chat/newRoom" class="form-inline" method="POST">
                                 @csrf
                                 <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
@@ -180,7 +180,7 @@
                             @if($user->verif == 2)
                                 <i class="fa fa-check mr-1"></i>
                             @endif <br> </a>
-                            <label class="badge badge-light rounded-pill full-width" ><i class="fas fa-star" style="color:#FFD700"></i> {{$user->rate}} x {{$user->num_work}} Ulasan </label>
+                            <label class="badge badge-light rounded-pill full-width" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($user->rate,1)}} x {{$user->num_work}} Ulasan </label>
                             <form action="/chat/newRoom" class="form-inline" method="POST">
                                 @csrf
                                 <input type="hidden" id="tutorId" name="tutorId" value="{{$post->user->id}}">
@@ -195,9 +195,12 @@
             <br>
             
             @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants && $allow_user )
-                
                 <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                     Daftar Kelas
+                </div>
+            @else
+                <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
+                Daftar Kelas
                 </div>
             @endif
            

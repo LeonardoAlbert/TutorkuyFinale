@@ -13,6 +13,7 @@
             <div><span class="text-dark text-bold">Total Participant: </span><br><span class="text-bold"> {{$post->count_participant}} / {{$post->participants}}</span></div> --}}
             <div><span class="text-dark"> Status Kelas</span><br><span> 
                 {{-- Menunggu Peserta, Memulai, Selesai, Batal --}}
+                {{-- Status: Menunggu Peserta, Memulai, Selesai, Batal, Closed --}}
             @if ($post->status=="Menunggu Kelas Dilaksanakan")
                 <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
             @else
@@ -50,7 +51,7 @@
                         </div>
                         <div class="col my-auto">
                             <a href="/posts/{{$post->id}}/details" class="text-black text-bold">{{ $post->title }}</a><br>
-                            <span class="text-danger"> Rp.{{$post->total}},00</span>
+                            <span class="text-danger"> Rp.{{$post->price * $post->count_participant}},00</span>
                             <div class="text-dark my-1"></div>
                         </div>
                         <div class="col my-auto">

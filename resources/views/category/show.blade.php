@@ -43,17 +43,19 @@
                     <a href="/posts/{{$post->id}}/details"><img class="card-img-top" src="/storage/{{ $post->postimage }}" alt="Post Image"></a>
                     <div class="card-body">
                         <h5 class="card-title text-center">{{$post->title}}</h5>
-                        <div class="row">
+                        <div class="card">
                             {{-- <br><br> --}}
                         <a href="/users/{{$post->userid}}" class="card-text row">
                             <div class="col-4"><img src="/storage/{{ $post->userimage }}" alt="User Image" class="rounded-circle"></div>
                             <div class="col-8"><p style=" text-align: center;" class="card-text mt-2">{{$post->name}}</p></div>
                         </a> 
+                        <label class="badge badge-pill rounded-pill full-width mt-2" style="font-size: 14px" style="width:100%"><i class="fas fa-star" style="color:#FFD700"></i> {{round($post->rate,1)}} x {{$post->num_work}} Ulasan </label>
                         </div>
                         {{-- <div class="row"><br></div> --}}
                         {{-- <div class="row"> --}}
-                            <div class="col-12 justify-content-between ml-4">
-                                <label class="badge badge-light rounded-pill full-width mt-2" style="font-size: 14px" style="width:100%"><i class="fas fa-star" style="color:#FFD700"></i> {{$post->rate}} x {{$post->num_work}} Ulasan </label>
+                            <div class="col-12 justify-content-between text-center">
+                                {{-- Rating Tutor:
+                                <label class="badge badge-light rounded-pill full-width mt-2" style="font-size: 14px" style="width:100%"><i class="fas fa-star" style="color:#FFD700"></i> {{round($post->rate,1)}} x {{$post->num_work}} Ulasan </label> --}}
                                 @if ($post->count_participant == $post->participants)
                                     <span class="badge badge-light text-center text-danger mt-1"> Terisi {{ $post->count_participant }} / {{$post->participants}} Peserta </span>
                                 @else

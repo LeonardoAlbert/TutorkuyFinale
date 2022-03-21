@@ -26,7 +26,7 @@
                     <div class="card card-2">
                         <div class="card-body">
                             <div class="media">
-                                    <div class="sq align-self-center "> <img class="mt-2 rounded post d-block mx-auto mb-3" src="/storage/{{ $order->image }}" width="135" height="135" /> </div>
+                                    <div class="sq align-self-center "> <img class="mt-2 rounded post d-block mx-auto mb-3" src="/storage/{{ $order->post->image }}" width="135" height="135" /> </div>
                                 <div class="media-body my-auto text-right">
                                     <div class="row my-auto flex-column flex-md-row">
                                         <div class="col my-auto">
@@ -48,9 +48,9 @@
                             <div class="row">
                                 <div class="col mt-auto ">
                                     <small>
-                                        @if ($order->status=="Menunggu Peserta")
+                                        @if ($order->status=="Menunggu Pembayaran")
                                             <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
-                                        @else
+                                        @elseif($order->status=="Sudah Dibayar")
                                             <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
                                         @endif
                                         {{$order->status}} <span></small>
