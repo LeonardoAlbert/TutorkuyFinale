@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Post;
+use App\PostReview;
 use App\Category;
 use App\CategoryType;
 use App\ClassSchedule;
@@ -39,7 +40,7 @@ class UserController extends Controller
         $orders = DB::table('orders')
             ->join('posts', 'post_id', '=', 'posts.id')
             ->where('orders.orderuser_id', auth()->user()->id)
-            ->where('orders.status', "Menunggu Kelas Dilaksanakan")
+            ->where('posts.status', "Memulai")
             ->get();
 
         foreach ($orders as $order) {
@@ -84,8 +85,9 @@ class UserController extends Controller
             ->join('posts', 'post_id', '=', 'posts.id')
             ->where('orders.orderuser_id', auth()->user()->id)
             ->where(function ($query) {
-                $query->where('orders.status', '=', 'Menunggu Kelas Dilaksanakan')
-                      ->orWhere('orders.status', '=', 'Selesai');
+                $query->where('posts.status', '=', 'Memulai')
+                      ->orWhere('posts.status', '=', 'Selesai')
+                      ->orWhere('posts.status', '=', 'Closed');
             })
             // ->paginate(5);
             ->get();
@@ -183,14 +185,26 @@ class UserController extends Controller
         return view('users/home', compact('users', 'categories', 'posts'));
     }
 
-    public function review(User $user)
+    public function review(User $user, Post $post)
     {
-        return view('users/review', compact('user'));
+        return view('users/review', compact('user', 'post'));
     }
 
     public function reviewsubmit(Request $request)
     {
-        //   dd(request());
+
+        // check if user already doing post to here
+        $postReview = PostReview::where('post_id', $request->postId)
+        ->where('student_id', auth()->user()->id)->first();
+
+        if($postReview) {
+            dd("cannot in here");
+        } else {
+            $pr = new PostReview;
+            $pr->student_id = auth()->user()->id;
+            $pr->post_id = $request->postId;
+            $pr->save();
+        }
 
         $user = User::where('id', $request->userId)->first();
         $user->num_work = $user->num_work + 1;

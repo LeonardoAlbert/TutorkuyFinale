@@ -8,6 +8,7 @@ use App\Order;
 use App\Category;
 use App\User;
 use App\Post;
+use App\ClassSchedule;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminController extends Controller
 
         return view("/admin/index", compact('orders'));
     }
-    
+
     public function managepayment(){
         $orders = DB::table('orders')->get();
 
@@ -50,16 +51,16 @@ class AdminController extends Controller
       //dd($categories);
 
         return view("/admin/managecategory", compact('categories'));
-        
+
     }
-   
+
 
     public function manageexistingcategory(){
         $categories = Category::where('statuscategories',2)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
       //dd($categories);
 
         return view("/admin/manageexistingcategory", compact('categories'));
-        
+
     }
 
     public function verifdetails(User $user){
@@ -72,7 +73,7 @@ class AdminController extends Controller
         $pathToFile = public_path('storage/'.$order->image);
             return response()->download($pathToFile);
     }
-    
+
     public function verifdownload(User $user){
 
         //  dd($user);
@@ -82,14 +83,17 @@ class AdminController extends Controller
         }
 
     public function managetutorspayment(){
-        $posts = Post::where('status','Selesai')->join('users' , 'user_id' , '=' , 'users.id')->get();
-        //dd($posts);
+        $posts = Post::where('status','Selesai')->with('user')->get();
+        foreach ($posts as $post) {
+            $schedule_class = ClassSchedule::where('post_id', $post->id)->orderBy('end_date', 'desc')->first();
+            $post->final_date = $schedule_class->end_date;
+        }
 
         return view("/admin/managetutorspayment", compact('posts'));
     }
 
-    
 
-    
+
+
 
 }

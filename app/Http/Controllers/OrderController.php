@@ -7,6 +7,8 @@ use App\Post;
 use App\Order;
 use App\User;
 use App\ClassSchedule;
+use App\PostReview;
+
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use App\Mail\TutorKuyMail;
@@ -14,6 +16,7 @@ use App\Mail\StudentOrderAcceptedMail;
 use App\Mail\TutorOrderAcceptedMail;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+
 class OrderController extends Controller
 {
     public function create(Post $post, ClassSchedule $schedule)
@@ -21,34 +24,34 @@ class OrderController extends Controller
         // dd($post);
         //    dd( $schedule);
         $sched = [];
-        
-       
-        foreach($schedules as $schedule){
+
+
+        foreach ($schedules as $schedule) {
             $datum = new \stdClass;
 
-                $dt = Carbon::parse($schedule->start_date);
-                $timestamp = strtotime($schedule->start_date);
-                $month = date('M', $timestamp);
+            $dt = Carbon::parse($schedule->start_date);
+            $timestamp = strtotime($schedule->start_date);
+            $month = date('M', $timestamp);
 
-                $datum->DayofWeek = $dt->englishDayOfWeek;
-                $datum->year = $dt->year;
-                $datum->month = $month;
-                $datum->day = $dt->day;
-                $datum->hour = $dt->hour;
-                if ($dt->minute < 10) {
-                    $datum->minute = '0' . $dt->minute;
-                } else {
-                    $datum->minute =  $dt->minute;
-                }
-                $datum->end_hour = $dt->hour + $post->class_duration;
-                array_push($sched, $datum);
+            $datum->DayofWeek = $dt->englishDayOfWeek;
+            $datum->year = $dt->year;
+            $datum->month = $month;
+            $datum->day = $dt->day;
+            $datum->hour = $dt->hour;
+            if ($dt->minute < 10) {
+                $datum->minute = '0' . $dt->minute;
+            } else {
+                $datum->minute =  $dt->minute;
             }
-            dd($sched);
+            $datum->end_hour = $dt->hour + $post->class_duration;
+            array_push($sched, $datum);
+        }
+        dd($sched);
         $user = User::where('id', auth()->user()->id)->first();
         // dd($user);
         //dd($user);
-        // 
-        
+        //
+
         return view('/orders/create', compact('user', 'post', 'schedule'));
         // Alert::success('Pesanan anda sukses dibuat');
     }
@@ -58,32 +61,32 @@ class OrderController extends Controller
         $user = User::where('id', auth()->user()->id)->first();
         $schedules = ClassSchedule::where('post_id', $post->id)->get();
         $sched = [];
-        foreach($schedules as $schedule){
+        foreach ($schedules as $schedule) {
             $datum = new \stdClass;
 
-                $dt = Carbon::parse($schedule->start_date);
-                $timestamp = strtotime($schedule->start_date);
-                $month = date('M', $timestamp);
+            $dt = Carbon::parse($schedule->start_date);
+            $timestamp = strtotime($schedule->start_date);
+            $month = date('M', $timestamp);
 
-                $datum->DayofWeek = $dt->englishDayOfWeek;
-                $datum->year = $dt->year;
-                $datum->month = $month;
-                $datum->day = $dt->day;
-                $datum->hour = $dt->hour;
-                if ($dt->minute < 10) {
-                    $datum->minute = '0' . $dt->minute;
-                } else {
-                    $datum->minute =  $dt->minute;
-                }
-                $datum->end_hour = $dt->hour + $post->class_duration;
-                array_push($sched, $datum);
+            $datum->DayofWeek = $dt->englishDayOfWeek;
+            $datum->year = $dt->year;
+            $datum->month = $month;
+            $datum->day = $dt->day;
+            $datum->hour = $dt->hour;
+            if ($dt->minute < 10) {
+                $datum->minute = '0' . $dt->minute;
+            } else {
+                $datum->minute =  $dt->minute;
             }
-           // dd($sched);
+            $datum->end_hour = $dt->hour + $post->class_duration;
+            array_push($sched, $datum);
+        }
+        // dd($sched);
 
         $totalPrice = $post->occurrence * $post->price;
         // Alert::success('Success Title', 'Success Message');
-        
-        return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice','sched'));
+
+        return view('/orders/create', compact('user', 'post', 'schedules', 'totalPrice', 'sched'));
     }
 
     public function store()
@@ -127,7 +130,7 @@ class OrderController extends Controller
     public function accepted(Request $request)
     {
         $order = Order::where('id', $request->orderId)->first();
-        $order->status = "Menunggu Kelas Dilaksanakan";
+        $order->status = "Sudah Dibayar";
         $order->save();
 
         $post = Post::where('id', $order->post_id)->first();
@@ -159,32 +162,38 @@ class OrderController extends Controller
     {
         $orders = Order::with('post')->where('id', $order->id)->first();
         //dd($orders);
-        
 
         $schedules = ClassSchedule::where('post_id', $orders->post->id)->get();
         $sched = [];
-        foreach($schedules as $schedule){
+        foreach ($schedules as $schedule) {
             $datum = new \stdClass;
 
-                $dt = Carbon::parse($schedule->start_date);
-                $timestamp = strtotime($schedule->start_date);
-                $month = date('M', $timestamp);
+            $dt = Carbon::parse($schedule->start_date);
+            $timestamp = strtotime($schedule->start_date);
+            $month = date('M', $timestamp);
 
-                $datum->DayofWeek = $dt->englishDayOfWeek;
-                $datum->year = $dt->year;
-                $datum->month = $month;
-                $datum->day = $dt->day;
-                $datum->hour = $dt->hour;
-                if ($dt->minute < 10) {
-                    $datum->minute = '0' . $dt->minute;
-                } else {
-                    $datum->minute =  $dt->minute;
-                }
-                $datum->end_hour = $dt->hour + $orders->post->class_duration;
-                array_push($sched, $datum);
+            $datum->DayofWeek = $dt->englishDayOfWeek;
+            $datum->year = $dt->year;
+            $datum->month = $month;
+            $datum->day = $dt->day;
+            $datum->hour = $dt->hour;
+            if ($dt->minute < 10) {
+                $datum->minute = '0' . $dt->minute;
+            } else {
+                $datum->minute =  $dt->minute;
             }
-           // dd($sched);
-        return view('/orders/details', compact('orders', 'sched'));
+            $datum->end_hour = $dt->hour + $orders->post->class_duration;
+            array_push($sched, $datum);
+        }
+
+        // get if class already reviewed
+        $pr = PostReview::where('post_id', $orders->post->id)->where('student_id', auth()->user()->id)->first();
+        $can_review = false;
+        if (!$pr) {
+            $can_review = true;
+        }
+
+        return view('/orders/details', compact('orders', 'sched', 'can_review'));
     }
 
     public function tutorDetails(Post $post)
@@ -192,32 +201,31 @@ class OrderController extends Controller
 
         $orders = Order::with('user')->where('post_id', $post->id)->get();
         $schedules = ClassSchedule::where('post_id', $post->id)->get();
-       
-       
-       
-$sched = [];
-        foreach($schedules as $schedule){
+
+
+
+        $sched = [];
+        foreach ($schedules as $schedule) {
             $datum = new \stdClass;
 
-                $dt = Carbon::parse($schedule->start_date);
-                $timestamp = strtotime($schedule->start_date);
-                $month = date('M', $timestamp);
+            $dt = Carbon::parse($schedule->start_date);
+            $timestamp = strtotime($schedule->start_date);
+            $month = date('M', $timestamp);
 
-                $datum->DayofWeek = $dt->englishDayOfWeek;
-                $datum->year = $dt->year;
-                $datum->month = $month;
-                $datum->day = $dt->day;
-                $datum->hour = $dt->hour;
-                if ($dt->minute < 10) {
-                    $datum->minute = '0' . $dt->minute;
-                } else {
-                    $datum->minute =  $dt->minute;
-                }
-                $datum->end_hour = $dt->hour + $post->class_duration;
-                array_push($sched, $datum);
-                
+            $datum->DayofWeek = $dt->englishDayOfWeek;
+            $datum->year = $dt->year;
+            $datum->month = $month;
+            $datum->day = $dt->day;
+            $datum->hour = $dt->hour;
+            if ($dt->minute < 10) {
+                $datum->minute = '0' . $dt->minute;
+            } else {
+                $datum->minute =  $dt->minute;
             }
-           
+            $datum->end_hour = $dt->hour + $post->class_duration;
+            array_push($sched, $datum);
+        }
+
         return view('/orders/tutor_details', compact('post', 'orders', 'schedules', 'sched'));
     }
 
@@ -233,15 +241,14 @@ $sched = [];
         $order->status = "Selesai";
         //dd($order);
         $order->save();
-        //dd($order);      
+        //dd($order);
         // alert('Title','Lorem Lorem Lorem', 'success');
-        return redirect('/users/' . $post->user_id . '/review');
-        
+        return redirect('/users/' . $post->user_id . '/review/' . $post->id);
     }
 
     public function history()
     {
-        $orders = DB::table('orders')->join('posts', 'post_id', '=', 'posts.id')->where('orders.orderuser_id', auth()->user()->id)->get();
+        $orders = Order::with('post')->where('orders.orderuser_id', auth()->user()->id)->get();
         // dd($orders);
         return view('/orders/history', compact('orders'));
     }

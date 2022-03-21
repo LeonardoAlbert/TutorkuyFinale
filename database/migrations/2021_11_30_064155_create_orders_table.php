@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id()->increment();
-            $table->string('status');
+            $table->string('status')->default('Menunggu Pembayaran'); // Status: Menunggu Pembayaran, Sudah Dibayar
             $table->string('image');
             $table->string('linkmeeting')->nullable();
             $table->string('material')->nullable();

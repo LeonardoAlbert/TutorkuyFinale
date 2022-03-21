@@ -78,7 +78,7 @@ Route::get('/users/{user}/edit', 'UserController@edit')->middleware(userOwner::c
 Route::put('/users/{user}', 'UserController@update')->middleware(userOwner::class);;
 Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/createverify', 'UserController@createverify');
-Route::get('/users/{user}/review', 'UserController@review');
+Route::get('/users/{user}/review/{post}', 'UserController@review');
 
 
 

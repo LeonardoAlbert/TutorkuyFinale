@@ -29,7 +29,8 @@ class CreatePostsTable extends Migration
             $table->integer('participants'); // max number of participant
             $table->integer('count_participant')->default(0); // max number of participant
 
-            $table->string('status')->default('Menunggu Peserta'); // Status: Menunggu Peserta, Memulai, Selesai, Batal
+            $table->string('status')->default('Menunggu Peserta'); // Status: Menunggu Peserta, Memulai, Selesai, Batal, Closed
+
             $table->string('link_meeting')->default("");
             $table->string('material')->nullable();
 

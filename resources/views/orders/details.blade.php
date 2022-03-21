@@ -8,18 +8,19 @@
     </div>
     <div class="row">
         <div class="card shadow-dark p-4">
-            
-            <div><span class="text-dark"> Status Kelas</span><br><span> 
+
+            <div><span class="text-dark"> Status Kelas</span><br><span>
                 {{-- Menunggu Peserta, Memulai, Selesai, Batal --}}
-            @if ($orders->status=="Menunggu Kelas Dilaksanakan")
+            @if ($orders->post->status=="Memulai")
                 <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
-            @elseif($orders->status=="Menunggu Pembayaran")
+            @elseif($orders->post->status=="Menunggu Pembayaran")
                 <i class="fa fa-circle active" style="color:rgb(151, 142, 14)"></i>
             @else
                 <i class="fa fa-circle active" style="color:rgb(14, 151, 21)"></i>
             @endif
-            <span></small> {{$orders->status}}</span></div>
+            <span></small> {{$orders->post->status}}</span></div>
             <div><span class="text-dark">Nomor Order </span><br><span> OD{{$orders->id}}</span></div>
+            <div><span class="text-dark">Status Order </span><br><span> {{$orders->status}}</span></div>
         </div>
     </div>
     <div class="row">
@@ -44,7 +45,7 @@
                                 <h6 class="text " style="margin: 0px">Detail <i class="fa fa-arrow-circle-right" style="color:#d8d8d8"></i></h6>
                             {{-- </button> --}}
                         </div>
-                    </div>     
+                    </div>
                 </a>
             </div>
             {{-- <div class="card shadow-dark p-4">
@@ -81,11 +82,13 @@
             <span> {{$sche->DayofWeek}}, {{$sche->day}} {{$sche->month}} {{$sche->year}} Pada Pukul: {{$sche->hour}}:{{$sche->minute}} - {{$sche->end_hour}}:{{$sche->minute}}</span><br>
             @endforeach
         </div>
+        @if(($orders->post->status == 'Selesai' || $orders->post->status == 'Closed') && $can_review)
         <div class="col-12 d-flex justify-content-center mb-4">
             <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#exampleModalCenter">
-                Selesaikan Kelas
+                Review Kelas
             </button>
         </div>
+        @endif
     </div>
 
 
@@ -95,7 +98,7 @@
 {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Selesaikan Kelas
   </button> --}}
-  
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

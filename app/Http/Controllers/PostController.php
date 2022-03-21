@@ -184,7 +184,7 @@ class PostController extends Controller
 
     public function createlinkmeeting(Post $post)
     {
-        
+
         return view('/posts/linkmeeting', compact('post'));
     }
 
@@ -230,7 +230,7 @@ class PostController extends Controller
 
        //dd($request);
         $post = Post::where('id',$request->postId)->first();
-        $post->status = 'Transfered';
+        $post->status = 'Closed';
         $post->save();
         toast('Pesanan Telah Ditransfer.','success');
         return redirect('admin/managetutorspayment');
