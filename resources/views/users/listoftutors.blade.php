@@ -17,7 +17,7 @@
                     <div class="card rounded shadow-sm border-0" style="height: 210px">
                         <div class="card-body p-4">
                             <div class="el-card-avatar">
-                                <a href="/user/{{$tutor->id}}"> 
+                                <a href="/users/{{$tutor->id}}"> 
                                     <img src="/storage/{{$tutor->image}}" alt="img" class="mt-2 rounded post d-block mx-auto mb-3">
                                 </a>
                             </div>

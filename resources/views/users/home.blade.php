@@ -43,7 +43,7 @@
                 <h6 class="text-primary">Tutor Kami</h6>
                 </div>
                 <div class="col-1">
-                <a href="/categories/index" class="btn btn-primary rounded-pill" style="width:100px height:30px">Lainnya </a>
+                <a href="/listoftutors" class="btn btn-primary rounded-pill" style="width:100px height:30px">Lainnya </a>
                 </div>
             </div>
             {{-- <div class="card shadow-dark p-4"> --}}
