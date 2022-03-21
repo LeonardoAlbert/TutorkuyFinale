@@ -58,7 +58,6 @@ Route::get('/posts/{post}/materialdownload', 'PostController@materialdownload')-
 Route::post('/posts/transfered' , 'PostController@transfered');
 
 
-
 //CATEGORY
 Route::post('/categories' , 'CategoryController@store');
 Route::post('/categories/request' , 'CategoryController@requeststore');
@@ -80,7 +79,7 @@ Route::get('/users/{user}', 'UserController@show');
 Route::get('/users/createverify', 'UserController@createverify');
 Route::get('/users/{user}/review/{post}', 'UserController@review');
 
-
+Route::get('/users/index', 'UserController@index');
 
 Route::post('/users/review/submit', 'UserController@reviewsubmit');
 Route::post('/users/verifaccepted', 'UserController@verifaccepted');
