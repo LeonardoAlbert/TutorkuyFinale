@@ -139,11 +139,15 @@ class PostController extends Controller
                 array_push($sched, $datum);
             }
 
-        $order = Order::where('post_id',  $post->id)->where('orderuser_id',auth()->user()->id)->first();
-        $allow_user = true;
-        if ($order) {
-            $allow_user = false;
+        $allow_user = false;
+
+        if(auth()->user()){
+            $order = Order::where('post_id',  $post->id)->where('orderuser_id',auth()->user()->id)->first();
+            if (!$order) {
+                $allow_user = true;
+            }
         }
+       
 
             //dd($css);
             //dd($post);
