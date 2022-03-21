@@ -144,12 +144,17 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
+                                </div> 
     
                                 <div class="form-group">
                                     <label for="bankcode">Bank Pengirim</label>
-                                    <input type="text" name="bankcode" class="rounded-pill form-control formInput @error('bankcode') is-invalid @enderror formInput" value="{{ old('bankcode') }}">
-    
+                                    <select type="text" name="bankcode" id="bankcode" class="rounded-pill form-control formInput @error('bankcode') is-invalid @enderror formInput" value="{{ old('bankcode') }}">
+                                        <option value="BCA">BCA</option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="CIMB">CIMB</option>
+                                        <option value="BNI">BNI</option>
+                                    </select>
                                     @error('bankcode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

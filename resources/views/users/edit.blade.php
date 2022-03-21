@@ -87,11 +87,17 @@
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="bank">Bank Tutor</label>
-                            <input type="bank" 
+                            <select type="bank" 
                                 name="bank" 
                                 id="bank" 
                                 class="form-control formInput @error('bank') is-invalid @enderror rounded-pill"
                                 value="{{ old('bank') ?? $user->bank }}">
+                                <option value="BCA">BCA</option>
+                                <option value="BRI">BRI</option>
+                                <option value="Mandiri">Mandiri</option>
+                                <option value="CIMB">CIMB</option>
+                                <option value="BNI">BNI</option>
+                            </select>   
                                 
                             @error('bank')
                                 <span class="invalid-feedback" role="alert">

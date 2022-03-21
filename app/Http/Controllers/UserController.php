@@ -273,11 +273,13 @@ class UserController extends Controller
         return redirect('/admin/manageverif');
     }
 
-    public function listoftutors()
+    public function listoftutors(Request $request)
     {
         $tutors = [];
-        $tutors = User::where('role', 1)->get();
+        $search = $request->search;
 
-        return view('users/listoftutors', compact('tutors'));
+        $tutors = User::where('role', 1)->where('name','like', "%$request->search%")->get();
+
+        return view('users/listoftutors', compact('tutors', 'search'));
     }
 }

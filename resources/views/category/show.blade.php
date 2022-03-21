@@ -45,10 +45,10 @@
                         <h5 class="card-title text-center">{{$post->title}}</h5>
                         <div class="card">
                             {{-- <br><br> --}}
-                        <a href="/users/{{$post->userid}}" class="card-text row">
-                            <div class="col-4"><img src="/storage/{{ $post->userimage }}" alt="User Image" class="rounded-circle"></div>
-                            <div class="col-8"><p style=" text-align: center;" class="card-text mt-2">{{$post->name}}</p></div>
-                        </a> 
+                            <a href="/users/{{$post->userid}}" class="card-text row">
+                                <div class="col-4"><img src="/storage/{{ $post->userimage }}" alt="User Image" class="rounded-circle"></div>
+                                <div class="col-8"><p style=" text-align: center;" class="card-text mt-2">{{$post->name}}</p></div>
+                            </a> 
                         <label class="badge badge-pill rounded-pill full-width mt-2" style="font-size: 14px" style="width:100%"><i class="fas fa-star" style="color:#FFD700"></i> {{round($post->rate,1)}} x {{$post->num_work}} Ulasan </label>
                         </div>
                         {{-- <div class="row"><br></div> --}}
