@@ -9,6 +9,7 @@ use App\ClassSchedule;
 
 use App\Post;
 use App\User;
+use App\Order;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use DB;
@@ -137,11 +138,18 @@ class PostController extends Controller
                 $datum->end_hour = $dt->hour + $post->class_duration;
                 array_push($sched, $datum);
             }
+
+        $order = Order::where('post_id',  $post->id)->where('orderuser_id',auth()->user()->id)->first();
+        $allow_user = true;
+        if ($order) {
+            $allow_user = false;
+        }
+
             //dd($css);
             //dd($post);
        // dd($sched);
         $user = User::where('id', $post->user_id)->first();
-        return view("/posts/details", compact('post', 'css', 'user','sched'));
+        return view("/posts/details", compact('post', 'css', 'user','sched', 'allow_user'));
     }
 
     public function edit(Post $post)
@@ -215,5 +223,16 @@ class PostController extends Controller
     {
         $pathToFile = public_path('storage/' . $post->material);
         return response()->download($pathToFile);
+    }
+
+    public function transfered(Request $request)
+    {
+
+       //dd($request);
+        $post = Post::where('id',$request->postId)->first();
+        $post->status = 'Transfered';
+        $post->save();
+        toast('Pesanan Telah Ditransfer.','success');
+        return redirect('admin/managetutorspayment');
     }
 }

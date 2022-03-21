@@ -193,7 +193,8 @@
             {{-- </div> --}}
                  @endif
             <br>
-            @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants)
+            
+            @if(Auth::check() && auth()->user()->role == 0 && $post->count_participant != $post->participants && $allow_user )
                 
                 <div class="btn btn-primary rounded-pill" onclick="location.href='/orders/{{$post->id}}/create';">
                     Daftar Kelas

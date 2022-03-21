@@ -7,6 +7,7 @@ use DB;
 use App\Order;
 use App\Category;
 use App\User;
+use App\Post;
 
 class AdminController extends Controller
 {
@@ -51,6 +52,7 @@ class AdminController extends Controller
         return view("/admin/managecategory", compact('categories'));
         
     }
+   
 
     public function manageexistingcategory(){
         $categories = Category::where('statuscategories',2)->join('category_types', 'category_type_id' , '=' , 'category_types.id')->select('categories.id','category_types.id as categorytypeid','category_types.name as categorytypename','categories.name as categoryname','categories.statuscategories')->get();
@@ -80,8 +82,10 @@ class AdminController extends Controller
         }
 
     public function managetutorspayment(){
-        
-        return view("/admin/managetutorspayment");
+        $posts = Post::where('status','Selesai')->join('users' , 'user_id' , '=' , 'users.id')->get();
+        //dd($posts);
+
+        return view("/admin/managetutorspayment", compact('posts'));
     }
 
     

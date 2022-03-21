@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">
                     <div style="margin-right: 0; margin-left: auto;">
-                        <a href="/admin/manageverif" class="btn btn-primary" style="width:100px height:30px">Check</a>
+                        <a href="/admin/managetutorspayment" class="btn btn-primary" style="width:100px height:30px">Check</a>
                     </div>
                 </div>
             </div>

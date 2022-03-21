@@ -33,7 +33,9 @@ Route::get('/admin/managepayment', 'AdminController@managepayment');
 Route::get('/admin/manageverif', 'AdminController@manageverif');
 Route::get('/admin/managecategory', 'AdminController@managecategory');
 Route::get('/admin/manageexistingcategory', 'AdminController@manageexistingcategory');
+
 Route::get('/admin/managetutorspayment', 'AdminController@managetutorspayment');
+
 
 Route::get('/admin/{category}/managecategorydetails', 'AdminController@categorydetails');
 
@@ -53,6 +55,8 @@ Route::get('/posts/{post}/createlinkmeeting', 'PostController@createlinkmeeting'
 Route::post('/posts/linkmeeting', 'PostController@linkmeeting');
 Route::post('/posts/uploadmaterial', 'PostController@uploadmaterial');
 Route::get('/posts/{post}/materialdownload', 'PostController@materialdownload')->name('material.download');
+Route::post('/posts/transfered' , 'PostController@transfered');
+
 
 
 //CATEGORY

@@ -20,12 +20,16 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role'); // 0 = Student | 1 = Teacher | 2 = Admin
+
             $table->rememberToken();
 
             $table->timestamps();
 
             $table->integer('verif')->default(0); //0 Unverified | 1= Waiting for Verification |2 = Verified
             $table->string('fileverif')->nullable();
+            
+            $table->string('bank')->nullable();
+            $table->string('accountnumber')->nullable();
 
             $table->text('headline')->nullable();
             $table->text('bio')->nullable();

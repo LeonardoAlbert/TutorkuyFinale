@@ -213,7 +213,9 @@ class UserController extends Controller
             'headline' => 'max:150',
             'bio' => 'max: 350',
             'city' => '',
-            'country' => ''
+            'country' => '',
+            'bank' => '',
+            'accountnumber' => '',
         ]);
 
         $id = Auth::user()->id;
@@ -235,7 +237,7 @@ class UserController extends Controller
         $user->save();
         // Alert::success('Perubahan Berhasil');
         toast('Perubahan Profil Berhasil','success');
-        return redirect()->back();
+        return redirect("/home");
     }
     public function verifaccepted(Request $request)
     {

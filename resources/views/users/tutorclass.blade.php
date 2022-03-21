@@ -31,7 +31,7 @@
 
         <h4>Kelas Selesai:</h4>
         @foreach($class as $data)
-        @if($data->status == 'Selesai')
+        @if($data->status == 'Selesai' || $data->status =='Transfered')
         <div class="row row-striped card shadow-dark mt-2">
             <div class="col-12">
                 <h4 class="text-uppercase"><strong><a href="/orders/{{$data->id}}/tutor/details">Kelas {{$data->title}}</a></strong></h4>

@@ -48,7 +48,7 @@
                                     @enderror
                                 </div>
 
-                            {{-- <div class="form-group row">
+                             <div class="form-group row">
                                 
                                 <div class="col-6">
                                     <label for="city">Kota</label>
@@ -79,19 +79,21 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
+
                         </div>
                     </div>
+                    @if($user->role == 1)
                     <div class="form-group row">
                         <div class="col-6">
-                            <label for="city">Kota</label>
-                            <input type="text" 
-                                name="city" 
-                                id="city" 
-                                class="form-control formInput @error('city') is-invalid @enderror rounded-pill"
-                                value="{{ old('city') ?? $user->city }}">
+                            <label for="bank">Bank Tutor</label>
+                            <input type="bank" 
+                                name="bank" 
+                                id="bank" 
+                                class="form-control formInput @error('bank') is-invalid @enderror rounded-pill"
+                                value="{{ old('bank') ?? $user->bank }}">
                                 
-                            @error('city')
+                            @error('bank')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -99,20 +101,20 @@
                         </div>
                         
                         <div class="col-6">
-                            <label for="country">Negara</label>
-                            <input type="text" 
-                                name="country" 
-                                id="country" 
-                                class="form-control formInput @error('country') is-invalid @enderror rounded-pill"
-                                value="{{ old('country') ?? $user->country }}">
+                            <label for="accountnumber">Nomor Account Bank </label>
+                            <input type="accountnumber" 
+                                name="accountnumber" 
+                                id="accountnumber" 
+                                class="form-control formInput @error('accountnumber') is-invalid @enderror rounded-pill"
+                                value="{{ old('accountnumber') ?? $user->accountnumber }}">
 
-                            @error('country')
+                            @error('accountnumber')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        
+                        @endif
                         <div class="col-12">
                             <br>
                             <label for="headline">Headline <span class="text-muted">(max: 150)</span></label>
