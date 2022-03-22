@@ -28,7 +28,7 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="text my-2">Kategori</div>
+                    <div class="text my-2">Pelajaran</div>
                     
                    {{-- <button class="btn btn-primary w-100 rounded-pill">Minta</button>  --}}
 
