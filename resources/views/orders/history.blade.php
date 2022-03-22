@@ -48,12 +48,12 @@
                             <div class="row">
                                 <div class="col mt-auto ">
                                     <small>
-                                        @if ($order->post->status=="Memulai")
+                                        @if ($order->status=="Sudah Dibayar")
                                             <i class="fa fa-circle active" style="color:rgb(96, 151, 14)"></i>
-                                        @elseif($order->post->status=="Sudah Dibayar")
+                                        @else
                                             <i class="fa fa-circle active" style="color:rgb(224, 101, 0)"></i>
                                         @endif
-                                        {{$order->post->status}} <span></small>
+                                        {{$order->status}} <span></small>
                                 </div>
                                 {{-- <div class="col mt-auto "> <small> Jadwal Kelas:  </small> </div> --}}
                                 <div class="text-right "> <small> Dipesan Pada:  {{$order->created_at}}</small> </div>

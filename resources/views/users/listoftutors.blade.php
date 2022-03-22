@@ -9,7 +9,7 @@
 <br>
 
 <div class="container">    
-    <div class="card shadow-dark p-4" style="">
+    <div class="card shadow-dark p-4 mt-5" style="">
         <h1 style="font-size: 200%;" class="d-block text-center text-primary mb-3" >List of tutors</h1>
         <form action="" class="" style="margin:0px">
             <div class="row px-5 align-self-center">
@@ -49,14 +49,14 @@
                 <br><br><br><br><br>
               </a>
                 <div class="row d-flex justify-content-center"> 
-                  <h5 class="text-center"> <a href="/users/{{ $tutor->id }}" class=" ">{{$tutor->name}}</a>
+                    <h5 class="text-center"> <a href="/users/{{ $tutor->id }}" class=" ">{{$tutor->name}}</a>
                   @if($tutor->verif == 2)
-                  <i class="fa fa-check mr-1"></i>
+                    <i class="fa fa-check mr-1"></i>
                   @endif</h5>
                 </div>
                 <div class="row d-flex justify-content-center"> 
                   {{-- <span class="text-bold text-primary">{{ number_format($user->rate, 1) }}</span> --}}
-                  <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($tutor->rate,1)}} x {{$tutor->num_work}} Ulasan </label>
+                    <label class="badge badge-light rounded-pill full-width" style="font-size: 14px" ><i class="fas fa-star" style="color:#FFD700"></i> {{round($tutor->rate,1)}} x {{$tutor->num_work}} Ulasan </label>
                 </div>
                 <div class="row d-flex justify-content-center">
                     <div class="btn btn-primary rounded-pill full-width justify-content-between" style="margin: 0.7em; width:100px" onclick="location.href='/users/{{$tutor->id}}'">
@@ -69,7 +69,7 @@
               </div>
             </div>
             @endforeach  
-          </div>
+        </div>
     </div>
 </div>
 @endsection
