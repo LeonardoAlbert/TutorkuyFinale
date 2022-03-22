@@ -145,6 +145,7 @@ class OrderController extends Controller
         //\Mail::to('$Studentorders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
         //\Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorOrderAcceptedMail($Tutororders));
         //\Mail::to('$Tutororders->email')->send(new \App\Mail\StudentOrderAcceptedMail($Studentorders));
+        toast('Berhasil','success');
         return redirect('/admin');
     }
 

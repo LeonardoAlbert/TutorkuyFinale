@@ -19,8 +19,8 @@ class AdminController extends Controller
     }
 
     public function managepayment(){
-        $orders = DB::table('orders')->get();
-
+        $orders = DB::table('orders')->where('status','=','Menunggu Pembayaran')->get();
+        
         return view("/admin/managepayment", compact('orders'));
     }
 

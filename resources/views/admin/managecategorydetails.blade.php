@@ -10,7 +10,7 @@
 <div class="container mt-4">
 <div class="card shadow-dark p-4">
     <div class="card title-card">
-        <h1>Tutor Verification</h1>
+        <h1>Category Request Detail</h1>
     </div>
     <div class="card table-card">
     <div class="table-responsive">
