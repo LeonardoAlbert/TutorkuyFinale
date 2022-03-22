@@ -12,7 +12,7 @@
       <thead>
         <tr>
           <th scope="col">No.</th>
-          <th scope="col">Post Id</th>
+          <th scope="col">Post Id</th> 
           <th scope="col">Post Name</th>
           <th scope="col">Post Participant</th>
           <th scope="col">Post Price</th>
