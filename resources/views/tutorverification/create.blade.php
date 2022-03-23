@@ -23,7 +23,7 @@
                         Contoh dokumen yang diterima adalah Kualifikasi Pengajar, Tanda Petunjuk bahwa dapat mengajar , dan lain lain.
                     </p>
 
-                    <a href="/verif/{{$user->id}}" class="btn btn-primary w-100 mt-5">Lanjut</a>
+                    <a href="/verif/{{$user->id}}" class="btn btn-primary w-100 mt-5 rounded-pill">Lanjut</a>
                 </div>
             </div>
         </div>

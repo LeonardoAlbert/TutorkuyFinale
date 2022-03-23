@@ -110,7 +110,7 @@
                                 Edit Kelas
                                 {{-- <a href="/posts/{{$post->id}}/edit" class="daftar-kelas mb-3"> <button type="button" class="btn btn-primary rounded-pill">Edit Kelas</button></a> --}}
                             </div>
-                            <h5 class="text-dark">Anda tidak bisa edit kelas karena</h5>
+                            <h5 class="text-dark">Anda tidak bisa edit kelas karena kelas telah berjalan</h5>
                         </div>
                     @endif
                     </div>

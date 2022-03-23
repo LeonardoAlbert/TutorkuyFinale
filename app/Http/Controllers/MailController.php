@@ -17,16 +17,14 @@ class MailController extends Controller
     'body' => 'This is for testing email using smtp'
     ];
     
-    \Mail::to('albertleonardo57@gmail.com')->send(new \App\Mail\TutorKuyMail($details));
+    \Mail::to('aldorino.adhisasmita@gmail.com')->send(new \App\Mail\TutorKuyMail($details));
     
-    //dd("Email sudah terkirim.");
+    // dd("Email sudah terkirim.");
 
 	}
 
 
     public function sendConfirmation(){
-
-
 
     }
 }
